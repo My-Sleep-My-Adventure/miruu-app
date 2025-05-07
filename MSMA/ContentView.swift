@@ -15,94 +15,105 @@ struct ContentView: View {
     @State var navigate2 = false
     @State var showPopup = false
     @State var activeTheme = false
-    @State var notRandomised = true
     
     var body: some View {
         NavigationStack{
-            VStack{
+            ZStack {
+                Image("backgroundImage1")
+                    .resizable()
+                    .aspectRatio(contentMode:.fill)
+                    .ignoresSafeArea(edges: .all)
+                
+                VStack{
+                    VStack{
+                        Text("Miruu").font(.system(size: 36, weight: .bold)).foregroundStyle(Color("darkBlue"))
+                            .shadow(color: Color("AccentColor"),radius: 2)
+                        DisplayGif(gifName: "dragonform2", size: 150)
+                        
+                    }
+                    VStack{
+                        if activeTheme{
+                            Text(generated.name).font(.title).fontWeight(.bold).foregroundStyle(Color("darkBlue"))
+                            Text("Kunjungi dan jelajahi\ntemukan misi tersembunyinya").font(.caption).multilineTextAlignment(.center)
+                        }
+                    }
+                    .frame(width: 307, height: 70)
+                    .padding(.bottom, 47)
+                    
+                    VStack(alignment: .leading){
+                        Text("\(data.shuffleCount)/2").padding(.leading, 20).foregroundStyle(Color("darkBlue"))
+                        HStack(spacing: 20){
+                            Button {
+                                if data.shuffleCount > 0{
+                                    generated = data.generateData()
+                                    generated = data.generateData()
+                                    navigate = true
+                                    showPopup = true
+                                    data.decrementShuffleCount()
+                                    print(data.shuffleCount)
+                                    print(generated)
+                                    if !activeTheme{
+                                        activeTheme = true
+                                    }
+                                }
+                            } label: {
+                                Image(systemName: "shuffle")
+                                    .foregroundStyle(Color("AccentColor"))
+                                    .frame(width: 65,height: 55)
+                                    .background(Color("milk"))
+                                    .font(.system(size: 24, weight: .bold))
+                            }
+                            .cornerRadius(5)
+                            .shadow(radius: 4, x:0, y:4)
+                            
+                            Button {
+                                navigate2 = true
+                            } label: {
+                                Text("Ambil Tema")
+                                    .foregroundStyle(Color(activeTheme ? "milk" : "foregroundGrey"))
+                                    .padding(.vertical, 20)
+                                    .frame(maxWidth: 200)
+                                    .background(Color(activeTheme ? "AccentColor" : "backgroundGrey"))
+                                    .fontWeight(.bold)
+                            }
+                            .disabled(!activeTheme)
+                            .cornerRadius(6)
+                            .shadow(radius: activeTheme ? 4 : 0, x:0, y: activeTheme ? 4 : 0)
+                        }
+                    }
+                    Spacer()
+                }
+                .padding(.vertical, 170)
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .bottomBar){
                 HStack{
                     Spacer()
-                    Image(systemName: "info.circle")
-                        .padding()
-                        .font(.system(size: 20))
-                }
-                Spacer()
-                VStack{
-//                    RoundedRectangle(cornerRadius: 20)
-//                        .stroke( Color.black, lineWidth: 2)
-//                        .frame(width: 200, height: 200)
-//                        .overlay(Text("Character"))
-//                    Image("dragonform2")
-//                        .frame(width: 200, height: 120, alignment: .center)
-                    
-                    DisplayGif(gifName: "dragonform2")
-
-                }
-//                Spacer()
-                if activeTheme{
-                    Text(generated.name).font(.title)
-                }
-                
-                HStack(spacing: 10){
-                    
-                    Button {
-                        if data.shuffleCount > 0{
-                            generated = data.generateData()
-                            generated = data.generateData()
-                            navigate = true
-                            showPopup = true
-                            data.decrementShuffleCount()
-                            print(data.shuffleCount)
-                            print(generated)
-                            if !activeTheme{
-                                activeTheme = true
-                                notRandomised = false
-                            }
-
+                    NavigationLink(destination: HomeView()){
+                        VStack {
+                            Image(systemName: "house.fill")
+                                .imageScale(.large)
+                            Text("Home")
                         }
-
-                        
-                        
-                    } label: {
-                        Image(systemName: "shuffle")
-                            .foregroundStyle(Color("milk"))
-                            .padding(.vertical, 20)
-                            .frame(maxWidth: 80)
-                            .background(Color("purple"))
-                            .fontWeight(.bold)
+                        .foregroundStyle(Color("AccentColor"))
                     }
-                    
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
-                    
-                    NavigationLink(destination: HomeView(), isActive: $navigate2) {
-                        EmptyView()
+                    Spacer()
+                    NavigationLink(destination: ProfileView()){
+                        VStack {
+                            Image(systemName: "person.fill")
+                                .imageScale(.large)
+                            Text("Profile")
+                        }
+                        .foregroundStyle(Color("foregroundGrey"))
                     }
-                    Button {
-//                        generated = data.generateData()
-                        navigate2 = true
-//                        showPopup = true
-                        
-                        
-                    } label: {
-                        Text("Ambil Tema")
-                            .foregroundStyle(Color("milk"))
-                            .padding(.vertical, 20)
-                            .frame(maxWidth: 200)
-                            .background(Color(activeTheme ? "purple" : "grey"))
-                            .fontWeight(.bold)
-                    }
-                    .disabled(notRandomised)
-                    .clipShape(RoundedRectangle(cornerRadius: 7))
+                    Spacer()
                 }
-                Spacer()
-                Spacer()
-                NavigationView()
-                
+                .padding(.top)
                 
             }
-            .background(Color("milk"))
         }
-        
+
         .fullScreenCover(isPresented: $showPopup) {
             PopUpView(isPresented: $showPopup, generated: $generated, navigate: $navigate)
                 .interactiveDismissDisabled(true)

@@ -38,7 +38,7 @@ struct HomeView: View {
                                 .foregroundColor(.black)
                         }
                         Spacer()
-                        DisplayGif(gifName: "dragonform2")
+                        DisplayGif(gifName: "dragonform2", size: 200)
                             .frame(width: 160, height: 160)
 
 //                            .background(Color.white)
