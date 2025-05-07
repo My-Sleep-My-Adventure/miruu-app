@@ -16,10 +16,7 @@ struct ProfileView: View {
         NavigationStack{
             
             VStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color.gray, lineWidth: 2)
-                    .frame(width: 120, height: 120)
-                    .overlay(Text("Character").foregroundColor(.gray))
+                Circle
                 
                 ProgressView(value: 0.5)
                     .progressViewStyle(LinearProgressViewStyle(tint:    Color("brown")))
