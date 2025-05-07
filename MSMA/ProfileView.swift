@@ -16,26 +16,27 @@ struct ProfileView: View {
         NavigationStack{
             
             VStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color.gray, lineWidth: 2)
-                    .frame(width: 120, height: 120)
-                    .overlay(Text("Character").foregroundColor(.gray))
+//                RoundedRectangle(cornerRadius: 20)
+//                    .stroke(Color.gray, lineWidth: 2)
+//                    .frame(width: 120, height: 120)
+//                    .overlay(Text("Character").foregroundColor(.gray))
+                VStack{
+                    DisplayGif(gifName: "dragonform2")
+
+                }
                 
                 ProgressView(value: 0.5)
                     .progressViewStyle(LinearProgressViewStyle(tint:    Color("brown")))
                     .scaleEffect(x: 1, y: 3, anchor: .center)
                     .frame(width: 300)
-                    .padding(.top)
-                
-                
-                
+
                 HStack {
                     Text("Level 1")
                     Spacer()
                     Text("XP 100")
                 }
                 .padding(.horizontal, 50)
-                .padding(.top, 4)
+//                .padding(.vertical, 4)
                 
                 Section{
                     Picker("Status", selection: $isActive) {

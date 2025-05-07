@@ -54,9 +54,9 @@ struct ThemeView: View {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 96, height: 120)
                                 
-                                Text("Locked")
-                                    .font(.caption)
-                                    .foregroundColor(.black)
+//                                Text("Locked")
+//                                    .font(.caption)
+//                                    .foregroundColor(.black)
                             }
                         }
                     }

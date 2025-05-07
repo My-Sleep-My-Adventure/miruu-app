@@ -46,9 +46,9 @@ struct AchievementView: View {
                                                 .foregroundColor(.gray)
                                         )
                                     
-                                    Text(data.listDataAchievement[index].name)
-                                        .font(.caption)
-                                        .foregroundColor(.black)
+//                                    Text(data.listDataAchievement[index].name)
+//                                        .font(.caption)
+//                                        .foregroundColor(.black)
                                 }
                             }
                         }
