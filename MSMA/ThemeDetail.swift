@@ -15,16 +15,24 @@ struct ThemeDetail: View {
         Text(data.name)
             .font(.title2)
             .bold()
-        if data.status == "complete"{
-            Circle()
-                .stroke( Color.blue, lineWidth: 2)
-                .frame(width: 150, height: 150)
-                .padding(50)
-        }else{
-            RoundedRectangle(cornerRadius: 20)
-                .stroke( Color.black, lineWidth: 2)
-                .frame(width: 150, height: 180)
-                .padding(50)
+        if data.status == .complete {
+            Image(data.image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 96, height: 120)
+//            Circle()
+//                .stroke( Color.blue, lineWidth: 2)
+//                .frame(width: 150, height: 150)
+//                .padding(50)
+        } else if data.status == .incomplete {
+            Image(data.image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 96, height: 120)
+//            RoundedRectangle(cornerRadius: 20)
+//                .stroke( Color.black, lineWidth: 2)
+//                .frame(width: 150, height: 180)
+//                .padding(50)
         }
 
 //        Spacer()
@@ -51,5 +59,5 @@ struct ThemeDetail: View {
 }
 
 #Preview {
-    ThemeDetail(data : ThemeData(id: 1, name: "theme", description: "description is description", caution: "", xp: 0, status:"", image:""))
+    ThemeDetail(data : ThemeData(id: 1, name: "theme", description: "description is description", caution: "", xp: 0, status:.complete, image:""))
 }
