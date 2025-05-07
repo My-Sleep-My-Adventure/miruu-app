@@ -16,6 +16,7 @@ struct ContentView: View {
     @State var showPopup = false
     @State var activeTheme = false
     @State var notRandomised = true
+    @State var showText = false
     
     var body: some View {
         NavigationStack{
@@ -39,8 +40,17 @@ struct ContentView: View {
 
                 }
 //                Spacer()
-                if activeTheme{
-                    Text(generated.name).font(.title)
+                if showText && activeTheme == true{
+                    VStack{
+                        Text(generated.name).font(.title)
+                    }
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            showText = true
+                            print(showText,activeTheme)
+                        }
+                    }
+                    
                 }
                 
                 HStack(spacing: 10){
@@ -55,8 +65,13 @@ struct ContentView: View {
                             print(data.shuffleCount)
                             print(generated)
                             if !activeTheme{
-                                activeTheme = true
+//                                activeTheme = true
                                 notRandomised = false
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    showText = true
+                                    activeTheme = true
+                                    print("Text should now be visible:", showText, activeTheme)
+                                }
                             }
 
                         }
@@ -102,6 +117,12 @@ struct ContentView: View {
             }
             .background(Color("milk"))
         }
+//        .onAppear {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                showText = true
+//                print("Text shown:", showText, activeTheme)
+//            }
+//        }
         
         .fullScreenCover(isPresented: $showPopup) {
             PopUpView(isPresented: $showPopup, generated: $generated, navigate: $navigate)
