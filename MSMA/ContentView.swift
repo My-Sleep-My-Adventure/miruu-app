@@ -133,7 +133,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(generated: Data().listDataTheme.randomElement() ?? ThemeData(id: 1, name: "theme", description: "description is description", caution: "", xp: 0, status:"", image:"") )
+    ContentView(generated: Data().listDataTheme.randomElement() ?? ThemeData(id: 1, name: "theme", description: "description is description", caution: "", xp: 0, status: .complete, image:"") )
 }
 
 //
