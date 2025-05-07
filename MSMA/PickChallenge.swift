@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct PickChallenge: View {
-    var data = Data()
+    @Binding var generated: ThemeData
+//    @State private var generated: ThemeData
+    
+    @State var data = Data()
     @State private var navigate = false
+//    @State private var navigate2 = false
     //    @State private var data = Data()
     //    var
     var body: some View {
@@ -28,19 +32,29 @@ struct PickChallenge: View {
                     .overlay(Text("Character"))
             }
             Spacer()
-            Text("Supermarket")
+            Text(generated.name)
                 .font(.title)
                 .bold()
                 .padding()
             HStack(spacing: 10){
-                
-                Button { print(data.listDataTheme[0])
+//                NavigationLink(destination: PickChallenge(generated: $generated ), isActive: $navigate2) {
+//                    
+//                }
+                Button {
+                    if data.shuffleCount > 0{
+                        generated = data.generateData()
+                        data.decrementShuffleCount()
+                        print(data.shuffleCount)
+                    }
+
+                    
+                    
                 } label: {
                     Image(systemName: "shuffle")
-                        .foregroundStyle(Color(.black))
+                        .foregroundStyle(Color("milk"))
                         .padding(.vertical, 20)
                         .frame(maxWidth: 80)
-                        .background(Color.gray)
+                        .background(Color("purple"))
                         .fontWeight(.bold)
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 16))
@@ -53,10 +67,10 @@ struct PickChallenge: View {
                         navigate = true
                     } label: {
                         Text("Pick Theme")
-                            .foregroundStyle(Color.black)
+                            .foregroundStyle(Color("milk"))
                             .padding(.vertical, 20)
                             .frame(maxWidth: 200)
-                            .background(Color.gray)
+                            .background(Color("purple"))
                             .fontWeight(.bold)
                     }
                     .clipShape(RoundedRectangle(cornerRadius: 16))
@@ -70,10 +84,13 @@ struct PickChallenge: View {
             
             NavigationView()
         }
+        .background(Color("milk"))
+        .navigationBarBackButtonHidden(true)
     }
 }
 
 
-#Preview {
-    PickChallenge()
-}
+//#Preview {
+//    PickChallenge(generated: ThemeData(id: 1, name: "theme", description: "description is description", caution: "", xp: 0, status:"", image:""))
+//}
+

@@ -18,7 +18,7 @@ struct ThemeView: View {
     
     var body: some View {
         NavigationStack{
-            Text("1/\(data.listDataTheme.count)")
+            Text("\(data.unlockedCountTheme)/\(data.listDataTheme.count)")
             ScrollView {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 20) {
                     ForEach(0..<data.listDataTheme.count) { index in
@@ -30,8 +30,8 @@ struct ThemeView: View {
 //                                        .frame(width: 60, height: 60)
                                     Image(data.listDataTheme[index].image)
                                         .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 60, height: 80)
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 100, height: 100)
                                         .clipShape(RoundedRectangle(cornerRadius: 20))
                                 }
                                 
@@ -42,8 +42,8 @@ struct ThemeView: View {
                                 NavigationLink(destination: ThemeDetail(data : data.listDataTheme[index])) {
                                     Image(data.listDataTheme[index].image)
                                         .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 60, height: 80)
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 100, height: 100)
                                         .clipShape(RoundedRectangle(cornerRadius: 20))
                                         .saturation(0.2)
                                 }
@@ -54,7 +54,7 @@ struct ThemeView: View {
                             }else{
                                 RoundedRectangle(cornerRadius: 20)
                                         .stroke( Color.red, lineWidth: 2)
-                                        .frame(width: 60, height: 80)
+                                        .frame(width: 100, height: 100)
                                         .overlay(Text("?").font(.title3).foregroundColor(.black))
                                 
                                 Text("Locked")
@@ -67,6 +67,7 @@ struct ThemeView: View {
                 .padding()
             }
         }
+        .background(Color("milk"))
         
         
     }

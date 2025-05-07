@@ -23,6 +23,11 @@ struct AchievementData {
     }
 }
 
+struct Challenge {
+    var id: Int
+    var description: String
+}
+
 struct ThemeData {
     var id : Int
     var name : String
@@ -31,6 +36,7 @@ struct ThemeData {
     var xp : Int
     var status : String
     var image : String
+    var challenges : [Challenge] = []
     
     init(id: Int, name: String, description: String, caution: String, xp: Int, status: String, image: String) {
         self.id = id
@@ -47,14 +53,15 @@ struct ThemeData {
 struct Data{
     var listDataAchievement = [AchievementData]()
     var listDataTheme = [ThemeData]()
+    var shuffleCount: Int = 2
     
     init() {
          listDataAchievement = [
-            AchievementData(id: 1, name: "Achiev 1", description: "You Have successfully get achiement 1", image: "Fire", status: true),
-            AchievementData(id: 2, name: "Achiev 2", description: "You Have successfully get achiement 2", image: "", status: false),
-            AchievementData(id: 3, name: "Achiev 3", description: "You Have successfully get achiement 3", image: "Lit", status: true),
-            AchievementData(id: 4, name: "Achiev 4", description: "You Have successfully get achiement 4", image: "", status: false),
-            AchievementData(id: 5, name: "Achiev 5", description: "You Have successfully get achiement 5", image: "", status: false),
+            AchievementData(id: 1, name: "Achiev 1", description: "You Have successfully get achiement 1", image: "achiev1", status: true),
+            AchievementData(id: 2, name: "Achiev 2", description: "You Have successfully get achiement 2", image: "achiev2", status: true),
+            AchievementData(id: 3, name: "Achiev 3", description: "You Have successfully get achiement 3", image: "achiev3", status: true),
+            AchievementData(id: 4, name: "Achiev 4", description: "You Have successfully get achiement 4", image: "achiev4", status: true),
+            AchievementData(id: 5, name: "Achiev 5", description: "You Have successfully get achiement 5", image: "achiev1", status: true),
             AchievementData(id: 6, name: "Achiev 6", description: "You Have successfully get achiement 6", image: "", status: false),
             AchievementData(id: 7, name: "Achiev 7", description: "You Have successfully get achiement 7", image: "", status: false),
             AchievementData(id: 8, name: "Achiev 8", description: "You Have successfully get achiement 8", image: "", status: false),
@@ -63,15 +70,15 @@ struct Data{
 
 
         listDataTheme  = [
-            ThemeData(id: 1, name: "Theme 1", description: "Theme 1 description", caution: "Caution 1", xp: 100, status: "complete", image: "market"),
-            ThemeData(id: 2, name: "Theme 2", description: "Theme 2 description", caution: "Caution 2", xp: 200, status: "complete", image: "hospital"),
-            ThemeData(id: 3, name: "Theme 3", description: "Theme 3 description", caution: "Caution 3", xp: 300, status: "incomplete", image: "bike"),
-            ThemeData(id: 4, name: "Theme 4", description: "Theme 4 description", caution: "Caution 4", xp: 400, status: "incomplete", image: "hospital"),
-            ThemeData(id: 5, name: "Theme 5", description: "Theme 5 description", caution: "Caution 5", xp: 500, status: "locked", image: ""),
-            ThemeData(id: 6, name: "Theme 6", description: "Theme 6 description", caution: "Caution 6", xp: 600, status: "locked", image: ""),
-            ThemeData(id: 7, name: "Theme 7", description: "Theme 7 description", caution: "Caution 7", xp: 700, status: "locked", image: ""),
-            ThemeData(id: 8, name: "Theme 8", description: "Theme 8 description", caution: "Caution 8", xp: 800, status: "locked", image: ""),
-            ThemeData(id: 9, name: "Theme 9", description: "Theme 9 description", caution: "Caution 9", xp: 900, status: "locked", image: ""),
+            ThemeData(id: 1, name: "Alat Musik", description: "Theme 1 description", caution: "Caution 1", xp: 100, status: "complete", image: "alatmusik"),
+            ThemeData(id: 2, name: "Ayah", description: "Theme 2 description", caution: "Caution 2", xp: 200, status: "complete", image: "ayah"),
+            ThemeData(id: 3, name: "Botol Plastik", description: "Theme 3 description", caution: "Caution 3", xp: 300, status: "incomplete", image: "botol"),
+            ThemeData(id: 4, name: "Gym", description: "Theme 4 description", caution: "Caution 4", xp: 400, status: "incomplete", image: "gym"),
+            ThemeData(id: 5, name: "Ibu", description: "Theme 5 description", caution: "Caution 5", xp: 500, status: "complete", image: "ibu"),
+            ThemeData(id: 6, name: "Kendaraan", description: "Theme 6 description", caution: "Caution 6", xp: 600, status: "complete", image: "kendaraan"),
+            ThemeData(id: 7, name: "Pasar", description: "Theme 7 description", caution: "Caution 7", xp: 700, status: "commplete", image: "pasar"),
+            ThemeData(id: 8, name: "Sampah", description: "Theme 8 description", caution: "Caution 8", xp: 800, status: "incomplete", image: "sampah"),
+            ThemeData(id: 9, name: "Warkop", description: "Theme 9 description", caution: "Caution 9", xp: 900, status: "complete", image: "warkop"),
             ThemeData(id: 10, name: "Theme 10", description: "Theme 10 description", caution: "Caution 10", xp: 1000, status: "locked", image: ""),
             ThemeData(id: 11, name: "Theme 11", description: "Theme 11 description", caution: "Caution 11", xp: 1100, status: "locked", image: ""),
             ThemeData(id: 12, name: "Theme 12", description: "Theme 12 description", caution: "Caution 12", xp: 1200, status: "locked", image: ""),
@@ -97,5 +104,26 @@ struct Data{
 
 
     }
+    
+    var unlockedCountAchievement: Int {
+        return listDataAchievement.filter { $0.status == true }.count
+    }
+    
+    var unlockedCountTheme: Int {
+        return listDataTheme.filter { $0.status == "complete" || $0.status == "incomplete"}.count
+    }
+    
+    func generateData() -> ThemeData {
+        let generatedData = listDataTheme.randomElement() ?? ThemeData(id: 1, name: "Theme 1", description: "Theme 1 description", caution: "Caution 1", xp: 100, status: "complete", image: "market")
+//        print(generatedData)
+        return generatedData
+    }
+    
+    mutating func decrementShuffleCount() {
+        if shuffleCount > -1 {
+            shuffleCount -= 1
+        }
+    }
+    
     
 }

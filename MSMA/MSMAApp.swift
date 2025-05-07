@@ -11,7 +11,7 @@ import SwiftUI
 struct MSMAApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(generated: ThemeData(id: 1, name: "", description: "", caution: "", xp: 1, status: "", image: ""))
         }
     }
 }

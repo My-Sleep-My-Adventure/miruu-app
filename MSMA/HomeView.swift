@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct HomeView: View {
-    
+
     var body: some View {
         NavigationStack {
             ZStack {
                 VStack{
-                    Color(.gray)
+                    Color("purple")
                         .clipShape(RoundedRectangle(cornerRadius: 25))
                         .frame(height: 300)
                         .ignoresSafeArea()
+                        .opacity(0.9)
                 }
                 
                 VStack {
@@ -28,7 +29,7 @@ struct HomeView: View {
                     }
                     HStack{
                         VStack(alignment: .leading){
-                            Text("Supermarket")
+                            Text("supermarket")
                                 .font(.title)
                                 .bold()
                             
@@ -37,10 +38,14 @@ struct HomeView: View {
                                 .foregroundColor(.black)
                         }
                         Spacer()
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.white, lineWidth: 2)
-                            .frame(width: 80, height: 80)
-                            .overlay(Text("Character").foregroundColor(.white))
+                        DisplayGif(gifName: "dragonform2")
+                            .frame(width: 160, height: 160)
+
+//                            .background(Color.white)
+//                        RoundedRectangle(cornerRadius: 20)
+//                            .stroke(Color.white, lineWidth: 2)
+//                            .frame(width: 80, height: 80)
+//                            .overlay(Text("Character").foregroundColor(.white))
                     }
                     .padding()
                 }
@@ -48,7 +53,6 @@ struct HomeView: View {
                 
             }
             .frame(maxHeight: 250)
-//            .background(Color.blue)
             
             
             Spacer()
@@ -83,22 +87,23 @@ struct HomeView: View {
             Button {
             } label: {
                 Text("Complete")
-                    .foregroundStyle(Color(.black))
+                    .foregroundStyle(Color("milk"))
                     .padding(.vertical, 20)
                     .frame(maxWidth: 200)
-                    .background(Color.gray)
+                    .background(Color("purple"))
                     .fontWeight(.bold)
             }
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .clipShape(RoundedRectangle(cornerRadius: 7))
             Spacer()
             Spacer()
-    
+            
             NavigationView()
         }
+        .background(Color("milk"))
         .navigationBarBackButtonHidden(true)
     }
 }
 
-#Preview {
-    HomeView()
-}
+//#Preview {
+//    HomeView()
+//}

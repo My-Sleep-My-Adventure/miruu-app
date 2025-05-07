@@ -20,9 +20,9 @@ struct ProfileView: View {
                     .stroke(Color.gray, lineWidth: 2)
                     .frame(width: 120, height: 120)
                     .overlay(Text("Character").foregroundColor(.gray))
-
+                
                 ProgressView(value: 0.5)
-                    .progressViewStyle(LinearProgressViewStyle(tint: .gray))
+                    .progressViewStyle(LinearProgressViewStyle(tint:    Color("brown")))
                     .scaleEffect(x: 1, y: 3, anchor: .center)
                     .frame(width: 300)
                     .padding(.top)
@@ -43,10 +43,13 @@ struct ProfileView: View {
                         Text("Theme").tag(false)
                         
                     }
+                    .background(Color("purple"))
                     .pickerStyle(SegmentedPickerStyle())
+                    .foregroundStyle(.white)
+                    .tint(Color("purple"))
                     .padding()
                 }
-   
+                
                 
                 if isActive {
                     AchievementView()
@@ -58,6 +61,7 @@ struct ProfileView: View {
             Spacer()
             NavigationView()
         }
+        .background(Color("milk"))
         .navigationBarBackButtonHidden(true)
     }
 }

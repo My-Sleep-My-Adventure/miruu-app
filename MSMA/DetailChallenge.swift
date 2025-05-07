@@ -17,7 +17,6 @@ struct DetailChallengeView: View {
                     .frame(height: 300)
                 
             }
-    //        .frame(maxWidth: 300, maxHeight: 300)
             .background(Color.gray)
             .cornerRadius(20)
             .padding()

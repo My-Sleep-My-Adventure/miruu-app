@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NavigationView: View {
+//    @Binding var generated: ThemeData
+    
     var body: some View {
         NavigationStack {
             HStack {
@@ -31,20 +33,15 @@ struct NavigationView: View {
                     .foregroundColor(.black)
                 }
                 
-//                VStack {
-//                    Image(systemName: "person.fill")
-//                        .imageScale(.large)
-//                    Text("Profile")
-//                }
                 Spacer()
             }
             .padding()
-            .background(Color(UIColor.systemGray6))
+            .background(Color("milk"))
         }
         
     }
 }
 
-#Preview {
-    NavigationView()
-}
+//#Preview {
+//    NavigationView()
+//}

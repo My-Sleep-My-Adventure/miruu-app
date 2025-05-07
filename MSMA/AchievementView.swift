@@ -13,7 +13,7 @@ struct AchievementView: View {
     
     var body: some View {
         NavigationStack{
-            Text("1/\(data.listDataAchievement.count)")
+            Text("\(data.unlockedCountAchievement)/\(data.listDataAchievement.count)")
             ScrollView {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 20) {
                     ForEach(0..<data.listDataAchievement.count) { index in
@@ -22,11 +22,11 @@ struct AchievementView: View {
                                 NavigationLink(destination: AchievDetail(data: data.listDataAchievement[index])) {
                                     VStack {
                                         
-                                        Image(data.listDataAchievement[index].image)
-                                            .resizable() //
-                                            .aspectRatio(contentMode: .fill) // Maintains aspect ratio
+                                        Image("achiev\(index+1)")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
                                             .frame(width: 70, height: 100)
-                                            .clipShape(Circle())
+//                                            .clipShape(Circle())
                                         
                                         Text(data.listDataAchievement[index].name)
                                             .font(.caption)
@@ -57,6 +57,7 @@ struct AchievementView: View {
                 .padding()
             }
         }
+        .background(Color("milk"))
     }
 }
 

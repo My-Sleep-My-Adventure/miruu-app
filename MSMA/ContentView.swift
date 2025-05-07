@@ -8,65 +8,152 @@
 import SwiftUI
 
 struct ContentView: View {
-    var data = Data()
-//    @State var generatedData: ThemeData
     
-//    var
+    @State var data = Data()
+    @State var generated: ThemeData
+    @State var navigate = false
+    @State var navigate2 = false
+    @State var showPopup = false
+    @State var activeTheme = false
+    @State var notRandomised = true
+    
     var body: some View {
         NavigationStack{
-            HStack{
-                Spacer()
-                Image(systemName: "info.circle")
-                    .padding()
-                    .font(.system(size: 20))
-            }
-            Spacer()
             VStack{
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke( Color.black, lineWidth: 2)
-                    .frame(width: 200, height: 200)
-                    .overlay(Text("Character"))
+                HStack{
+                    Spacer()
+                    Image(systemName: "info.circle")
+                        .padding()
+                        .font(.system(size: 20))
+                }
+                Spacer()
+                VStack{
+//                    RoundedRectangle(cornerRadius: 20)
+//                        .stroke( Color.black, lineWidth: 2)
+//                        .frame(width: 200, height: 200)
+//                        .overlay(Text("Character"))
+//                    Image("dragonform2")
+//                        .frame(width: 200, height: 120, alignment: .center)
+                    
+                    DisplayGif(gifName: "dragonform2")
+
+                }
+//                Spacer()
+                if activeTheme{
+                    Text(generated.name).font(.title)
+                }
+                
+                HStack(spacing: 10){
+                    
+                    Button {
+                        if data.shuffleCount > 0{
+                            generated = data.generateData()
+                            generated = data.generateData()
+                            navigate = true
+                            showPopup = true
+                            data.decrementShuffleCount()
+                            print(data.shuffleCount)
+                            print(generated)
+                            if !activeTheme{
+                                activeTheme = true
+                                notRandomised = false
+                            }
+
+                        }
+
+                        
+                        
+                    } label: {
+                        Image(systemName: "shuffle")
+                            .foregroundStyle(Color("milk"))
+                            .padding(.vertical, 20)
+                            .frame(maxWidth: 80)
+                            .background(Color("purple"))
+                            .fontWeight(.bold)
+                    }
+                    
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    
+                    NavigationLink(destination: HomeView(), isActive: $navigate2) {
+                        EmptyView()
+                    }
+                    Button {
+//                        generated = data.generateData()
+                        navigate2 = true
+//                        showPopup = true
+                        
+                        
+                    } label: {
+                        Text("Ambil Tema")
+                            .foregroundStyle(Color("milk"))
+                            .padding(.vertical, 20)
+                            .frame(maxWidth: 200)
+                            .background(Color(activeTheme ? "purple" : "grey"))
+                            .fontWeight(.bold)
+                    }
+                    .disabled(notRandomised)
+                    .clipShape(RoundedRectangle(cornerRadius: 7))
+                }
+                Spacer()
+                Spacer()
+                NavigationView()
+                
+                
             }
-            Spacer()
-            Button {
-//                if let randomItem = data.listDataTheme.randomElement() {
-//                                        generatedData = randomItem
-//                                    }
-            } label: {
-                Text("Generate")
-                    .foregroundStyle(Color(.black))
-                    .padding(.vertical, 20)
-                    .frame(maxWidth: 200)
-                    .background(Color.gray)
-                    .fontWeight(.bold)
-            }
-            .clipShape(RoundedRectangle(cornerRadius: 16))
-            Spacer()
-            Spacer()
-            NavigationView()
+            .background(Color("milk"))
         }
         
-
-//        HStack {
-//            Spacer()
-//            VStack {
-//                Image(systemName: "house.fill")
-//                    .imageScale(.large)
-//                Text("Home")
-//            }
-//            Spacer()
-//            VStack {
-//                Image(systemName: "person.fill")
-//                    .imageScale(.large)
-//                Text("Profile")
-//            }
-//            Spacer()
-//        }
-//        .padding()
-//        .background(Color(UIColor.systemGray6))
+        .fullScreenCover(isPresented: $showPopup) {
+            PopUpView(isPresented: $showPopup, generated: $generated, navigate: $navigate)
+                .interactiveDismissDisabled(true)
+        }
     }
+    
 }
 
 #Preview {
-    ContentView( )
+    ContentView(generated: Data().listDataTheme.randomElement() ?? ThemeData(id: 1, name: "theme", description: "description is description", caution: "", xp: 0, status:"", image:"") )
 }
+
+//
+//HStack(spacing: 10){
+//    
+//    Button {
+//        if data.shuffleCount > 0{
+//            generated = data.generateData()
+//            data.decrementShuffleCount()
+//            print(data.shuffleCount)
+//        }
+//
+//        
+//        
+//    } label: {
+//        Image(systemName: "shuffle")
+//            .foregroundStyle(Color("milk"))
+//            .padding(.vertical, 20)
+//            .frame(maxWidth: 80)
+//            .background(Color("purple"))
+//            .fontWeight(.bold)
+//    }
+//    .disabled(!activeTheme)
+//    .clipShape(RoundedRectangle(cornerRadius: 16))
+//    
+//    NavigationLink(destination: PickChallenge(generated: $generated), isActive: $navigate) {
+//        EmptyView()
+//    }
+//    Button {
+//        generated = data.generateData()
+//        navigate = true
+//        showPopup = true
+//        
+//        
+//    } label: {
+//        Text("Generate")
+//            .foregroundStyle(Color("milk"))
+//            .padding(.vertical, 20)
+//            .frame(maxWidth: 200)
+//            .background(Color("purple"))
+//            .fontWeight(.bold)
+//    }
+//    .clipShape(RoundedRectangle(cornerRadius: 7))
+//}
