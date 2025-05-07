@@ -7,7 +7,13 @@
 
 import Foundation
 
-
+struct AchievementData {
+    var id : Int
+    var name : String
+    var description : String
+    var image : String
+    var status : Bool
+}
 
 struct Challenge {
     var id: Int
@@ -29,32 +35,6 @@ struct ThemeData {
     var status : ThemeStatus
     var image : String
     var challenges : [Challenge] = []
-//    
-//    init(id: Int, name: String, description: String, caution: String, xp: Int, status: ThemeStatus, image: String) {
-//        self.id = id
-//        self.name = name
-//        self.description = description
-//        self.caution = caution
-//        self.xp = xp
-//        self.status = status
-//        self.image = image
-//    }
-}
-
-struct AchievementData {
-    var id : Int
-    var name : String
-    var description : String
-    var image : String
-    var status : Bool
-    
-//    init(id: Int, name: String, description: String, image : String, status: Bool) {
-//        self.id = id
-//        self.name = name
-//        self.description = description
-//        self.image = image
-//        self.status = status
-//    }
 }
 
 //var data = AchievementData(id: 1, name: "Test", description: "Test")
@@ -109,8 +89,6 @@ struct Data{
             ThemeData(id: 29, name: "Theme 29", description: "Theme 29 description", caution: "Caution 29", xp: 2900, status: .locked, image: "locked"),
             ThemeData(id: 30, name: "Theme 30", description: "Theme 30 description", caution: "Caution 30", xp: 3000, status: .locked, image: "locked")
         ]
-
-
     }
     
     var unlockedCountAchievement: Int {
@@ -132,6 +110,4 @@ struct Data{
             shuffleCount -= 1
         }
     }
-    
-    
 }

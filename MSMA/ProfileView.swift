@@ -16,20 +16,8 @@ struct ProfileView: View {
         NavigationStack{
             
             VStack {
-//                RoundedRectangle(cornerRadius: 20)
-//                    .stroke(Color.gray, lineWidth: 2)
-//                    .frame(width: 120, height: 120)
-//                    .overlay(Text("Character").foregroundColor(.gray))
-//                VStack{
-//                    Image("Image")
-//                }
-//                .frame(width: 120, height: 120)
-//
-                VStack{
-                    DisplayGif(gifName: "dragonform2")
-
-                }
-//                
+                Circle
+                
                 ProgressView(value: 0.5)
                     .progressViewStyle(LinearProgressViewStyle(tint:    Color("brown")))
                     .scaleEffect(x: 1, y: 3, anchor: .center)
