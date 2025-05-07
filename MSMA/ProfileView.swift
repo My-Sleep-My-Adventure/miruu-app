@@ -16,7 +16,7 @@ struct ProfileView: View {
         NavigationStack{
             
             VStack {
-                Circle
+                Circle()
                 
                 ProgressView(value: 0.5)
                     .progressViewStyle(LinearProgressViewStyle(tint:    Color("brown")))
