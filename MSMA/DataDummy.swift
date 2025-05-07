@@ -7,21 +7,7 @@
 
 import Foundation
 
-struct AchievementData {
-    var id : Int
-    var name : String
-    var description : String
-    var image : String
-    var status : Bool
-    
-    init(id: Int, name: String, description: String, image : String, status: Bool) {
-        self.id = id
-        self.name = name
-        self.description = description
-        self.image = image
-        self.status = status
-    }
-}
+
 
 struct Challenge {
     var id: Int
@@ -43,16 +29,32 @@ struct ThemeData {
     var status : ThemeStatus
     var image : String
     var challenges : [Challenge] = []
+//    
+//    init(id: Int, name: String, description: String, caution: String, xp: Int, status: ThemeStatus, image: String) {
+//        self.id = id
+//        self.name = name
+//        self.description = description
+//        self.caution = caution
+//        self.xp = xp
+//        self.status = status
+//        self.image = image
+//    }
+}
+
+struct AchievementData {
+    var id : Int
+    var name : String
+    var description : String
+    var image : String
+    var status : Bool
     
-    init(id: Int, name: String, description: String, caution: String, xp: Int, status: ThemeStatus, image: String) {
-        self.id = id
-        self.name = name
-        self.description = description
-        self.caution = caution
-        self.xp = xp
-        self.status = status
-        self.image = image
-    }
+//    init(id: Int, name: String, description: String, image : String, status: Bool) {
+//        self.id = id
+//        self.name = name
+//        self.description = description
+//        self.image = image
+//        self.status = status
+//    }
 }
 
 //var data = AchievementData(id: 1, name: "Test", description: "Test")
