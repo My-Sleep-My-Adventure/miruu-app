@@ -57,7 +57,7 @@ struct AchievementView: View {
                 .padding()
             }
         }
-        .background(Color("milk"))
+        .background(Color.clear)
     }
 }
 

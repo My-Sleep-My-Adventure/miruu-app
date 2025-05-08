@@ -35,10 +35,11 @@ struct ContentView: View {
                             
                         }
                         VStack{
-                            if activeTheme{
+                            if showText && activeTheme{
                                 Text(generated.name).font(.title).fontWeight(.bold).foregroundStyle(Color("darkBlue"))
                                 Text("Kunjungi dan jelajahi\ntemukan misi tersembunyinya").font(.caption).multilineTextAlignment(.center)
                             }
+                            
                         }
                         .frame(width: 307, height: 70)
                         .padding(.bottom, 47)
@@ -55,8 +56,14 @@ struct ContentView: View {
                                         data.decrementShuffleCount()
                                         print(data.shuffleCount)
                                         print(generated)
-                                        if !activeTheme{
-                                            activeTheme = true
+                                        if !activeTheme
+                                        {
+                                            notRandomised = false
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                                showText = true
+                                                activeTheme = true
+                                                print("Text should now be visible:", showText, activeTheme)
+                                            }
                                         }
                                     }
                                 } label: {
@@ -70,7 +77,7 @@ struct ContentView: View {
                                 .shadow(radius: 4, x:0, y:4)
                                 
                                 Button {
-    //                                navigate2 = true
+                                    navigate2 = true
                                 } label: {
                                     Text("Ambil Tema")
                                         .foregroundStyle(Color(activeTheme ? "milk" : "foregroundGrey"))
@@ -85,84 +92,17 @@ struct ContentView: View {
                             }
                         }
                         Spacer()
-                    }
-                    if showText && activeTheme == true{
-                        VStack{
-                            Text(generated.name).font(.title)
-                        }
-                        .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                showText = true
-                                print(showText,activeTheme)
-                            }
-                        }
-                    }
-                    
-                    HStack(spacing: 10){
                         
-                        Button {
-                            if data.shuffleCount > 0{
-                                generated = data.generateData()
-                                navigate = true
-                                showPopup = true
-                                data.decrementShuffleCount()
-                                print(data.shuffleCount)
-                                print(generated)
-                                if !activeTheme{
-                                    notRandomised = false
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                        showText = true
-                                        activeTheme = true
-                                        print("Text should now be visible:", showText, activeTheme)
-                                    }
-                                }
-                                
-                            }
-                            
-                            
-                            
-                        } label: {
-                            Image(systemName: "shuffle")
-                                .foregroundStyle(Color("milk"))
-                                .padding(.vertical, 20)
-                                .frame(maxWidth: 80)
-                                .background(Color("purple"))
-                                .fontWeight(.bold)
-                        }
-                        
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                        
-                        NavigationLink(destination: HomeView(), isActive: $navigate2) {
-                            EmptyView()
-                        }
-                        Button {
-                            //                        generated = data.generateData()
-                            navigate2 = true
-                            //                        showPopup = true
-                            
-                            
-                        } label: {
-                            Text("Ambil Tema")
-                                .foregroundStyle(Color("milk"))
-                                .padding(.vertical, 20)
-                                .frame(maxWidth: 200)
-                                .background(Color(activeTheme ? "purple" : "grey"))
-                                .fontWeight(.bold)
-                        }
-                        .disabled(notRandomised)
-                        .clipShape(RoundedRectangle(cornerRadius: 7))
+                        NavigationView()
                     }
                     Spacer()
                     Spacer()
-                    NavigationView()
-                    
-                    
                 }
             }
-
+            
             .background(Color("milk"))
         }
-
+        
         .fullScreenCover(isPresented: $showPopup) {
             PopUpView(isPresented: $showPopup, generated: $generated, navigate: $navigate)
                 .interactiveDismissDisabled(true)

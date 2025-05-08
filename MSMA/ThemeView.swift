@@ -64,7 +64,7 @@ struct ThemeView: View {
                 .padding()
             }
         }
-        .background(Color("milk"))
+        .background(Color.clear)
         
         
     }
