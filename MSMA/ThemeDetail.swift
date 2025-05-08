@@ -36,7 +36,7 @@ struct ThemeDetail: View {
         }
 
 //        Spacer()
-        Text(data.themeDescription)
+        Text(data.description)
         Spacer()
         HStack {
             Spacer()
@@ -59,5 +59,5 @@ struct ThemeDetail: View {
 }
 
 #Preview {
-    ThemeDetail(data : ThemeData(id: 1, name: "theme", category: .objek, status:.complete, image:""))
+    ThemeDetail(data : ThemeData(id: 1, name: "theme", category: .objek, description: "some description", xp: 0, status:.complete, image:"", challenges: []))
 }

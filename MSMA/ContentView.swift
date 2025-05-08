@@ -35,7 +35,7 @@ struct ContentView: View {
                     VStack{
                         if activeTheme, let generated = generated{
                             Text(generated.name).font(.title).fontWeight(.bold).foregroundStyle(Color("darkBlue"))
-                            Text(generated.themeDescription).font(.caption).multilineTextAlignment(.center)
+                            Text(generated.description).font(.caption).multilineTextAlignment(.center)
                         }
                     }
                     .frame(width: 307, height: 70)
