@@ -9,12 +9,14 @@ import SwiftUI
 
 struct NavigationView: View {
 //    @Binding var generated: ThemeData
+    @Binding var themePicked: Bool?
+    @Binding var pickedThemeId: Int?
     
     var body: some View {
         NavigationStack {
             HStack {
                 Spacer()
-                NavigationLink(destination: HomeView()){
+                NavigationLink(destination: HomeView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)){
                     VStack {
                         Image(systemName: "house.fill")
                             .imageScale(.large)
@@ -24,7 +26,7 @@ struct NavigationView: View {
                 }
 
                 Spacer()
-                NavigationLink(destination: ProfileView()){
+                NavigationLink(destination: ProfileView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)){
                     VStack {
                         Image(systemName: "person.fill")
                             .imageScale(.large)

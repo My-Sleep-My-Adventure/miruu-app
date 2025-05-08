@@ -47,6 +47,7 @@ struct AchievDetail: View {
                 }
                 Text(data.description)
                 Spacer()
+                Spacer()
             }
             .foregroundStyle(.black)
         }

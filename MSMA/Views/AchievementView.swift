@@ -44,6 +44,7 @@ struct AchievementView: View {
                                             
                                             Text(data.listDataAchievement[index].name)
                                                 .font(.caption)
+                                                .bold()
                                                 .foregroundColor(.black)
                                             
                                         }
@@ -53,13 +54,16 @@ struct AchievementView: View {
                                     VStack {
                                         Circle()
                                             .stroke(Color.gray, lineWidth: 2)
+                                            .fill(Color("A5D4DA"))
                                             .frame(width: 70, height: 90)
                                             .overlay(
                                                 Text("?")
                                                     .font(.title)
-                                                    .foregroundColor(.gray)
+                                                    .foregroundColor(Color("pickerbackground"))
+                                                    .bold()
                                             )
-                                        
+                                            
+                                        Text("")
                                     }
                                 }
                             }

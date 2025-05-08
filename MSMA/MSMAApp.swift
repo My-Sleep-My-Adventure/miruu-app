@@ -10,6 +10,7 @@ import SwiftData
 
 @main
 struct MSMAApp: App {
+    
     init() {
         let appearance = UIToolbarAppearance()
         appearance.backgroundColor = UIColor(named: "FFFFFF")?.withAlphaComponent(50)
@@ -21,7 +22,7 @@ struct MSMAApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            ContentView()
                 .modelContainer(for: Story.self)
         }
     }
