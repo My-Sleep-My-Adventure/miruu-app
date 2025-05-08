@@ -24,28 +24,34 @@ struct Challenge {
     var caution: String
 }
 
-enum ThemeStatus: String {
-    case complete
-    case incomplete
-    case locked
-}
 
 struct ThemeData {
+    enum categories : String {
+        case objek
+        case tempat
+        case orang
+    }
+    enum themeStatus: String {
+        case complete
+        case incomplete
+        case locked
+    }
     var id : Int
     var name : String
-    var description : String
-    //    var caution : String
-    var xp : Int
-    var status : ThemeStatus
+    var category: categories
+    var description: String
+    var xp: Int
+    var status: themeStatus
     var image : String
     var challenges : [Challenge]
+    
 }
 
 //var data = AchievementData(id: 1, name: "Test", description: "Test")
 struct Data{
     var listDataAchievement = [AchievementData]()
     var listDataTheme = [ThemeData]()
-    var shuffleCount: Int = 2
+    var shuffleCount: Int = 3
     
     init() {
         listDataAchievement = [
@@ -59,11 +65,12 @@ struct Data{
             AchievementData(id: 8, name: "Achiev 8", description: "You Have successfully get achiement 8", image: "", status: true),
             AchievementData(id: 9, name: "Achiev 9", description: "You Have successfully get achiement 9", image: "", status: true)
         ]
-        
+
         listDataTheme  = [
             ThemeData(
                 id: 1,
                 name: "Sampah",
+                category: .objek,
                 description: "Tantangan-tantangan kecil tentang kesadaran lingkungan, aksi bersih, dan kreativitas dengan limbah.",
                 xp: 100,
                 status: .complete,
@@ -114,6 +121,7 @@ struct Data{
             ThemeData(
                 id: 2,
                 name: "Alat Musik",
+                category: .objek,
                 description: "Eksplorasi musik dari benda sehari-hari, aksi dadakan, dan kreativitas tanpa batas.",
                 xp: 100,
                 status: .incomplete,
@@ -164,6 +172,7 @@ struct Data{
             ThemeData(
                 id: 3,
                 name: "Kamera",
+                category: .objek,
                 description: "Tantangan seputar kreativitas visual, ekspresi diri, dan cara melihat dunia dari lensa berbeda.",
                 xp: 100,
                 status: .incomplete,
@@ -214,6 +223,7 @@ struct Data{
             ThemeData(
                 id: 4,
                 name: "Foto",
+                category: .objek,
                 description: "Eksplorasi cerita dan kreativitas melalui foto-foto lama dan baru yang ada di perangkatmu.",
                 xp: 100,
                 status: .incomplete,
@@ -264,6 +274,7 @@ struct Data{
             ThemeData(
                 id: 5,
                 name: "Handphone",
+                category: .objek,
                 description: "Gunakan HP-mu bukan hanya untuk scroll, tapi sebagai alat eksplorasi komunikasi, kreativitas, dan kontrol diri.",
                 xp: 100,
                 status: .incomplete,
@@ -314,6 +325,7 @@ struct Data{
             ThemeData(
                 id: 6,
                 name: "Warkop",
+                category: .tempat,
                 description: "Nikmati suasana warkop sambil menyelami berbagai tantangan sosial, hemat, dan kreatif yang menyenangkan.",
                 xp: 100,
                 status: .incomplete,
@@ -364,6 +376,7 @@ struct Data{
             ThemeData(
                 id: 7,
                 name: "Coffee Shop",
+                category: .tempat,
                 description: "Nikmati atmosfer coffee shop sambil menghadapi tantangan sosial, kreatif, dan menghibur.",
                 xp: 100,
                 status: .incomplete,
@@ -422,6 +435,7 @@ struct Data{
             ThemeData(
                 id: 8,
                 name: "Mall",
+                category: .tempat,
                 description: "Jelajahi mall dengan berbagai tantangan yang menguji komunikasi, kreativitas, dan keterampilan manajemen waktu.",
                 xp: 100,
                 status: .incomplete,
@@ -472,6 +486,7 @@ struct Data{
             ThemeData(
                 id: 9,
                 name: "Dapur",
+                category: .tempat,
                 description: "Eksplorasi dunia kuliner di dapur dengan tantangan yang mengasah keterampilan komunikasi, kreativitas, dan manajemen waktu.",
                 xp: 100,
                 status: .incomplete,
@@ -522,6 +537,7 @@ struct Data{
             ThemeData(
                 id: 10,
                 name: "Minimarket",
+                category: .tempat,
                 description: "Temukan petualangan belanja unik di minimarket, dari mengasah komunikasi hingga kreativitas dalam kombinasi produk.",
                 xp: 100,
                 status: .incomplete,
@@ -615,8 +631,7 @@ struct Data{
     }
     
     func generateData() -> ThemeData {
-        let generatedData = listDataTheme.randomElement() ?? ThemeData(id: 1, name: "Theme 1", description: "Theme 1 description", xp: 100, status: .complete, image: "market",challenges: [])
-        //        print(generatedData)
+        let generatedData = listDataTheme.randomElement() ?? ThemeData(id: 0, name: "Unable to load", category: .tempat, description: "Failed to generate data on DataDummy", xp: 0, status: .complete, image: "", challenges: [])
         return generatedData
     }
     

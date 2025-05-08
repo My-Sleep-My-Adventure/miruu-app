@@ -59,12 +59,5 @@ struct ThemeDetail: View {
 }
 
 #Preview {
-    ThemeDetail(data : ThemeData(id: 1, name: "theme", description: "description is description", xp: 0, status:.complete, image:"", challenges: [Challenge(
-        category: "Problem Solving",
-        name: "Pemilah Pintar",
-        image: "pemilah_pintar",
-        xp: 20,
-        description: "Pisahkan 3 jenis sampah dari rumahmu hari ini, meski sebelumnya belum pernah dilakukan.",
-        caution: "Gunakan sarung tangan jika perlu dan cuci tangan setelah memegang sampah."
-    )]))
+    ThemeDetail(data : ThemeData(id: 1, name: "theme", category: .objek, description: "some description", xp: 0, status:.complete, image:"", challenges: []))
 }
