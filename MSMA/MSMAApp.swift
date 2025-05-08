@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct MSMAApp: App {
@@ -21,6 +22,7 @@ struct MSMAApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(for: Story.self)
         }
     }
 }
