@@ -42,6 +42,7 @@ struct LevelProgress: View {
     var body: some View {
         VStack {
             ZStack {
+                
                 // Circle background
                 Circle()
                     .stroke(Color.gray.opacity(0.2), lineWidth: 16)
@@ -81,16 +82,18 @@ struct LevelProgress: View {
                 }
             }
             .frame(width: 120, height: 120)
+            .padding(.top)
+//            .padding()
             
-            Button {
-                addXP(100)
-            } label: {
-                HStack {
-                    Image(systemName: "plus")
-                    Text("Add 100 XP")
-                }
-            }
-            .padding(.top, 20)
+//            Button {
+//                addXP(100)
+//            } label: {
+//                HStack {
+//                    Image(systemName: "plus")
+//                    Text("Add 100 XP")
+//                }
+//            }
+//            .padding(.top, 20)
         }
     }
     

@@ -8,45 +8,65 @@
 import SwiftUI
 
 struct AchievDetail: View {
+    @Environment(\.presentationMode) var presentationMode
     let data: AchievementData
     
     var body: some View {
-        Text("Achievement")
-        Spacer()
-        Text(data.name)
-            .font(.title2)
-            .bold()
-//        RoundedRectangle(cornerRadius: 20)
-//            .stroke( Color.black, lineWidth: 2)
-//            .frame(width: 150, height: 150)
-//            .padding(50)
-        VStack {
-            Image(data.image)
-                .resizable() //
-                .aspectRatio(contentMode: .fill) // Maintains aspect ratio
-                .frame(width: 140, height: 200)
-                .clipShape(Circle())
+        ZStack {
+//            LinearGradient(gradient: Gradient(colors: [Color("7FC2CA"), Color("FFFFFF")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
+            Color("A5D4DA")
+                .ignoresSafeArea(.all)
+//            ZStack {
+//                Spacer()
+//                Spacer()
+//                Image("cloud2")
+//            }
+            VStack {
+                Spacer()
+                Image("cloud3")
+            }
+            .ignoresSafeArea(.all)
             
-        }
-        Text(data.description)
-        Spacer()
-        HStack {
-            Spacer()
-            VStack {
-                Image(systemName: "house.fill")
-                    .imageScale(.large)
-                Text("Home")
+            
+            VStack() {
+                Spacer()
+                Text(data.name)
+                    .font(.title2)
+                    .bold()
+        //        RoundedRectangle(cornerRadius: 20)
+        //            .stroke( Color.black, lineWidth: 2)
+        //            .frame(width: 150, height: 150)
+        //            .padding(50)
+                VStack {
+                    Image(data.image)
+                        .resizable() //
+                        .aspectRatio(contentMode: .fill) // Maintains aspect ratio
+                        .frame(width: 250, height: 250)
+                        .clipShape(Circle())
+                    
+                }
+                Text(data.description)
+                Spacer()
             }
-            Spacer()
-            VStack {
-                Image(systemName: "person.fill")
-                    .imageScale(.large)
-                Text("Profile")
-            }
-            Spacer()
+            .foregroundStyle(.black)
         }
-        .padding()
-        .background(Color(UIColor.systemGray6))
+        .navigationBarBackButtonHidden(true)
+        .navigationTitle("Achievement")
+        .foregroundStyle(.black)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {presentationMode.wrappedValue.dismiss()}){
+                    Image(systemName: "chevron.left")
+                        .foregroundStyle(.black)
+                }
+            }
+            ToolbarItem(placement: .principal) {
+                Text("Achievemnt")
+                    .foregroundColor(.black) // Change the title color here
+                    .font(.headline)
+            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

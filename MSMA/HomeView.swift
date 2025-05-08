@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
-
+    
     @State var data = Data()
     
-
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -56,24 +56,30 @@ struct HomeView: View {
                     }
                     
                     //                    .padding()
-//                                        .background(Color.red)
+                    //                                        .background(Color.red)
                     
                     VStack(spacing: 15) {
                         ForEach(0..<5) { index in
                             //                            Button{} label: {
                             HStack {
                                 ZStack{
-                                    Image("tabcard\(index+1)")
-                                    //                                    VStack{
-                                    //                                        Circle()
-                                    //                                            .foregroundStyle(.white)
-                                    //                                            .background(Color("FCF5EF"))
-                                    //                                            .frame(width: 50, height: 50)
-                                    //                                            .overlay(Image("cardicon\(index+1)"))
-                                    //
-                                    //
-                                    //
-                                    //                                    }
+                                    //                                    Image("tabcard\(index+1)")
+                                HStack{
+                                    VStack{
+                                        Circle()
+                                            .foregroundStyle(.white)
+                                            .background(Color("FCF5EF"))
+                                            .frame(width: 50, height: 50)
+                                            .overlay(Image("cardicon\(index+1)"))
+                                        
+                                        
+                                        
+                                    }
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .foregroundColor(Color("E0610B"))
+                                    }
+                                    
                                     Spacer()
                                     VStack(alignment: .leading){
                                         Text(data.listDataTheme[0].challenges[index].name)
@@ -93,8 +99,7 @@ struct HomeView: View {
                                     Spacer()
                                     Spacer()
                                 }
-                                //                                    Image(systemName: "chevron.right")
-                                //                                        .foregroundColor(Color("E0610B"))
+                                
                             }
                             .padding()
                             .frame(maxWidth: 340, maxHeight: 75)
@@ -130,13 +135,6 @@ struct HomeView: View {
                 
                 
             }
-            //            .frame(maxHeight: 250)
-            
-            
-            Spacer()
-            //            ScrollView {
-            
-            
             NavigationView()
         }
         //        .background(Color("milk"))

@@ -13,54 +13,70 @@ struct AchievementView: View {
     
     var body: some View {
         NavigationStack{
-            Text("\(data.unlockedCountAchievement)/\(data.listDataAchievement.count)")
-            ScrollView {
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 20) {
-                    ForEach(0..<data.listDataAchievement.count) { index in
-                        VStack {
-                            if data.listDataAchievement[index].status {
-                                NavigationLink(destination: AchievDetail(data: data.listDataAchievement[index])) {
+            VStack{
+                HStack(){
+                    Text("Achievement")
+                        .font(.title3)
+                        
+                    Spacer()
+                    Text("\(data.unlockedCountAchievement)/\(data.listDataAchievement.count)")
+                        .foregroundStyle(Color.gray)
+                    
+                }
+                .padding(.top)
+                .padding(.horizontal, 30)
+                
+                
+                
+                VStack {
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 5) {
+                        ForEach(0..<data.listDataAchievement.count) { index in
+                            VStack {
+                                if data.listDataAchievement[index].status {
+                                    NavigationLink(destination: AchievDetail(data: data.listDataAchievement[index])) {
+                                        VStack {
+                                            
+                                            Image("achiev\(index+1)")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 70, height: 90)
+                                            //                                            .clipShape(Circle())
+                                            
+                                            Text(data.listDataAchievement[index].name)
+                                                .font(.caption)
+                                                .foregroundColor(.black)
+                                            
+                                        }
+                                    }
+                                    
+                                } else {
                                     VStack {
-                                        
-                                        Image("achiev\(index+1)")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: 70, height: 100)
-//                                            .clipShape(Circle())
-                                        
-                                        Text(data.listDataAchievement[index].name)
-                                            .font(.caption)
-                                            .foregroundColor(.black)
+                                        Circle()
+                                            .stroke(Color.gray, lineWidth: 2)
+                                            .frame(width: 70, height: 90)
+                                            .overlay(
+                                                Text("?")
+                                                    .font(.title)
+                                                    .foregroundColor(.gray)
+                                            )
                                         
                                     }
-                                }
-                                
-                            } else {
-                                VStack {
-                                    Circle()
-                                        .stroke(Color.gray, lineWidth: 2)
-                                        .frame(width: 70, height: 100)
-                                        .overlay(
-                                            Text("?")
-                                                .font(.title)
-                                                .foregroundColor(.gray)
-                                        )
-                                    
-//                                    Text(data.listDataAchievement[index].name)
-//                                        .font(.caption)
-//                                        .foregroundColor(.black)
                                 }
                             }
                         }
                     }
+                    .padding()
                 }
-                .padding()
             }
+            .background(Color("FEFCFA"))
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+            
         }
-        .background(Color.clear)
+        .padding(.horizontal)
+        
     }
 }
 
-#Preview {
-    AchievementView()
-}
+//#Preview {
+//    AchievementView()
+//}

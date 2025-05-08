@@ -11,7 +11,7 @@ import SwiftUI
 struct MSMAApp: App {
     init() {
         let appearance = UIToolbarAppearance()
-        appearance.backgroundColor = UIColor(named: "milk")
+        appearance.backgroundColor = UIColor(named: "FFFFFF")?.withAlphaComponent(50)
         UIToolbar.appearance().standardAppearance = appearance
         if #available(iOS 15.0, *) {
             UIToolbar.appearance().scrollEdgeAppearance = appearance
