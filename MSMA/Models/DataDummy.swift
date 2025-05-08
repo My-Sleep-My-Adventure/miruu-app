@@ -57,7 +57,6 @@ struct ThemeData {
 struct Data{
     var listDataAchievement = [AchievementData]()
     var listDataTheme = [ThemeData]()
-    var shuffleCount: Int = 3
     
     init() {
         listDataAchievement = [
@@ -644,11 +643,5 @@ struct Data{
     func generateData() -> ThemeData {
         let generatedData = listDataTheme.randomElement() ?? ThemeData(id: 0, name: "Unable to load", category: .tempat, description: "Failed to generate data on DataDummy", xp: 0, status: .complete, image: "", challenges: [])
         return generatedData
-    }
-    
-    mutating func decrementShuffleCount() {
-        if shuffleCount > -1 {
-            shuffleCount -= 1
-        }
     }
 }
