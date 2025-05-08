@@ -9,16 +9,12 @@ import SwiftUI
 
 struct HomeView: View {
 
+    @State var data = Data()
+    
+
     var body: some View {
         NavigationStack {
             ZStack {
-                //                VStack{
-                //                    Color("purple")
-                //                        .clipShape(RoundedRectangle(cornerRadius: 25))
-                //                        .frame(height: 300)
-                //                        .ignoresSafeArea()
-                //                        .opacity(0.9)
-                //                }
                 LinearGradient(gradient: Gradient(colors: [Color("7FC2CA"), Color("FFFFFF")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
                 
                 VStack{
@@ -33,7 +29,7 @@ struct HomeView: View {
                             //                        }
                             HStack{
                                 VStack(alignment: .leading){
-                                    Text("Supermarket")
+                                    Text(data.listDataTheme[0].name)
                                         .font(.title)
                                         .bold()
                                     
@@ -80,16 +76,19 @@ struct HomeView: View {
                                     //                                    }
                                     Spacer()
                                     VStack(alignment: .leading){
-                                        Text("Say Greeting ")
+                                        Text(data.listDataTheme[0].challenges[index].name)
                                             .foregroundStyle(.black)
                                             .font(.system(size: 18))
                                             .bold()
                                         
-                                        Text("Meet an online driver and say... ")
+                                        Text(data.listDataTheme[0].challenges[index].description)
                                             .foregroundStyle(.gray)
                                             .font(.system(size: 16))
+                                            .lineLimit(1) // show only one line
+                                            .truncationMode(.tail)
                                         
                                     }
+                                    .frame(width: 220)
                                     .padding(.leading, 20)
                                     Spacer()
                                     Spacer()
