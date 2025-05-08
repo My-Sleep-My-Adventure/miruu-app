@@ -18,30 +18,45 @@ struct AchievementData {
 struct Challenge {
     var id: Int
     var description: String
-}
-
-enum ThemeStatus: String {
-    case complete
-    case incomplete
-    case locked
+    var caution : String
+    var xp : Int
 }
 
 struct ThemeData {
+    enum categories : String {
+        case objek
+        case tempat
+        case orang
+    }
+    enum themeStatus: String {
+        case complete
+        case incomplete
+        case locked
+    }
     var id : Int
     var name : String
-    var description : String
-    var caution : String
-    var xp : Int
-    var status : ThemeStatus
+    var category: categories
+    var status: themeStatus
     var image : String
     var challenges : [Challenge] = []
+    
+    var themeDescription: String {
+        switch category {
+        case .objek:
+            return "Cari atau gunakan\nlalu temukan fitur rahasia yang orang lain gak tau"
+        case .tempat:
+            return "Kunjungi dan jelajahi\nlalu temukan misi tersembunyinya"
+        case .orang:
+            return "Jalin ikatan dengan Ksatria lainnya\n"
+        }
+    }
 }
 
 //var data = AchievementData(id: 1, name: "Test", description: "Test")
 struct Data{
     var listDataAchievement = [AchievementData]()
     var listDataTheme = [ThemeData]()
-    var shuffleCount: Int = 2
+    var shuffleCount: Int = 3
     
     init() {
          listDataAchievement = [
@@ -58,36 +73,37 @@ struct Data{
 
 
         listDataTheme  = [
-            ThemeData(id: 1, name: "Alat Musik", description: "Theme 1 description", caution: "Caution 1", xp: 100, status: .complete, image: "alatmusik"),
-            ThemeData(id: 2, name: "Ayah", description: "Theme 2 description", caution: "Caution 2", xp: 200, status: .complete, image: "ayah"),
-            ThemeData(id: 3, name: "Botol Plastik", description: "Theme 3 description", caution: "Caution 3", xp: 300, status: .incomplete, image: "botol"),
-            ThemeData(id: 4, name: "Gym", description: "Theme 4 description", caution: "Caution 4", xp: 400, status: .incomplete, image: "gym"),
-            ThemeData(id: 5, name: "Ibu", description: "Theme 5 description", caution: "Caution 5", xp: 500, status: .incomplete, image: "ibu"),
-            ThemeData(id: 6, name: "Kendaraan", description: "Theme 6 description", caution: "Caution 6", xp: 600, status: .incomplete, image: "kendaraan"),
-            ThemeData(id: 7, name: "Pasar", description: "Theme 7 description", caution: "Caution 7", xp: 700, status: .incomplete, image: "pasar"),
-            ThemeData(id: 8, name: "Sampah", description: "Theme 8 description", caution: "Caution 8", xp: 800, status: .incomplete, image: "sampah"),
-            ThemeData(id: 9, name: "Warkop", description: "Theme 9 description", caution: "Caution 9", xp: 900, status: .complete, image: "warkop"),
-            ThemeData(id: 10, name: "Theme 10", description: "Theme 10 description", caution: "Caution 10", xp: 1000, status: .locked, image: "locked"),
-            ThemeData(id: 11, name: "Theme 11", description: "Theme 11 description", caution: "Caution 11", xp: 1100, status: .locked, image: "locked"),
-            ThemeData(id: 12, name: "Theme 12", description: "Theme 12 description", caution: "Caution 12", xp: 1200, status: .locked, image: "locked"),
-            ThemeData(id: 13, name: "Theme 13", description: "Theme 13 description", caution: "Caution 13", xp: 1300, status: .locked, image: "locked"),
-            ThemeData(id: 14, name: "Theme 14", description: "Theme 14 description", caution: "Caution 14", xp: 1400, status: .locked, image: "locked"),
-            ThemeData(id: 15, name: "Theme 15", description: "Theme 15 description", caution: "Caution 15", xp: 1500, status: .locked, image: "locked"),
-            ThemeData(id: 16, name: "Theme 16", description: "Theme 16 description", caution: "Caution 16", xp: 1600, status: .locked, image: "locked"),
-            ThemeData(id: 17, name: "Theme 17", description: "Theme 17 description", caution: "Caution 17", xp: 1700, status: .locked, image: "locked"),
-            ThemeData(id: 18, name: "Theme 18", description: "Theme 18 description", caution: "Caution 18", xp: 1800, status: .locked, image: "locked"),
-            ThemeData(id: 19, name: "Theme 19", description: "Theme 19 description", caution: "Caution 19", xp: 1900, status: .locked, image: "locked"),
-            ThemeData(id: 20, name: "Theme 20", description: "Theme 20 description", caution: "Caution 20", xp: 2000, status: .locked, image: "locked"),
-            ThemeData(id: 21, name: "Theme 21", description: "Theme 21 description", caution: "Caution 21", xp: 2100, status: .locked, image: "locked"),
-            ThemeData(id: 22, name: "Theme 22", description: "Theme 22 description", caution: "Caution 22", xp: 2200, status: .locked, image: "locked"),
-            ThemeData(id: 23, name: "Theme 23", description: "Theme 23 description", caution: "Caution 23", xp: 2300, status: .locked, image: "locked"),
-            ThemeData(id: 24, name: "Theme 24", description: "Theme 24 description", caution: "Caution 24", xp: 2400, status: .locked, image: "locked"),
-            ThemeData(id: 25, name: "Theme 25", description: "Theme 25 description", caution: "Caution 25", xp: 2500, status: .locked, image: "locked"),
-            ThemeData(id: 26, name: "Theme 26", description: "Theme 26 description", caution: "Caution 26", xp: 2600, status: .locked, image: "locked"),
-            ThemeData(id: 27, name: "Theme 27", description: "Theme 27 description", caution: "Caution 27", xp: 2700, status: .locked, image: "locked"),
-            ThemeData(id: 28, name: "Theme 28", description: "Theme 28 description", caution: "Caution 28", xp: 2800, status: .locked, image: "locked"),
-            ThemeData(id: 29, name: "Theme 29", description: "Theme 29 description", caution: "Caution 29", xp: 2900, status: .locked, image: "locked"),
-            ThemeData(id: 30, name: "Theme 30", description: "Theme 30 description", caution: "Caution 30", xp: 3000, status: .locked, image: "locked")
+            ThemeData(id: 1, name: "Cermin", category: .objek, status: .complete, image: "alatmusik"),
+            ThemeData(id: 1, name: "Alat Musik", category: .objek, status: .complete, image: "alatmusik"),
+            ThemeData(id: 2, name: "Ayah", category: .orang, status: .complete, image: "ayah"),
+            ThemeData(id: 3, name: "Botol Plastik", category: .objek, status: .complete, image: "botol"),
+            ThemeData(id: 4, name: "Gym", category: .tempat, status: .incomplete, image: "gym"),
+            ThemeData(id: 5, name: "Ibu", category: .orang, status: .incomplete, image: "ibu"),
+            ThemeData(id: 6, name: "Kendaraan", category: .objek, status: .incomplete, image: "kendaraan"),
+            ThemeData(id: 7, name: "Pasar", category: .tempat, status: .incomplete, image: "pasar"),
+            ThemeData(id: 8, name: "Sampah", category: .objek, status: .incomplete, image: "sampah"),
+            ThemeData(id: 9, name: "Warkop", category: .tempat, status: .complete, image: "warkop"),
+            ThemeData(id: 10, name: "Theme 10",category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 11, name: "Theme 11",category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 12, name: "Theme 12",category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 13, name: "Theme 13",category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 14, name: "Theme 14",category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 15, name: "Theme 15",category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 16, name: "Theme 16",category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 17, name: "Theme 17",category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 18, name: "Theme 18",category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 19, name: "Theme 19", category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 20, name: "Theme 20", category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 21, name: "Theme 21", category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 22, name: "Theme 22", category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 23, name: "Theme 23", category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 24, name: "Theme 24", category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 25, name: "Theme 25", category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 26, name: "Theme 26", category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 27, name: "Theme 27", category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 28, name: "Theme 28", category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 29, name: "Theme 29", category: .objek, status: .locked, image: "locked"),
+            ThemeData(id: 30, name: "Theme 30", category: .objek, status: .locked, image: "locked")
         ]
     }
     
@@ -100,8 +116,7 @@ struct Data{
     }
     
     func generateData() -> ThemeData {
-        let generatedData = listDataTheme.randomElement() ?? ThemeData(id: 1, name: "Theme 1", description: "Theme 1 description", caution: "Caution 1", xp: 100, status: .complete, image: "market")
-//        print(generatedData)
+        let generatedData = listDataTheme.randomElement() ?? ThemeData(id: 1, name: "market", category: .tempat, status: .complete, image: "market")
         return generatedData
     }
     

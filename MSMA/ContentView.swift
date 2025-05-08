@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State var data = Data()
-    @State var generated: ThemeData
+    @State var generated: ThemeData =  Data().listDataTheme.randomElement() ?? ThemeData(id: 1, name: "theme", category: .orang, status: .complete, image:"")
     @State var navigate = false
     @State var navigate2 = false
     @State var showPopup = false
@@ -34,14 +34,14 @@ struct ContentView: View {
                     VStack{
                         if activeTheme{
                             Text(generated.name).font(.title).fontWeight(.bold).foregroundStyle(Color("darkBlue"))
-                            Text("Kunjungi dan jelajahi\ntemukan misi tersembunyinya").font(.caption).multilineTextAlignment(.center)
+                            Text(generated.themeDescription).font(.caption).multilineTextAlignment(.center)
                         }
                     }
                     .frame(width: 307, height: 70)
                     .padding(.bottom, 47)
                     
                     VStack(alignment: .leading){
-                        Text("\(data.shuffleCount)/2").padding(.leading, 20).foregroundStyle(Color("darkBlue"))
+                        Text("\(data.shuffleCount)/3").padding(.leading, 20).foregroundStyle(Color("darkBlue"))
                         HStack(spacing: 20){
                             Button {
                                 if data.shuffleCount > 0{
@@ -67,7 +67,7 @@ struct ContentView: View {
                             .shadow(radius: 4, x:0, y:4)
                             
                             Button {
-                                navigate2 = true
+                                
                             } label: {
                                 Text("Ambil Tema")
                                     .foregroundStyle(Color(activeTheme ? "milk" : "foregroundGrey"))
@@ -85,32 +85,32 @@ struct ContentView: View {
                 }
                 .padding(.vertical, 170)
             }
-        }
-        .toolbar {
-            ToolbarItem(placement: .bottomBar){
-                HStack{
-                    Spacer()
-                    NavigationLink(destination: HomeView()){
-                        VStack {
-                            Image(systemName: "house.fill")
-                                .imageScale(.large)
-                            Text("Home")
+            .toolbar {
+                ToolbarItem(placement: .bottomBar){
+                    HStack{
+                        Spacer()
+                        NavigationLink(destination: HomeView()){
+                            VStack {
+                                Image(systemName: "house.fill")
+                                    .imageScale(.large)
+                                Text("Home")
+                            }
+                            .foregroundStyle(Color("AccentColor"))
                         }
-                        .foregroundStyle(Color("AccentColor"))
-                    }
-                    Spacer()
-                    NavigationLink(destination: ProfileView()){
-                        VStack {
-                            Image(systemName: "person.fill")
-                                .imageScale(.large)
-                            Text("Profile")
+                        Spacer()
+                        NavigationLink(destination: ProfileView()){
+                            VStack {
+                                Image(systemName: "person.fill")
+                                    .imageScale(.large)
+                                Text("Profile")
+                            }
+                            .foregroundStyle(Color("foregroundGrey"))
                         }
-                        .foregroundStyle(Color("foregroundGrey"))
+                        Spacer()
                     }
-                    Spacer()
+                    .padding(.top)
+                    
                 }
-                .padding(.top)
-                
             }
         }
 
@@ -123,7 +123,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(generated: Data().listDataTheme.randomElement() ?? ThemeData(id: 1, name: "theme", description: "description is description", caution: "", xp: 0, status: .complete, image:"") )
+    ContentView()
 }
 
 //

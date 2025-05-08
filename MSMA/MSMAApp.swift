@@ -20,7 +20,7 @@ struct MSMAApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView(generated: ThemeData(id: 1, name: "", description: "", caution: "", xp: 1, status: .complete, image: ""))
+            ContentView()
         }
     }
 }
