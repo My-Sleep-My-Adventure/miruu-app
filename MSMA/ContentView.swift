@@ -17,6 +17,9 @@ struct ContentView: View {
     @State var navigate2 = false
     @State var showPopup = false
     
+    @State private var cardRotation: Double = -450
+    @State private var cardID = UUID()
+    
     var body: some View {
         NavigationStack{
             ZStack {
@@ -45,16 +48,19 @@ struct ContentView: View {
                         Text("\(data.shuffleCount)/3").padding(.leading, 20).foregroundStyle(Color("darkBlue"))
                         HStack(spacing: 20){
                             Button {
-                                if data.shuffleCount > 0{
+                                if data.shuffleCount > 0 {
                                     generated = data.generateData()
                                     generatedThemeId = generated?.id
                                     navigate = true
+                                    cardRotation = -90
+                                    cardID = UUID()
                                     showPopup = true
                                     data.decrementShuffleCount()
-                                    if !activeTheme{
+                                    if !activeTheme {
                                         activeTheme = true
                                     }
                                 }
+
                             } label: {
                                 Image(systemName: "shuffle")
                                     .foregroundStyle(Color("AccentColor"))
@@ -86,6 +92,16 @@ struct ContentView: View {
                     Spacer()
                 }
                 .padding(.vertical, 170)
+                if showPopup {
+                    PopUpView(
+                        isPresented: $showPopup,
+                        generated: $generated,
+                        navigate: $navigate,
+                        rotationAngle: cardRotation,
+                        cardID: cardID
+                    )
+                    .zIndex(2)
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .bottomBar){
@@ -99,7 +115,7 @@ struct ContentView: View {
                             }
                             .foregroundStyle(Color("AccentColor"))
                         }
-                        .disabled(pickedTheme) // not yet working
+                        .disabled(pickedTheme)
                         Spacer()
                         NavigationLink(destination: ProfileView()){
                             VStack {
@@ -114,18 +130,6 @@ struct ContentView: View {
                     .padding(.top)
                     
                 }
-            }
-        }
-
-        .fullScreenCover(isPresented: $showPopup) {
-            PopUpView(isPresented: $showPopup, generated: $generated, navigate: $navigate)
-                .interactiveDismissDisabled(true)
-        }
-        .onAppear{
-            if let id = generatedThemeId,
-                let matched = data.listDataTheme.first(where: { $0.id == id }) {
-                    generated = matched
-                    activeTheme = true
             }
         }
     }
