@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PopUpView: View {
     @Binding var isPresented: Bool
-    @Binding var generated: ThemeData
+    @Binding var generated: ThemeData?
     @Binding var navigate: Bool
 
     var body: some View {
@@ -18,21 +18,12 @@ struct PopUpView: View {
                 .font(.title2)
                 .bold()
 
-            Text(generated.name)
+            Text(generated?.name ?? "Unable to load data")
                 .font(.headline)
 
-//            Text(generated.description)
-//                .font(.body)
-//                .multilineTextAlignment(.center)
-//                .padding(.horizontal)
             Section{
                 Button {
-                    //                data.listDataTheme.randomElement()
-                    //                print(data.listDataTheme.randomElement() ?? [] )
                     isPresented = false
-//                    navigate =true
-                    //                data.generateData()
-                    
                 } label: {
                     Text("Next")
                         .foregroundStyle(Color("milk"))
@@ -42,7 +33,6 @@ struct PopUpView: View {
                         .fontWeight(.bold)
                         
                 }
-//                .background(Color("Purple"))
                 .clipShape(RoundedRectangle(cornerRadius: 7))
             }.padding()
         }

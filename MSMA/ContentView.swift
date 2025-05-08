@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    @State var data = Data()
-    @State var generated: ThemeData =  Data().listDataTheme.randomElement() ?? ThemeData(id: 1, name: "theme", category: .orang, status: .complete, image:"")
+    @AppStorage("generatedThemeId") var generatedThemeId: Int?
+    @AppStorage("pickedTheme") var pickedTheme = false
+    @State private var data = Data()
+    @State var generated: ThemeData? = nil
+    @State private var activeTheme = false
     @State var navigate = false
     @State var navigate2 = false
     @State var showPopup = false
-    @State var activeTheme = false
     
     var body: some View {
         NavigationStack{
@@ -32,7 +33,7 @@ struct ContentView: View {
                         
                     }
                     VStack{
-                        if activeTheme{
+                        if activeTheme, let generated = generated{
                             Text(generated.name).font(.title).fontWeight(.bold).foregroundStyle(Color("darkBlue"))
                             Text(generated.themeDescription).font(.caption).multilineTextAlignment(.center)
                         }
@@ -46,12 +47,10 @@ struct ContentView: View {
                             Button {
                                 if data.shuffleCount > 0{
                                     generated = data.generateData()
-                                    generated = data.generateData()
+                                    generatedThemeId = generated?.id
                                     navigate = true
                                     showPopup = true
                                     data.decrementShuffleCount()
-                                    print(data.shuffleCount)
-                                    print(generated)
                                     if !activeTheme{
                                         activeTheme = true
                                     }
@@ -67,7 +66,10 @@ struct ContentView: View {
                             .shadow(radius: 4, x:0, y:4)
                             
                             Button {
-                                
+                                if activeTheme{
+                                    pickedTheme = true
+                                    print(pickedTheme)
+                                }
                             } label: {
                                 Text("Ambil Tema")
                                     .foregroundStyle(Color(activeTheme ? "milk" : "foregroundGrey"))
@@ -97,6 +99,7 @@ struct ContentView: View {
                             }
                             .foregroundStyle(Color("AccentColor"))
                         }
+                        .disabled(pickedTheme) // not yet working
                         Spacer()
                         NavigationLink(destination: ProfileView()){
                             VStack {
@@ -117,6 +120,13 @@ struct ContentView: View {
         .fullScreenCover(isPresented: $showPopup) {
             PopUpView(isPresented: $showPopup, generated: $generated, navigate: $navigate)
                 .interactiveDismissDisabled(true)
+        }
+        .onAppear{
+            if let id = generatedThemeId,
+                let matched = data.listDataTheme.first(where: { $0.id == id }) {
+                    generated = matched
+                    activeTheme = true
+            }
         }
     }
     
