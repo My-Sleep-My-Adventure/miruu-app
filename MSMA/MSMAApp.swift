@@ -21,7 +21,7 @@ struct MSMAApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            ContentView()
                 .modelContainer(for: Story.self)
         }
     }
