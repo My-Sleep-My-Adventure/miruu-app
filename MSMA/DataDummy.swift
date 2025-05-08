@@ -54,10 +54,10 @@ struct Data{
             AchievementData(id: 3, name: "Achiev 3", description: "You Have successfully get achiement 3", image: "achiev3", status: true),
             AchievementData(id: 4, name: "Achiev 4", description: "You Have successfully get achiement 4", image: "achiev4", status: true),
             AchievementData(id: 5, name: "Achiev 5", description: "You Have successfully get achiement 5", image: "achiev1", status: true),
-            AchievementData(id: 6, name: "Achiev 6", description: "You Have successfully get achiement 6", image: "", status: false),
-            AchievementData(id: 7, name: "Achiev 7", description: "You Have successfully get achiement 7", image: "", status: false),
-            AchievementData(id: 8, name: "Achiev 8", description: "You Have successfully get achiement 8", image: "", status: false),
-            AchievementData(id: 9, name: "Achiev 9", description: "You Have successfully get achiement 9", image: "", status: false)
+            AchievementData(id: 6, name: "Achiev 6", description: "You Have successfully get achiement 6", image: "", status: true),
+            AchievementData(id: 7, name: "Achiev 7", description: "You Have successfully get achiement 7", image: "", status: true),
+            AchievementData(id: 8, name: "Achiev 8", description: "You Have successfully get achiement 8", image: "", status: true),
+            AchievementData(id: 9, name: "Achiev 9", description: "You Have successfully get achiement 9", image: "", status: true)
         ]
         
         listDataTheme  = [
