@@ -24,6 +24,12 @@ struct Challenge {
     var caution: String
 }
 
+struct StoryData {
+    var id: UUID = UUID()
+    var imagePath: String
+    var storyText: String
+    var createdAt: Date = Date()
+}
 
 struct ThemeData {
     enum categories : String {
@@ -44,7 +50,7 @@ struct ThemeData {
     var status: themeStatus
     var image : String
     var challenges : [Challenge]
-    
+    var stories : StoryData?
 }
 
 //var data = AchievementData(id: 1, name: "Test", description: "Test")
@@ -116,7 +122,12 @@ struct Data{
                         description: "Buat komik strip 3 panel tentang petualangan sampah plastik.",
                         caution: "Gunakan alat gambar dengan aman dan simpan hasil karya dengan rapi."
                     )
-                ]
+                ],
+                stories: StoryData(
+                    imagePath: "foto_sampah_bersih",
+                    storyText: "Hari ini aku dan teman-teman membersihkan taman di dekat rumah. Kami menemukan banyak plastik dan bungkus makanan. Setelah 1 jam, taman jadi jauh lebih bersih dan rapi. Rasanya puas banget!",
+                    createdAt: Date()
+                )
             ),
             ThemeData(
                 id: 2,

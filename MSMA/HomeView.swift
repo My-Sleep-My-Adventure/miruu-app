@@ -11,14 +11,19 @@ struct HomeView: View {
     
     @State var data = Data()
     
+    // State binding for key learning sheet
+    @State private var isKeyLearningSheetPresented: Bool = false
     
+    // State binding for keyLearningViewModel
+    @StateObject var keyLearningViewModel = KeyLearningModel()
+
     var body: some View {
         NavigationStack {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [Color("7FC2CA"), Color("FFFFFF")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
                 
-                VStack{
-                    ZStack{
+                VStack {
+                    ZStack {
                         Image("cloud")
                         VStack {
                             //                        HStack{
@@ -118,6 +123,7 @@ struct HomeView: View {
                     //            }
                     Spacer()
                     Button {
+                        isKeyLearningSheetPresented.toggle()
                     } label: {
                         Text("Complete")
                             .foregroundStyle(Color("milk"))
@@ -127,14 +133,18 @@ struct HomeView: View {
                             .fontWeight(.bold)
                     }
                     .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .sheet(isPresented: $isKeyLearningSheetPresented) {
+                        EditableRectangularImageDocumentation(viewModel: keyLearningViewModel)
+                    }
                     Spacer()
                     Spacer()
                 }
-                
-                
-                
-                
             }
+            //            .frame(maxHeight: 250)
+            
+            
+            Spacer()
+            //            ScrollView {
             NavigationView()
         }
         //        .background(Color("milk"))

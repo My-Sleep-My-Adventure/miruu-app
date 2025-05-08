@@ -6,76 +6,63 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ThemeDetail: View {
     @Environment(\.presentationMode) var presentationMode
     
     let data: ThemeData
+    
     var body: some View {
-        ZStack {
+        VStack(spacing: 0) {
+            Image("roller")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 40)
             
-            Color("A5D4DA")
-                .ignoresSafeArea(.all)
-//            ZStack {
-//                Spacer()
-//                Spacer()
-//                Image("cloud2")
-//            }
-            VStack {
-                Spacer()
-                Image("cloud3")
-                
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 16) {
+                    if let story = data.stories {
+                        if !story.imagePath.isEmpty {
+                            Text(data.name)
+                                .font(.title2)
+                                .bold()
+                            
+                            Image(story.imagePath)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 200, height: 200)
+                            
+                            Text(story.storyText)
+                                .font(.body)
+                                .multilineTextAlignment(.center)
+                                .frame(width: 200)
+                        }
+                    } else {
+                        VStack {
+                            Text("Belum ada cerita ...")
+                                .font(.title3)
+                                .bold()
+                        }
+                    }
+                }
+                .padding()
             }
-            .ignoresSafeArea(.all)
+            .padding()
+            .frame(width: 280)
+            .frame(maxHeight: 400) // <= ini kuncinya
+            .background(.scrollyellow)
+            .overlay(Rectangle().stroke(.scrollbrown, lineWidth: 4))
             
-            VStack {
-                Spacer()
-                Text(data.name)
-                    .font(.title2)
-                    .bold()
-                if data.status == .complete {
-                    Image(data.image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 96, height: 120)
-                    //            Circle()
-                    //                .stroke( Color.blue, lineWidth: 2)
-                    //                .frame(width: 150, height: 150)
-                    //                .padding(50)
-                } else if data.status == .incomplete {
-                    Image(data.image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 96, height: 120)
-                    //            RoundedRectangle(cornerRadius: 20)
-                    //                .stroke( Color.black, lineWidth: 2)
-                    //                .frame(width: 150, height: 180)
-                    //                .padding(50)
-                }
-                
-                //        Spacer()
-                Text(data.description)
-                Spacer()
-            }
+            // Bottom Roller
+            Image("roller")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 40)
         }
-        
-        .navigationBarBackButtonHidden(true)
-        .navigationTitle("Theme")
-        .foregroundStyle(.black)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {presentationMode.wrappedValue.dismiss()}){
-                    Image(systemName: "chevron.left")
-                        .foregroundStyle(.black)
-                }
-            }
-            ToolbarItem(placement: .principal) {
-                Text("Theme")
-                    .foregroundColor(.black) // Change the title color here
-                    .font(.headline)
-            }
-        }
-        .navigationBarTitleDisplayMode(.inline)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(.horizontal, 40)
+        .background(LinearGradient(gradient: Gradient(colors: [Color("7FC2CA"), Color("FFFFFF")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all))
     }
 }
 

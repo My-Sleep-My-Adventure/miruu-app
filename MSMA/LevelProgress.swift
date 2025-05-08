@@ -11,7 +11,7 @@ struct LevelProgress: View {
     @State private var currentXP: Int = 0
     @State private var currentLevel: Int = 1
     
-    let maxLevel: Int = 4
+    let maxLevel: Int = 10
     
     // Function to handle XP needed from level X to X+1
     func xpNeeded(for level: Int) -> Int {
