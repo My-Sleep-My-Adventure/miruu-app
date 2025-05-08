@@ -45,8 +45,8 @@ struct HomeView: View {
                                 
                                 Spacer()
                                 
-                                DisplayGif(gifName: "dragonform2")
-                                    .frame(width: 160, height: 160)
+                                DisplayGif(gifName: "dragonform2", size: 160)
+                                    .frame(maxWidth: 160, maxHeight: 160)
                                 //                                .background(Color.white)
                                 
                                 //                            .background(Color.white)
