@@ -21,25 +21,17 @@ struct ContentView: View {
     var body: some View {
         NavigationStack{
             VStack{
-                HStack{
-                    Spacer()
-                    Image(systemName: "info.circle")
-                        .padding()
-                        .font(.system(size: 20))
-                }
+                //                HStack{
+                //                    Spacer()
+                //                    Image(systemName: "info.circle")
+                //                        .padding()
+                //                        .font(.system(size: 20))
+                //                }
                 Spacer()
                 VStack{
-//                    RoundedRectangle(cornerRadius: 20)
-//                        .stroke( Color.black, lineWidth: 2)
-//                        .frame(width: 200, height: 200)
-//                        .overlay(Text("Character"))
-//                    Image("dragonform2")
-//                        .frame(width: 200, height: 120, alignment: .center)
-                    
                     DisplayGif(gifName: "dragonform2")
-
+                    
                 }
-//                Spacer()
                 if showText && activeTheme == true{
                     VStack{
                         Text(generated.name).font(.title)
@@ -50,7 +42,6 @@ struct ContentView: View {
                             print(showText,activeTheme)
                         }
                     }
-                    
                 }
                 
                 HStack(spacing: 10){
@@ -58,14 +49,12 @@ struct ContentView: View {
                     Button {
                         if data.shuffleCount > 0{
                             generated = data.generateData()
-                            generated = data.generateData()
                             navigate = true
                             showPopup = true
                             data.decrementShuffleCount()
                             print(data.shuffleCount)
                             print(generated)
                             if !activeTheme{
-//                                activeTheme = true
                                 notRandomised = false
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                     showText = true
@@ -73,9 +62,9 @@ struct ContentView: View {
                                     print("Text should now be visible:", showText, activeTheme)
                                 }
                             }
-
+                            
                         }
-
+                        
                         
                         
                     } label: {
@@ -93,9 +82,9 @@ struct ContentView: View {
                         EmptyView()
                     }
                     Button {
-//                        generated = data.generateData()
+                        //                        generated = data.generateData()
                         navigate2 = true
-//                        showPopup = true
+                        //                        showPopup = true
                         
                         
                     } label: {
@@ -117,12 +106,12 @@ struct ContentView: View {
             }
             .background(Color("milk"))
         }
-//        .onAppear {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                showText = true
-//                print("Text shown:", showText, activeTheme)
-//            }
-//        }
+        //        .onAppear {
+        //            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        //                showText = true
+        //                print("Text shown:", showText, activeTheme)
+        //            }
+        //        }
         
         .fullScreenCover(isPresented: $showPopup) {
             PopUpView(isPresented: $showPopup, generated: $generated, navigate: $navigate)
@@ -133,12 +122,19 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(generated: Data().listDataTheme.randomElement() ?? ThemeData(id: 1, name: "theme", description: "description is description", caution: "", xp: 0, status: .complete, image:"") )
+    ContentView(generated: Data().listDataTheme.randomElement() ?? ThemeData(id: 1, name: "theme", description: "description is description", xp: 0, status: .complete, image:"",challenges: [Challenge(
+        category: "Problem Solving",
+        name: "Pemilah Pintar",
+        image: "pemilah_pintar",
+        xp: 20,
+        description: "Pisahkan 3 jenis sampah dari rumahmu hari ini, meski sebelumnya belum pernah dilakukan.",
+        caution: "Gunakan sarung tangan jika perlu dan cuci tangan setelah memegang sampah."
+    )]) )
 }
 
 //
 //HStack(spacing: 10){
-//    
+//
 //    Button {
 //        if data.shuffleCount > 0{
 //            generated = data.generateData()
@@ -146,8 +142,8 @@ struct ContentView: View {
 //            print(data.shuffleCount)
 //        }
 //
-//        
-//        
+//
+//
 //    } label: {
 //        Image(systemName: "shuffle")
 //            .foregroundStyle(Color("milk"))
@@ -158,7 +154,7 @@ struct ContentView: View {
 //    }
 //    .disabled(!activeTheme)
 //    .clipShape(RoundedRectangle(cornerRadius: 16))
-//    
+//
 //    NavigationLink(destination: PickChallenge(generated: $generated), isActive: $navigate) {
 //        EmptyView()
 //    }
@@ -166,8 +162,8 @@ struct ContentView: View {
 //        generated = data.generateData()
 //        navigate = true
 //        showPopup = true
-//        
-//        
+//
+//
 //    } label: {
 //        Text("Generate")
 //            .foregroundStyle(Color("milk"))

@@ -8,102 +8,143 @@
 import SwiftUI
 
 struct HomeView: View {
-
+    
     var body: some View {
         NavigationStack {
             ZStack {
+                //                VStack{
+                //                    Color("purple")
+                //                        .clipShape(RoundedRectangle(cornerRadius: 25))
+                //                        .frame(height: 300)
+                //                        .ignoresSafeArea()
+                //                        .opacity(0.9)
+                //                }
+                LinearGradient(gradient: Gradient(colors: [Color("7FC2CA"), Color("FFFFFF")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
+                
                 VStack{
-                    Color("purple")
-                        .clipShape(RoundedRectangle(cornerRadius: 25))
-                        .frame(height: 300)
-                        .ignoresSafeArea()
-                        .opacity(0.9)
-                }
-                
-                VStack {
-                    HStack{
-                        Spacer()
-                        Image(systemName: "info.circle")
+                    ZStack{
+                        Image("cloud")
+                        VStack {
+                            //                        HStack{
+                            //                            Spacer()
+                            //                            Image(systemName: "info.circle")
+                            //                                .padding()
+                            //                                .font(.system(size: 20))
+                            //                        }
+                            HStack{
+                                VStack(alignment: .leading){
+                                    Text("Supermarket")
+                                        .font(.title)
+                                        .bold()
+                                    
+                                    Text("23h 15m")
+                                        .font(.subheadline)
+                                        .foregroundColor(.black)
+                                }
+                                .padding()
+                                
+                                Spacer()
+                                
+                                DisplayGif(gifName: "dragonform2")
+                                    .frame(width: 160, height: 160)
+                                //                                .background(Color.white)
+                                
+                                //                            .background(Color.white)
+                                //                        RoundedRectangle(cornerRadius: 20)
+                                //                            .stroke(Color.white, lineWidth: 2)
+                                //                            .frame(width: 80, height: 80)
+                                //                            .overlay(Text("Character").foregroundColor(.white))
+                            }
                             .padding()
-                            .font(.system(size: 20))
-                    }
-                    HStack{
-                        VStack(alignment: .leading){
-                            Text("supermarket")
-                                .font(.title)
-                                .bold()
-                            
-                            Text("23h 15m")
-                                .font(.subheadline)
-                                .foregroundColor(.black)
                         }
-                        Spacer()
-                        DisplayGif(gifName: "dragonform2")
-                            .frame(width: 160, height: 160)
-
-//                            .background(Color.white)
-//                        RoundedRectangle(cornerRadius: 20)
-//                            .stroke(Color.white, lineWidth: 2)
-//                            .frame(width: 80, height: 80)
-//                            .overlay(Text("Character").foregroundColor(.white))
                     }
-                    .padding()
+                    
+                    //                    .padding()
+//                                        .background(Color.red)
+                    
+                    VStack(spacing: 15) {
+                        ForEach(0..<5) { index in
+                            //                            Button{} label: {
+                            HStack {
+                                ZStack{
+                                    Image("tabcard\(index+1)")
+                                    //                                    VStack{
+                                    //                                        Circle()
+                                    //                                            .foregroundStyle(.white)
+                                    //                                            .background(Color("FCF5EF"))
+                                    //                                            .frame(width: 50, height: 50)
+                                    //                                            .overlay(Image("cardicon\(index+1)"))
+                                    //
+                                    //
+                                    //
+                                    //                                    }
+                                    Spacer()
+                                    VStack(alignment: .leading){
+                                        Text("Say Greeting ")
+                                            .foregroundStyle(.black)
+                                            .font(.system(size: 18))
+                                            .bold()
+                                        
+                                        Text("Meet an online driver and say... ")
+                                            .foregroundStyle(.gray)
+                                            .font(.system(size: 16))
+                                        
+                                    }
+                                    .padding(.leading, 20)
+                                    Spacer()
+                                    Spacer()
+                                }
+                                //                                    Image(systemName: "chevron.right")
+                                //                                        .foregroundColor(Color("E0610B"))
+                            }
+                            .padding()
+                            .frame(maxWidth: 340, maxHeight: 75)
+                            .background(Color("FCF5EF"))
+                            .cornerRadius(25)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 25)
+                                    .stroke(Color("A5D4DA"), lineWidth: 1)
+                            )
+                            .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+                            //                            }
+                            
+                        }
+                    }
+                    .padding(.horizontal)
+                    //            }
+                    Spacer()
+                    Button {
+                    } label: {
+                        Text("Complete")
+                            .foregroundStyle(Color("milk"))
+                            .padding(.vertical, 20)
+                            .frame(maxWidth: 165, maxHeight: 50)
+                            .background(Color("E0610B"))
+                            .fontWeight(.bold)
+                    }
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    Spacer()
+                    Spacer()
                 }
-                .padding()
+                
+                
+                
                 
             }
-            .frame(maxHeight: 250)
+            //            .frame(maxHeight: 250)
             
             
             Spacer()
-            ScrollView {
-                VStack(spacing: 12) {
-                    ForEach(0..<5) { index in
-                        HStack {
-                            Circle()
-                                .stroke(lineWidth: 2)
-                                .frame(width: 30, height: 30)
-                                .clipShape(Circle())
-                            
-                            Text("Bicara dengan kasir asdfsa asdfasf....")
-                                .font(.body)
-                                .lineLimit(1)
-                            
-                            Spacer()
-                            
-                            Image(systemName: "chevron.right")
-                        }
-                        .padding()
-                        .cornerRadius(10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.black.opacity(0.2), lineWidth: 1)
-                        )
-                    }
-                }
-                .padding(.horizontal)
-            }
-            Spacer()
-            Button {
-            } label: {
-                Text("Complete")
-                    .foregroundStyle(Color("milk"))
-                    .padding(.vertical, 20)
-                    .frame(maxWidth: 200)
-                    .background(Color("purple"))
-                    .fontWeight(.bold)
-            }
-            .clipShape(RoundedRectangle(cornerRadius: 7))
-            Spacer()
-            Spacer()
+            //            ScrollView {
+            
             
             NavigationView()
         }
-        .background(Color("milk"))
+        //        .background(Color("milk"))
         .navigationBarBackButtonHidden(true)
     }
 }
 
-//#Preview {
-//    HomeView()
-//}
+#Preview {
+    HomeView()
+}

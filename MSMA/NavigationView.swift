@@ -36,7 +36,7 @@ struct NavigationView: View {
                 Spacer()
             }
             .padding()
-            .background(Color("milk"))
+            .background(Color("FFFFFF"))
         }
         
     }
