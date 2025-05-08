@@ -15,22 +15,73 @@ struct ContentView: View {
     @State var navigate2 = false
     @State var showPopup = false
     @State var activeTheme = false
-    @State var notRandomised = true
-    @State var showText = false
     
     var body: some View {
         NavigationStack{
-            VStack{
-                //                HStack{
-                //                    Spacer()
-                //                    Image(systemName: "info.circle")
-                //                        .padding()
-                //                        .font(.system(size: 20))
-                //                }
-                Spacer()
+            ZStack {
+                Image("backgroundImage1")
+                    .resizable()
+                    .aspectRatio(contentMode:.fill)
+                    .ignoresSafeArea(edges: .all)
+                
                 VStack{
-                    DisplayGif(gifName: "dragonform2")
+                    VStack{
+                        Text("Miruu").font(.system(size: 36, weight: .bold)).foregroundStyle(Color("darkBlue"))
+                            .shadow(color: Color("AccentColor"),radius: 2)
+                        DisplayGif(gifName: "dragonform2", size: 150)
+                        
+                    }
+                    VStack{
+                        if activeTheme{
+                            Text(generated.name).font(.title).fontWeight(.bold).foregroundStyle(Color("darkBlue"))
+                            Text("Kunjungi dan jelajahi\ntemukan misi tersembunyinya").font(.caption).multilineTextAlignment(.center)
+                        }
+                    }
+                    .frame(width: 307, height: 70)
+                    .padding(.bottom, 47)
                     
+                    VStack(alignment: .leading){
+                        Text("\(data.shuffleCount)/2").padding(.leading, 20).foregroundStyle(Color("darkBlue"))
+                        HStack(spacing: 20){
+                            Button {
+                                if data.shuffleCount > 0{
+                                    generated = data.generateData()
+                                    generated = data.generateData()
+                                    navigate = true
+                                    showPopup = true
+                                    data.decrementShuffleCount()
+                                    print(data.shuffleCount)
+                                    print(generated)
+                                    if !activeTheme{
+                                        activeTheme = true
+                                    }
+                                }
+                            } label: {
+                                Image(systemName: "shuffle")
+                                    .foregroundStyle(Color("AccentColor"))
+                                    .frame(width: 65,height: 55)
+                                    .background(Color("milk"))
+                                    .font(.system(size: 24, weight: .bold))
+                            }
+                            .cornerRadius(5)
+                            .shadow(radius: 4, x:0, y:4)
+                            
+                            Button {
+                                navigate2 = true
+                            } label: {
+                                Text("Ambil Tema")
+                                    .foregroundStyle(Color(activeTheme ? "milk" : "foregroundGrey"))
+                                    .padding(.vertical, 20)
+                                    .frame(maxWidth: 200)
+                                    .background(Color(activeTheme ? "AccentColor" : "backgroundGrey"))
+                                    .fontWeight(.bold)
+                            }
+                            .disabled(!activeTheme)
+                            .cornerRadius(6)
+                            .shadow(radius: activeTheme ? 4 : 0, x:0, y: activeTheme ? 4 : 0)
+                        }
+                    }
+                    Spacer()
                 }
                 if showText && activeTheme == true{
                     VStack{
@@ -106,13 +157,7 @@ struct ContentView: View {
             }
             .background(Color("milk"))
         }
-        //        .onAppear {
-        //            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-        //                showText = true
-        //                print("Text shown:", showText, activeTheme)
-        //            }
-        //        }
-        
+
         .fullScreenCover(isPresented: $showPopup) {
             PopUpView(isPresented: $showPopup, generated: $generated, navigate: $navigate)
                 .interactiveDismissDisabled(true)

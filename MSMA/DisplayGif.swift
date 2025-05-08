@@ -10,6 +10,7 @@ import SwiftUI
 struct DisplayGif: View {
     
     var gifName: String
+    var size: CGFloat
     
     @State private var gifImage: Image?
     
@@ -19,7 +20,7 @@ struct DisplayGif: View {
             if let gifImage {
                 gifImage
                     .resizable()
-                    .scaledToFit()
+                    .scaledToFill()
             } else {
                 Text("Oops!")
                     .foregroundStyle(.white)
@@ -37,7 +38,7 @@ struct DisplayGif: View {
                 }
             }
         }
-        .frame(maxWidth: 200, maxHeight: 200, alignment: .center)
+        .frame(maxWidth: size, maxHeight: size, alignment: .center)
 
     }
 }
