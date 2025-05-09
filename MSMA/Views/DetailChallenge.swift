@@ -8,59 +8,112 @@
 import SwiftUI
 
 struct DetailChallengeView: View {
-    
+    @Environment(\.presentationMode) var presentationMode
+
     var body: some View {
-            Spacer()
-            VStack(alignment: .leading) {
-                Color.gray
-                    .frame(height: 300)
-                
-            }
-            .background(Color.gray)
-            .cornerRadius(20)
-            .padding()
-            
-            Spacer()
-            VStack(alignment: .leading) {
-                Text("Caution!!")
+        NavigationStack {
+            GeometryReader { geometry in
+                ZStack(alignment: .bottom) {
+                    // Background gradient
+                    LinearGradient(gradient: Gradient(colors: [Color("7FC2CA"), Color("FFFFFF")]),
+                                   startPoint: .top,
+                                   endPoint: .bottom
+                    )
+                    .ignoresSafeArea()
                     
+                    // Grass at bottom
+                    Image("grass")
+                        .resizable()
+                        .frame(width: geometry.size.width, height: 218)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height - 50)
+
+                    VStack(spacing: 20) {
+                        // Spacer for top padding
+                        Spacer().frame(height: geometry.size.height * 0.08)
+
+                        // Mission Panel
+                        VStack(alignment: .leading, spacing: 16) {
+                            HStack(alignment: .top) {
+                                Image(systemName: "cardicon1")
+                                    .padding(.top, 4)
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("Say Greeting")
+                                        .font(.headline)
+                                        .bold()
+                                    Text("Meet an online driver and say...")
+                                        .font(.subheadline)
+                                        .underline()
+                                        .foregroundColor(.brown)
+                                }
+                            }
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Deskripsi misi:")
+                                    .fontWeight(.bold)
+                                Text("Tanyakan lokasi produk tertentu, lalu berikan kalimat penyemangat yang personal dan spesifik (bukan sekadar 'semangat ya') kepada kasir yang melayanimu!")
+                            }
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Tips & Trick:")
+                                    .fontWeight(.bold)
+                                ForEach(0..<4, id: \.self) { _ in
+                                    Text("- Lorem ipsum dolor dolor dolor")
+                                }
+                            }
+
+                            VStack(alignment: .center, spacing: 4) {
+                                Text("Hadiah:")
+                                    .fontWeight(.bold)
+                                Text("150 Exp")
+                                    .padding(.vertical, 6)
+                                    .padding(.horizontal, 12)
+                                    .background(Color.green)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(6)
+                            }
+                        }
+                        .padding()
+                        .background(Color("milk"))
+                        .cornerRadius(24)
+                        .padding(.horizontal, 20)
+                        
+                        Spacer()
+                    }
+                    
+                    // Button fixed above grass
+                    Button(action: {
+                        // Action here
+                    }) {
+                        Text("Tandai selesai")
+                            .foregroundColor(.white)
+                            .padding(.vertical, 20)
+                            .bold()
+                            .frame(width: 200)
+                            .background(Color("AccentColor"))
+                            .cornerRadius(18)
+                            .shadow(radius: 4)
+                    }
+                    .padding(.bottom, geometry.safeAreaInsets.bottom + 32)
+                }
+                .navigationBarBackButtonHidden(true)
+                .navigationTitle("Achievement")
+                .foregroundStyle(.black)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button(action: {presentationMode.wrappedValue.dismiss()}){
+                            Image(systemName: "chevron.left")
+                                .foregroundStyle(.black)
+                        }
+                    }
+                    ToolbarItem(placement: .principal) {
+                        Text("Detail Tantangan")
+                            .foregroundColor(.black) // Change the title color here
+                            .font(.headline)
+                    }
+                }
+                .navigationBarTitleDisplayMode(.inline)
             }
-            Spacer()
-            VStack(alignment: .leading) {
-                
-            }
-            .frame(maxWidth: 200, maxHeight: 200)
-            VStack{
-                Text("XP")
-                    .bold()
-                Text("100")
-                    .frame(width: 100, height: 30)
-                    .background(Color.gray)
-                    .opacity(0.2)
-            }
-            
-            Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
-            VStack {
-                
-            }
-            
-            Button {
-            } label: {
-                Text("Done")
-                    .foregroundStyle(Color(.black))
-                    .padding(.vertical, 20)
-                    .frame(maxWidth: 200)
-                    .background(Color.gray)
-                    .fontWeight(.bold)
-            }
-            .clipShape(RoundedRectangle(cornerRadius: 16))
-            Spacer()
-            Spacer()
-            Spacer()
-        
+        }
     }
 }
 

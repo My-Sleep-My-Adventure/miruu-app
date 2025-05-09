@@ -15,7 +15,7 @@ struct AchievementView: View {
         NavigationStack{
             VStack{
                 HStack(){
-                    Text("Achievement")
+                    Text("Pencapaian")
                         .font(.title3)
                         
                     Spacer()
@@ -48,6 +48,7 @@ struct AchievementView: View {
                                                 .foregroundColor(.black)
                                             
                                         }
+                                        .padding(.vertical, 8)
                                     }
                                     
                                 } else {
@@ -65,6 +66,7 @@ struct AchievementView: View {
                                             
                                         Text("")
                                     }
+                                    .padding(.vertical, 8)
                                 }
                             }
                         }

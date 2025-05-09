@@ -63,6 +63,24 @@ struct ThemeDetail: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal, 40)
         .background(LinearGradient(gradient: Gradient(colors: [Color("7FC2CA"), Color("FFFFFF")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all))
+        
+        .navigationBarBackButtonHidden(true)
+        .navigationTitle("Cerita Petualangan")
+        .foregroundStyle(.black)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {presentationMode.wrappedValue.dismiss()}){
+                    Image(systemName: "chevron.left")
+                        .foregroundStyle(.black)
+                }
+            }
+            ToolbarItem(placement: .principal) {
+                Text("Cerita Petualangan")
+                    .foregroundColor(.black) // Change the title color here
+                    .font(.headline)
+            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

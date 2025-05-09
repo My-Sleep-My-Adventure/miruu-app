@@ -52,7 +52,6 @@ struct AchievDetail: View {
             .foregroundStyle(.black)
         }
         .navigationBarBackButtonHidden(true)
-        .navigationTitle("Achievement")
         .foregroundStyle(.black)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -62,7 +61,7 @@ struct AchievDetail: View {
                 }
             }
             ToolbarItem(placement: .principal) {
-                Text("Achievemnt")
+                Text("Pencapaian")
                     .foregroundColor(.black) // Change the title color here
                     .font(.headline)
             }

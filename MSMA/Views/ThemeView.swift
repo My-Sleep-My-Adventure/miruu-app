@@ -43,7 +43,8 @@ struct ThemeView: View {
                                         Image(data.listDataTheme[index].image)
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
-                                            .frame(width: 70, height: 90)
+                                            .frame(width: 86, height: 106)
+                                            .padding(.vertical, 8)
                                     }
                                     
                                     Text(data.listDataTheme[index].name)
@@ -54,27 +55,30 @@ struct ThemeView: View {
                                         Image(data.listDataTheme[index].image)
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
-                                            .frame(width: 70, height: 90)
+                                            .frame(width: 86, height: 106)
+                                            .padding(.vertical, 8)
                                     }
                                     
                                     Text(data.listDataTheme[index].name)
                                         .font(.caption)
                                         .foregroundColor(.black)
                                 }else{
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color("A5D4DA"))
-                                        .stroke(Color.black, lineWidth: 1)
-                                        .frame(width: 70, height: 90)
-                                        .overlay(
-                                            Text("?")
-                                                .font(.largeTitle)
-                                                .foregroundColor(Color("pickerbackground"))
-                                                .bold()
-                                        )
-//                                    Image(data.listDataTheme[index].image)
-//                                        .resizable()
-//                                        .aspectRatio(contentMode: .fit)
+//                                    RoundedRectangle(cornerRadius: 10)
+//                                        .fill(Color("A5D4DA"))
+//                                        .stroke(Color.black, lineWidth: 1)
 //                                        .frame(width: 70, height: 90)
+//                                        .overlay(
+//                                            Text("?")
+//                                                .font(.largeTitle)
+//                                                .foregroundColor(Color("pickerbackground"))
+//                                                .bold()
+//                                        )
+                                    Image("grayscaleframe")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 86, height: 106)
+                                        .padding(.vertical, 8)
+                                    Text("           ")
                                     
                                 }
                             }

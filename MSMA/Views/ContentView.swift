@@ -32,8 +32,9 @@ struct ContentView: View {
                 
                 VStack{
                     VStack{
-                        Text("Miruu").font(.system(size: 36, weight: .bold)).foregroundStyle(Color("darkBlue"))
-                            .shadow(color: Color("AccentColor"),radius: 2)
+                        Text("Miruu")
+                            .font(.system(size: 46, weight: .bold, design: .rounded))                            .foregroundStyle(Color("E0610B"))
+                            .shadow(color: .white,radius: 1)
                         DisplayGif(gifName: "dragonform2", size: 150)
                         
                     }

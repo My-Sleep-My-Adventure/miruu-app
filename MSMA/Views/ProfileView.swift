@@ -23,11 +23,12 @@ struct ProfileView: View {
                         Section{
                             Picker("Status", selection: $isActive) {
                                 
-                                Text("Achievement").tag(true)
+                                Text("Pencapaian").tag(true)
                                     .padding()
-                                Text("Theme").tag(false)
+                                    .foregroundStyle(.white)
+                                Text("Tema").tag(false)
                                     .padding()
-                                    .foregroundStyle(Color.red)
+                                    .foregroundStyle(.white)
                                     .background(
                                         RoundedRectangle(cornerRadius: 25)
                                             .fill(Color.blue)
