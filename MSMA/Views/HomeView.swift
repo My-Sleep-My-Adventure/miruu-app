@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var navModel: NavigationModel
     @Environment(\.dismiss) var dismiss
     @Binding var themePicked: Bool?
     @Binding var pickedThemeId: Int?
@@ -151,24 +152,31 @@ struct HomeView: View {
                 ToolbarItem(placement: .bottomBar){
                     HStack{
                         Spacer()
-                        NavigationLink(destination: HomeView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)){
+                        Button{
+                            navModel.path.append(Route.main)
+                            navModel.currentRoute = Route.main
+                        }label: {
                             VStack {
                                 Image(systemName: "house.fill")
                                     .imageScale(.large)
                                 Text("Home")
                             }
-                            .foregroundStyle(Color("AccentColor"))
+                            .foregroundStyle(Color(navModel.currentRoute == Route.main ? "AccentColor" : "foregroundGrey"))
                         }
-                        .disabled(true)
+                        .disabled(navModel.currentRoute == Route.main)
                         Spacer()
-                        NavigationLink(destination: ProfileView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)){
+                        Button{
+                            navModel.path.append(Route.profile)
+                            navModel.currentRoute = Route.profile
+                        }label: {
                             VStack {
                                 Image(systemName: "person.fill")
                                     .imageScale(.large)
                                 Text("Profile")
                             }
-                            .foregroundStyle(Color("foregroundGrey"))
+                            .foregroundStyle(Color(navModel.currentRoute == Route.profile ? "AccentColor" : "foregroundGrey"))
                         }
+                        .disabled(navModel.currentRoute == Route.profile)
                         Spacer()
                     }
                     .padding(.top)

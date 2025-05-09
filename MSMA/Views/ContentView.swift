@@ -97,6 +97,7 @@ struct ContentView: View {
                                     themePicked = true
                                     pickedThemeId = generated?.id
                                     navModel.path.append(Route.main)
+                                    navModel.currentRoute = .main
                                 }
                             } label: {
                                 Text("Ambil Tema")
@@ -132,24 +133,31 @@ struct ContentView: View {
                 ToolbarItem(placement: .bottomBar){
                     HStack{
                         Spacer()
-                        NavigationLink(destination: HomeView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)){
+                        Button{
+                            navModel.path.append(Route.main)
+                            navModel.currentRoute = Route.main
+                        }label: {
                             VStack {
                                 Image(systemName: "house.fill")
                                     .imageScale(.large)
                                 Text("Home")
                             }
-                            .foregroundStyle(Color("AccentColor"))
+                            .foregroundStyle(Color(navModel.currentRoute == Route.main ? "AccentColor" : "foregroundGrey"))
                         }
-                        .disabled(true)
+                        .disabled(navModel.currentRoute == Route.main)
                         Spacer()
-                        NavigationLink(destination: ProfileView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)){
+                        Button{
+                            navModel.path.append(Route.profile)
+                            navModel.currentRoute = Route.profile
+                        }label: {
                             VStack {
                                 Image(systemName: "person.fill")
                                     .imageScale(.large)
                                 Text("Profile")
                             }
-                            .foregroundStyle(Color("foregroundGrey"))
+                            .foregroundStyle(Color(navModel.currentRoute == Route.profile ? "AccentColor" : "foregroundGrey"))
                         }
+                        .disabled(navModel.currentRoute == Route.profile)
                         Spacer()
                     }
                     .padding(.top)
@@ -167,10 +175,12 @@ struct ContentView: View {
                 }
             }
             .onAppear {
-                if themePicked!,
+                let themePicked = themePicked ?? false
+                if themePicked,
                    let id = pickedThemeId,
                    data.listDataTheme.contains(where: { $0.id == id }) {
                     navModel.path.append(Route.main)
+                    navModel.currentRoute = .main
                 }
             }
 

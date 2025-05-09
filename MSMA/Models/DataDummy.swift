@@ -10,7 +10,7 @@ import SwiftUI
 
 class NavigationModel: ObservableObject {
     @Published var path = NavigationPath()
-    @Published var currentRoute: Route?
+    @Published var currentRoute: Route? = Route.main
 }
 
 
@@ -249,7 +249,7 @@ struct Data{
                 category: .objek,
                 description: "Eksplorasi cerita dan kreativitas melalui foto-foto lama dan baru yang ada di perangkatmu.",
                 xp: 100,
-                status: .incomplete,
+                status: .locked,
                 image: "foto",
                 challenges: [
                     Challenge(
@@ -351,7 +351,7 @@ struct Data{
                 category: .tempat,
                 description: "Nikmati suasana warkop sambil menyelami berbagai tantangan sosial, hemat, dan kreatif yang menyenangkan.",
                 xp: 100,
-                status: .incomplete,
+                status: .locked,
                 image: "warkop",
                 challenges: [
                     Challenge(
