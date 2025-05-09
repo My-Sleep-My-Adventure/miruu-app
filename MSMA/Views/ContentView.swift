@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var path = NavigationPath()
+    @EnvironmentObject var navModel: NavigationModel
     @AppStorage("pickedThemeId") var pickedThemeId: Int?
     @AppStorage("themePicked") var themePicked: Bool?
     
@@ -23,7 +23,7 @@ struct ContentView: View {
     @State private var cardID = UUID()
     
     var body: some View {
-        NavigationStack(path: $path){
+        NavigationStack(path: $navModel.path){
             ZStack {
                 Image("backgroundImage1")
                     .resizable()
@@ -92,8 +92,12 @@ struct ContentView: View {
 //                            .cornerRadius(6)
 //                            .shadow(radius: activeTheme ? 4 : 0, x:0, y: activeTheme ? 4 : 0)
                             
-                            NavigationLink{
-                                HomeView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)
+                            Button{
+                                if activeTheme {
+                                    themePicked = true
+                                    pickedThemeId = generated?.id
+                                    navModel.path.append(Route.main)
+                                }
                             } label: {
                                 Text("Ambil Tema")
                                     .foregroundStyle(Color(activeTheme ? "milk" : "foregroundGrey"))
@@ -105,12 +109,6 @@ struct ContentView: View {
                             .disabled(!activeTheme)
                             .cornerRadius(6)
                             .shadow(radius: activeTheme ? 4 : 0, x:0, y: activeTheme ? 4 : 0)
-                            .simultaneousGesture(TapGesture().onEnded {
-                                if activeTheme {
-                                    themePicked = true
-                                    pickedThemeId = generated?.id
-                                }
-                            })
                             
                             
                         }
@@ -163,19 +161,18 @@ struct ContentView: View {
                 case .home:
                     test()
                 case .main:
-                    //DetailChallengeView(themePicked: $themePicked, pickedThemeId: $pickedThemeId, data: $data)
                     HomeView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)
                 case .profile:
                     ProfileView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)
                 }
             }
-//            .onAppear {
-//                if themePicked!,
-//                   let id = pickedThemeId,
-//                   data.listDataTheme.contains(where: { $0.id == id }) {
-//                    path.append(Route.main)
-//                }
-//            }
+            .onAppear {
+                if themePicked!,
+                   let id = pickedThemeId,
+                   data.listDataTheme.contains(where: { $0.id == id }) {
+                    navModel.path.append(Route.main)
+                }
+            }
 
             .onChange(of: themePicked){
                 activeTheme = themePicked ?? true
@@ -188,47 +185,6 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(NavigationModel())
 }
 
-//
-//HStack(spacing: 10){
-//
-//    Button {
-//        if data.shuffleCount > 0{
-//            generated = data.generateData()
-//            data.decrementShuffleCount()
-//            print(data.shuffleCount)
-//        }
-//
-//
-//
-//    } label: {
-//        Image(systemName: "shuffle")
-//            .foregroundStyle(Color("milk"))
-//            .padding(.vertical, 20)
-//            .frame(maxWidth: 80)
-//            .background(Color("purple"))
-//            .fontWeight(.bold)
-//    }
-//    .disabled(!activeTheme)
-//    .clipShape(RoundedRectangle(cornerRadius: 16))
-//
-//    NavigationLink(destination: PickChallenge(generated: $generated), isActive: $navigate) {
-//        EmptyView()
-//    }
-//    Button {
-//        generated = data.generateData()
-//        navigate = true
-//        showPopup = true
-//
-//
-//    } label: {
-//        Text("Generate")
-//            .foregroundStyle(Color("milk"))
-//            .padding(.vertical, 20)
-//            .frame(maxWidth: 200)
-//            .background(Color("purple"))
-//            .fontWeight(.bold)
-//    }
-//    .clipShape(RoundedRectangle(cornerRadius: 7))
-//}

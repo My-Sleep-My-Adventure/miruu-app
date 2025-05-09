@@ -11,7 +11,6 @@ struct DetailChallengeView: View {
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
-        NavigationStack {
             GeometryReader { geometry in
                 ZStack(alignment: .bottom) {
                     // Background gradient
@@ -113,7 +112,6 @@ struct DetailChallengeView: View {
                 }
                 .navigationBarTitleDisplayMode(.inline)
             }
-        }
     }
 }
 

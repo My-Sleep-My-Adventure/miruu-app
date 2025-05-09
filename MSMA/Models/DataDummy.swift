@@ -6,6 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
+
+class NavigationModel: ObservableObject {
+    @Published var path = NavigationPath()
+    @Published var currentRoute: Route?
+}
+
 
 enum Route {
     case home

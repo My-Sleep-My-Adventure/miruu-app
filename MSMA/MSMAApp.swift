@@ -10,7 +10,7 @@ import SwiftData
 
 @main
 struct MSMAApp: App {
-    
+    @StateObject private var navModel = NavigationModel()
     init() {
         let appearance = UIToolbarAppearance()
         appearance.backgroundColor = UIColor(named: "FFFFFF")?.withAlphaComponent(50)
@@ -23,6 +23,7 @@ struct MSMAApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(navModel)
                 .modelContainer(for: Story.self)
         }
     }
