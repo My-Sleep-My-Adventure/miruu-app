@@ -20,7 +20,6 @@ struct ProfileView: View {
                 VStack(spacing: 0) {
                     VStack{
                         LevelProgress()
-                        
                         Section{
                             Picker("Status", selection: $isActive) {
                                 

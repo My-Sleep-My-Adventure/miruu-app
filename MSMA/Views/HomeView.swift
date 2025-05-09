@@ -46,7 +46,9 @@ struct HomeView: View {
                                 HStack{
                                     VStack(alignment: .leading){
                                         Text(selectedTheme.name)
+                                            // Font rounded
                                             .font(.title)
+                                            .fontDesign(.rounded)
                                             .bold()
                                         
                                         Text("23h 15m")
@@ -69,9 +71,11 @@ struct HomeView: View {
                         
                         VStack(spacing: 15) {
                             ForEach(0..<5) { index in
-                                //                            Button{} label: {
                                 NavigationLink{
-                                    DetailChallengeView()
+                                    DetailChallengeView(challenge: selectedTheme.challenges[index])
+//                                    if let challenge = selectedTheme.challenges[ {
+//                                        DetailChallengeView(challenge: challenge)
+//                                    }
                                 }
                                 label: {
                                     HStack {

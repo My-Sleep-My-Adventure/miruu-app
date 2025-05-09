@@ -60,6 +60,7 @@ struct EditableRectangularImageDocumentation: View {
     
     // Env for database
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         NavigationStack {
@@ -147,14 +148,16 @@ struct EditableRectangularImageDocumentation: View {
                             .background(Color("E0610B"))
                             .clipShape(RoundedRectangle(cornerRadius: 20))
                     }
-                    .alert(isPresented: $showSuccessAlert) {
-                        Alert(title: Text("Berhasil menyimpan gambar"), message: Text("Berhasil menyimpan gambar"), dismissButton: .default(Text("Oke")))
+                    .alert("Berhasil menyimpan gambar", isPresented: $showSuccessAlert) {
+                        Button("Oke") {
+                            dismiss()
+                        }
                     }
                     .padding(.top, 10)
                     
-                    NavigationLink(destination: SavedStoriesView(), isActive: $navigateToSavedStories) {
-                        EmptyView()
-                    }
+//                    NavigationLink(destination: SavedStoriesView(), isActive: $navigateToSavedStories) {
+//                        EmptyView()
+//                    }
                 }
                 .padding()
             }
