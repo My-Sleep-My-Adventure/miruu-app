@@ -198,7 +198,7 @@ struct Data{
                 category: .objek,
                 description: "Tantangan seputar kreativitas visual, ekspresi diri, dan cara melihat dunia dari lensa berbeda.",
                 xp: 100,
-                status: .complete,
+                status: .incomplete,
                 image: "kamera",
                 challenges: [
                     Challenge(
@@ -249,7 +249,7 @@ struct Data{
                 category: .objek,
                 description: "Eksplorasi cerita dan kreativitas melalui foto-foto lama dan baru yang ada di perangkatmu.",
                 xp: 100,
-                status: .complete,
+                status: .locked,
                 image: "foto",
                 challenges: [
                     Challenge(
@@ -402,7 +402,7 @@ struct Data{
                 category: .tempat,
                 description: "Nikmati atmosfer coffee shop sambil menghadapi tantangan sosial, kreatif, dan menghibur.",
                 xp: 100,
-                status: .complete,
+                status: .locked,
                 image: "coffeshop",
                 challenges: [
                     Challenge(
