@@ -8,20 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
-    @AppStorage("generatedThemeId") var generatedThemeId: Int?
-    @AppStorage("pickedTheme") var pickedTheme = false
+    @State private var path = NavigationPath()
+    @AppStorage("pickedThemeId") var pickedThemeId: Int?
+    @AppStorage("themePicked") var themePicked: Bool?
+    
+    @State private var shuffleCount: Int = 3
     @State private var data = Data()
     @State var generated: ThemeData? = nil
     @State private var activeTheme = false
     @State var navigate = false
-    @State var navigate2 = false
     @State var showPopup = false
     
     @State private var cardRotation: Double = -450
     @State private var cardID = UUID()
     
     var body: some View {
-        NavigationStack{
+        NavigationStack(path: $path){
             ZStack {
                 Image("backgroundImage1")
                     .resizable()
@@ -45,17 +47,17 @@ struct ContentView: View {
                     .padding(.bottom, 47)
                     
                     VStack(alignment: .leading){
-                        Text("\(data.shuffleCount)/3").padding(.leading, 20).foregroundStyle(Color("darkBlue"))
+                        Text("\(shuffleCount)/3").padding(.leading, 20).foregroundStyle(Color("darkBlue"))
                         HStack(spacing: 20){
                             Button {
-                                if data.shuffleCount > 0 {
+                                if shuffleCount > 0 {
                                     generated = data.generateData()
-                                    generatedThemeId = generated?.id
+                                    pickedThemeId = generated?.id
                                     navigate = true
                                     cardRotation = -90
                                     cardID = UUID()
                                     showPopup = true
-                                    data.decrementShuffleCount()
+                                    shuffleCount -= 1
                                     if !activeTheme {
                                         activeTheme = true
                                     }
@@ -71,11 +73,26 @@ struct ContentView: View {
                             .cornerRadius(5)
                             .shadow(radius: 4, x:0, y:4)
                             
-                            Button {
-                                if activeTheme{
-                                    pickedTheme = true
-                                    print(pickedTheme)
-                                }
+//                            Button{
+//                                if activeTheme {
+//                                    themePicked = true
+//                                    pickedThemeId = generated?.id
+//                                    path.append(Route.main)
+//                                }
+//                            } label: {
+//                                Text("Ambil Tema")
+//                                    .foregroundStyle(Color(activeTheme ? "milk" : "foregroundGrey"))
+//                                    .padding(.vertical, 20)
+//                                    .frame(maxWidth: 200)
+//                                    .background(Color(activeTheme ? "AccentColor" : "backgroundGrey"))
+//                                    .fontWeight(.bold)
+//                            }
+//                            .disabled(!activeTheme)
+//                            .cornerRadius(6)
+//                            .shadow(radius: activeTheme ? 4 : 0, x:0, y: activeTheme ? 4 : 0)
+                            
+                            NavigationLink{
+                                HomeView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)
                             } label: {
                                 Text("Ambil Tema")
                                     .foregroundStyle(Color(activeTheme ? "milk" : "foregroundGrey"))
@@ -87,7 +104,16 @@ struct ContentView: View {
                             .disabled(!activeTheme)
                             .cornerRadius(6)
                             .shadow(radius: activeTheme ? 4 : 0, x:0, y: activeTheme ? 4 : 0)
+                            .simultaneousGesture(TapGesture().onEnded {
+                                if activeTheme {
+                                    themePicked = true
+                                    pickedThemeId = generated?.id
+                                }
+                            })
+                            
+                            
                         }
+                        
                     }
                     Spacer()
                 }
@@ -107,7 +133,7 @@ struct ContentView: View {
                 ToolbarItem(placement: .bottomBar){
                     HStack{
                         Spacer()
-                        NavigationLink(destination: HomeView()){
+                        NavigationLink(destination: HomeView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)){
                             VStack {
                                 Image(systemName: "house.fill")
                                     .imageScale(.large)
@@ -115,9 +141,9 @@ struct ContentView: View {
                             }
                             .foregroundStyle(Color("AccentColor"))
                         }
-                        .disabled(pickedTheme)
+                        .disabled(true)
                         Spacer()
-                        NavigationLink(destination: ProfileView()){
+                        NavigationLink(destination: ProfileView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)){
                             VStack {
                                 Image(systemName: "person.fill")
                                     .imageScale(.large)
@@ -131,7 +157,30 @@ struct ContentView: View {
                     
                 }
             }
+            .navigationDestination(for: Route.self){route in
+                switch route{
+                case .home:
+                    test()
+                case .main:
+                    //DetailChallengeView(themePicked: $themePicked, pickedThemeId: $pickedThemeId, data: $data)
+                    HomeView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)
+                case .profile:
+                    ProfileView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)
+                }
+            }
+            .onAppear {
+                if themePicked!,
+                   let id = pickedThemeId,
+                   data.listDataTheme.contains(where: { $0.id == id }) {
+                    path.append(Route.main)
+                }
+            }
+
+            .onChange(of: themePicked){
+                activeTheme = themePicked ?? true
+            }
         }
+        
     }
     
 }
@@ -142,7 +191,7 @@ struct ContentView: View {
 
 //
 //HStack(spacing: 10){
-//    
+//
 //    Button {
 //        if data.shuffleCount > 0{
 //            generated = data.generateData()
@@ -150,8 +199,8 @@ struct ContentView: View {
 //            print(data.shuffleCount)
 //        }
 //
-//        
-//        
+//
+//
 //    } label: {
 //        Image(systemName: "shuffle")
 //            .foregroundStyle(Color("milk"))
@@ -162,7 +211,7 @@ struct ContentView: View {
 //    }
 //    .disabled(!activeTheme)
 //    .clipShape(RoundedRectangle(cornerRadius: 16))
-//    
+//
 //    NavigationLink(destination: PickChallenge(generated: $generated), isActive: $navigate) {
 //        EmptyView()
 //    }
@@ -170,8 +219,8 @@ struct ContentView: View {
 //        generated = data.generateData()
 //        navigate = true
 //        showPopup = true
-//        
-//        
+//
+//
 //    } label: {
 //        Text("Generate")
 //            .foregroundStyle(Color("milk"))

@@ -10,6 +10,7 @@ import SwiftData
 
 @main
 struct MSMAApp: App {
+    
     init() {
         let appearance = UIToolbarAppearance()
         appearance.backgroundColor = UIColor(named: "FFFFFF")?.withAlphaComponent(50)

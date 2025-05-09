@@ -10,7 +10,6 @@ import SwiftUI
 struct DetailChallengeView: View {
     
     var body: some View {
-        NavigationStack {
             Spacer()
             VStack(alignment: .leading) {
                 Color.gray
@@ -61,10 +60,6 @@ struct DetailChallengeView: View {
             Spacer()
             Spacer()
             Spacer()
-            
-
-            NavigationView()
-        }
         
     }
 }

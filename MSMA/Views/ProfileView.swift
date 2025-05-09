@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ProfileView: View {
-    
-    
+    @Binding var themePicked: Bool?
+    @Binding var pickedThemeId: Int?
     
     @State private var isActive: Bool = false
     var body: some View {
@@ -65,7 +65,7 @@ struct ProfileView: View {
                 ToolbarItem(placement: .bottomBar){
                     HStack{
                         Spacer()
-                        NavigationLink(destination: HomeView()){
+                        NavigationLink(destination: HomeView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)){
                             VStack {
                                 Image(systemName: "house.fill")
                                     .imageScale(.large)
@@ -75,7 +75,7 @@ struct ProfileView: View {
                         }
                         .disabled(true) // not yet working
                         Spacer()
-                        NavigationLink(destination: ProfileView()){
+                        NavigationLink(destination: ProfileView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)){
                             VStack {
                                 Image(systemName: "person.fill")
                                     .imageScale(.large)
@@ -97,8 +97,3 @@ struct ProfileView: View {
 }
 
 
-
-
-#Preview {
-    ProfileView()
-}
