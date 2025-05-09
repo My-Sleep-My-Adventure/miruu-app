@@ -12,7 +12,6 @@ struct AchievementView: View {
     //    var limit = data.listData.count
     
     var body: some View {
-        NavigationStack{
             VStack{
                 HStack(){
                     Text("Pencapaian")
@@ -76,8 +75,6 @@ struct AchievementView: View {
             }
             .background(Color("FEFCFA"))
             .clipShape(RoundedRectangle(cornerRadius: 20))
-            
-        }
         .padding(.horizontal)
         
     }

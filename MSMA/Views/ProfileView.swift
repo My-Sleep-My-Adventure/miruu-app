@@ -13,7 +13,6 @@ struct ProfileView: View {
     
     @State private var isActive: Bool = false
     var body: some View {
-        NavigationStack{
             ZStack{
                 LinearGradient(gradient: Gradient(colors: [Color("7FC2CA"), Color("FFFFFF")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
                 VStack(spacing: 0) {
@@ -62,6 +61,7 @@ struct ProfileView: View {
                 }
                 //                .background(Color("pickerbackground"))
             }
+            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .bottomBar){
                     HStack{
@@ -90,10 +90,6 @@ struct ProfileView: View {
                     
                 }
             }
-            
-            //            NavigationView()
-        }
-        .navigationBarBackButtonHidden(true)
     }
 }
 

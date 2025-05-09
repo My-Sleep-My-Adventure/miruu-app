@@ -17,7 +17,6 @@ struct ThemeView: View {
     
     
     var body: some View {
-        NavigationStack{
             VStack{
                 HStack(){
                     Text("List Tema")
@@ -90,7 +89,6 @@ struct ThemeView: View {
             
             .background(Color("FEFCFA"))
             .clipShape(RoundedRectangle(cornerRadius: 20))
-        }
         .padding(.top,8)
         .padding(.horizontal)
         
