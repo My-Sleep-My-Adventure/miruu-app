@@ -167,7 +167,7 @@ struct ContentView: View {
                 }
             }
             .onAppear {
-                if themePicked!,
+                if themePicked ?? false,
                    let id = pickedThemeId,
                    data.listDataTheme.contains(where: { $0.id == id }) {
                     navModel.path.append(Route.main)
