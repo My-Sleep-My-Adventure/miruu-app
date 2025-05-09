@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DetailChallengeView: View {
     @Environment(\.presentationMode) var presentationMode
+    
+    var challenge: Challenge
 
     var body: some View {
             GeometryReader { geometry in
@@ -36,34 +38,35 @@ struct DetailChallengeView: View {
                                 Image(systemName: "cardicon1")
                                     .padding(.top, 4)
                                 VStack(alignment: .leading, spacing: 4) {
-                                    Text("Say Greeting")
+                                    Text(challenge.name)
                                         .font(.headline)
                                         .bold()
-                                    Text("Meet an online driver and say...")
-                                        .font(.subheadline)
-                                        .underline()
-                                        .foregroundColor(.brown)
+//                                    Text("Meet an online driver )
+//                                        .font(.subheadline)
+//                                        .underline()
+//                                        .foregroundColor(.brown)
                                 }
                             }
 
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("Deskripsi misi:")
                                     .fontWeight(.bold)
-                                Text("Tanyakan lokasi produk tertentu, lalu berikan kalimat penyemangat yang personal dan spesifik (bukan sekadar 'semangat ya') kepada kasir yang melayanimu!")
+                                Text(challenge.description)
                             }
 
                             VStack(alignment: .leading, spacing: 4) {
-                                Text("Tips & Trick:")
+                                Text("Perhatian: ")
                                     .fontWeight(.bold)
-                                ForEach(0..<4, id: \.self) { _ in
-                                    Text("- Lorem ipsum dolor dolor dolor")
-                                }
+                                Text(challenge.caution)
+//                                ForEach(0..<4, id: \.self) { _ in
+//                                    Text("- Lorem ipsum dolor dolor dolor")
+//                                }
                             }
 
                             VStack(alignment: .center, spacing: 4) {
                                 Text("Hadiah:")
                                     .fontWeight(.bold)
-                                Text("150 Exp")
+                                Text("\(challenge.xp)")
                                     .padding(.vertical, 6)
                                     .padding(.horizontal, 12)
                                     .background(Color.green)
@@ -82,6 +85,7 @@ struct DetailChallengeView: View {
                     // Button fixed above grass
                     Button(action: {
                         // Action here
+                        
                     }) {
                         Text("Tandai selesai")
                             .foregroundColor(.white)
@@ -115,6 +119,6 @@ struct DetailChallengeView: View {
     }
 }
 
-#Preview {
-    DetailChallengeView()
-}
+//#Preview {
+//    DetailChallengeView()
+//}
