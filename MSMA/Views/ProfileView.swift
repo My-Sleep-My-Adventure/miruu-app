@@ -18,7 +18,6 @@ struct ProfileView: View {
                 VStack(spacing: 0) {
                     VStack{
                         LevelProgress()
-                        Text(String(pickedThemeId ?? 1))
                         Section{
                             Picker("Status", selection: $isActive) {
                                 
