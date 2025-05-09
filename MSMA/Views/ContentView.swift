@@ -169,13 +169,13 @@ struct ContentView: View {
                     ProfileView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)
                 }
             }
-//            .onAppear {
-//                if themePicked!,
-//                   let id = pickedThemeId,
-//                   data.listDataTheme.contains(where: { $0.id == id }) {
-//                    path.append(Route.main)
-//                }
-//            }
+            .onAppear {
+                if themePicked!,
+                   let id = pickedThemeId,
+                   data.listDataTheme.contains(where: { $0.id == id }) {
+                    path.append(Route.main)
+                }
+            }
 
             .onChange(of: themePicked){
                 activeTheme = themePicked ?? true

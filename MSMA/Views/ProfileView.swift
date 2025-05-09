@@ -19,7 +19,7 @@ struct ProfileView: View {
                 VStack(spacing: 0) {
                     VStack{
                         LevelProgress()
-                        
+                        Text(String(pickedThemeId ?? 1))
                         Section{
                             Picker("Status", selection: $isActive) {
                                 
@@ -72,9 +72,9 @@ struct ProfileView: View {
                                     .imageScale(.large)
                                 Text("Home")
                             }
-                            .foregroundStyle(Color("AccentColor"))
+                            .foregroundStyle(Color("foregroundGrey"))
                         }
-                        .disabled(true) // not yet working
+                        .disabled(false) // not yet working
                         Spacer()
                         NavigationLink(destination: ProfileView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)){
                             VStack {
@@ -82,7 +82,7 @@ struct ProfileView: View {
                                     .imageScale(.large)
                                 Text("Profile")
                             }
-                            .foregroundStyle(Color("foregroundGrey"))
+                            .foregroundStyle(Color("AccentColor"))
                         }
                         Spacer()
                     }
