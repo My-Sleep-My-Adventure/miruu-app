@@ -72,6 +72,7 @@ struct LevelProgress: View {
                         .position(x: 60, y: 114)
                 } else {
                     Text("Level \(currentLevel)")
+                        .font(.system(size: 17, weight: .bold, design: .rounded))
                         .font(.headline)
                         .bold()
                         .foregroundStyle(.white)

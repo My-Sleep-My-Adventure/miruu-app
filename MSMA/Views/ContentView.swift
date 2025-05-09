@@ -32,8 +32,9 @@ struct ContentView: View {
                 
                 VStack{
                     VStack{
+                        Spacer()
                         Text("Miruu")
-                            .font(.system(size: 46, weight: .bold, design: .rounded))                            .foregroundStyle(Color("E0610B"))
+                            .font(.system(size: 48, weight: .bold, design: .rounded))                            .foregroundStyle(Color("E0610B"))
                             .shadow(color: .white,radius: 1)
                         DisplayGif(gifName: "dragonform2", size: 150)
                         
@@ -45,7 +46,7 @@ struct ContentView: View {
                         }
                     }
                     .frame(width: 307, height: 70)
-                    .padding(.bottom, 47)
+//                    .padding(.bottom, 47)
                     
                     VStack(alignment: .leading){
                         Text("\(shuffleCount)/3").padding(.leading, 20).foregroundStyle(Color("darkBlue"))
@@ -114,6 +115,7 @@ struct ContentView: View {
                         }
                         
                     }
+                    .padding(.bottom, 60)
                     Spacer()
                 }
                 .padding(.vertical, 170)
