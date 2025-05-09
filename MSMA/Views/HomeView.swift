@@ -37,7 +37,8 @@ struct HomeView: View {
                             Button{
                                 themePicked = false
                                 pickedThemeId = nil
-                                dismiss()
+                                navModel.path = NavigationPath()
+                                navModel.path.append(Route.home)
                             } label: {
                                 Text("reset")
                             }

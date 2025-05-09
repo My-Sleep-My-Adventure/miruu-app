@@ -167,7 +167,7 @@ struct ContentView: View {
             .navigationDestination(for: Route.self){route in
                 switch route{
                 case .home:
-                    test()
+                    ContentView()
                 case .main:
                     HomeView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)
                 case .profile:
@@ -188,6 +188,7 @@ struct ContentView: View {
                 activeTheme = themePicked ?? true
             }
         }
+        .navigationBarBackButtonHidden(true)
         
     }
     
