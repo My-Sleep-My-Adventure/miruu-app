@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LevelProgress: View {
-    @State private var currentXP: Int = 0
+    @State private var currentXP: Int = 200
     @State private var currentLevel: Int = 1
     
     let maxLevel: Int = 10

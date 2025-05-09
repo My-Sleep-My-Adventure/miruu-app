@@ -61,10 +61,20 @@ struct ThemeView: View {
                                         .font(.caption)
                                         .foregroundColor(.black)
                                 }else{
-                                    Image(data.listDataTheme[index].image)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color("A5D4DA"))
+                                        .stroke(Color.black, lineWidth: 1)
                                         .frame(width: 70, height: 90)
+                                        .overlay(
+                                            Text("?")
+                                                .font(.largeTitle)
+                                                .foregroundColor(Color("pickerbackground"))
+                                                .bold()
+                                        )
+//                                    Image(data.listDataTheme[index].image)
+//                                        .resizable()
+//                                        .aspectRatio(contentMode: .fit)
+//                                        .frame(width: 70, height: 90)
                                     
                                 }
                             }

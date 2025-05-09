@@ -289,7 +289,7 @@ struct Data{
                 description: "Gunakan HP-mu bukan hanya untuk scroll, tapi sebagai alat eksplorasi komunikasi, kreativitas, dan kontrol diri.",
                 xp: 100,
                 status: .incomplete,
-                image: "handphone",
+                image: "hp",
                 challenges: [
                     Challenge(
                         category: "Communication",
@@ -391,7 +391,7 @@ struct Data{
                 description: "Nikmati atmosfer coffee shop sambil menghadapi tantangan sosial, kreatif, dan menghibur.",
                 xp: 100,
                 status: .incomplete,
-                image: "coffee_shop",
+                image: "coffeshop",
                 challenges: [
                     Challenge(
                         category: "Communication",
@@ -500,7 +500,7 @@ struct Data{
                 category: .tempat,
                 description: "Eksplorasi dunia kuliner di dapur dengan tantangan yang mengasah keterampilan komunikasi, kreativitas, dan manajemen waktu.",
                 xp: 100,
-                status: .incomplete,
+                status: .locked,
                 image: "dapur",
                 challenges: [
                     Challenge(
@@ -551,7 +551,7 @@ struct Data{
                 category: .tempat,
                 description: "Temukan petualangan belanja unik di minimarket, dari mengasah komunikasi hingga kreativitas dalam kombinasi produk.",
                 xp: 100,
-                status: .incomplete,
+                status: .locked,
                 image: "minimarket",
                 challenges: [
                     Challenge(
