@@ -30,14 +30,18 @@ struct ContentView: View {
                     .aspectRatio(contentMode:.fill)
                     .ignoresSafeArea(edges: .all)
                 
+                DisplayGif(gifName: "dragonform2", size: 290)
+                    .offset(y: -40)
+                    .zIndex(0)
                 VStack{
                     VStack{
                         Spacer()
                         Text("Miruu")
-                            .font(.system(size: 48, weight: .bold, design: .rounded))                            .foregroundStyle(Color("E0610B"))
-                            .shadow(color: .white,radius: 1)
-                        DisplayGif(gifName: "dragonform2", size: 150)
-                        
+                            .font(.system(size: 65, weight: .bold, design: .rounded))                            .foregroundStyle(Color("E0610B"))
+                            .shadow(color: .white.opacity(0.9), radius: 4)
+                            .shadow(color: .white.opacity(0.9), radius: 4)
+                            .position(x: 200, y: 30)
+                        Spacer()
                     }
                     VStack{
                         if activeTheme, let generated = generated{
@@ -46,11 +50,23 @@ struct ContentView: View {
                         }
                     }
                     .frame(width: 307, height: 70)
-//                    .padding(.bottom, 47)
-                    
-                    VStack(alignment: .leading){
-                        Text("\(shuffleCount)/3").padding(.leading, 20).foregroundStyle(Color("darkBlue"))
-                        HStack(spacing: 20){
+                    //                    .padding(.bottom, 47)
+                    VStack {
+                        
+                        HStack {
+                            HStack(spacing: 4) {
+                                ForEach(0..<shuffleCount, id: \.self) { _ in
+                                    Image(systemName: "heart.fill")
+                                        .foregroundColor(.red)
+                                        .font(.system(size: 20))
+                                }
+                            }
+                            Spacer()
+                        }
+                        .padding(.horizontal, 50)
+                        
+                        // Buttons section
+                        HStack(spacing: 20) {
                             Button {
                                 if shuffleCount > 0 {
                                     generated = data.generateData()
@@ -64,7 +80,6 @@ struct ContentView: View {
                                         activeTheme = true
                                     }
                                 }
-
                             } label: {
                                 Image(systemName: "shuffle")
                                     .foregroundStyle(Color("AccentColor"))
@@ -73,27 +88,9 @@ struct ContentView: View {
                                     .font(.system(size: 24, weight: .bold))
                             }
                             .cornerRadius(5)
-                            .shadow(radius: 4, x:0, y:4)
+                            .shadow(radius: 4, x: 0, y: 4)
                             
-//                            Button{
-//                                if activeTheme {
-//                                    themePicked = true
-//                                    pickedThemeId = generated?.id
-//                                    path.append(Route.main)
-//                                }
-//                            } label: {
-//                                Text("Ambil Tema")
-//                                    .foregroundStyle(Color(activeTheme ? "milk" : "foregroundGrey"))
-//                                    .padding(.vertical, 20)
-//                                    .frame(maxWidth: 200)
-//                                    .background(Color(activeTheme ? "AccentColor" : "backgroundGrey"))
-//                                    .fontWeight(.bold)
-//                            }
-//                            .disabled(!activeTheme)
-//                            .cornerRadius(6)
-//                            .shadow(radius: activeTheme ? 4 : 0, x:0, y: activeTheme ? 4 : 0)
-                            
-                            Button{
+                            Button {
                                 if activeTheme {
                                     themePicked = true
                                     pickedThemeId = generated?.id
@@ -110,15 +107,10 @@ struct ContentView: View {
                             }
                             .disabled(!activeTheme)
                             .cornerRadius(6)
-                            .shadow(radius: activeTheme ? 4 : 0, x:0, y: activeTheme ? 4 : 0)
-                            
-                            
+                            .shadow(radius: activeTheme ? 4 : 0, x: 0, y: activeTheme ? 4 : 0)
                         }
-                        
-                    }
-                    .padding(.bottom, 60)
-                    Spacer()
-                }
+                        .padding(.bottom, 60)
+                    }}
                 .padding(.vertical, 170)
                 if showPopup {
                     PopUpView(
@@ -176,7 +168,7 @@ struct ContentView: View {
                     ProfileView()
                 }
             }
-
+            
             .onChange(of: themePicked){
                 activeTheme = themePicked ?? true
             }
