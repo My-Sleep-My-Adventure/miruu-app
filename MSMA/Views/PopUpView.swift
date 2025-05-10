@@ -28,7 +28,7 @@ struct PopUpView: View {
                     .font(.headline)
                     .bold()
 
-                Button("Next") {
+                Button("Selanjutnya") {
                     isPresented = false
                 }
                 .foregroundColor(.white)

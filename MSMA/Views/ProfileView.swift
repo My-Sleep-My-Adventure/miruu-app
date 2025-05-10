@@ -19,33 +19,44 @@ struct ProfileView: View {
                 LinearGradient(gradient: Gradient(colors: [Color("7FC2CA"), Color("FFFFFF")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
                 VStack(spacing: 0) {
                     VStack{
-                        LevelProgress()
-                        Section{
-                            Picker("Status", selection: $isActive) {
+                        ZStack{
+                            ZStack{
+                                Image("cloud")
+                            }
+                            VStack{
+                                LevelProgress()
                                 
-                                Text("Pencapaian").tag(true)
-                                    .padding()
-                                    .foregroundStyle(.white)
-                                Text("Tema").tag(false)
-                                    .padding()
-                                    .foregroundStyle(.white)
+                                Section{
+                                    Picker("Status", selection: $isActive) {
+                                        
+                                        Text("Pencapaian").tag(true)
+                                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                                            .padding()
+                                            .foregroundStyle(.white)
+                                        Text("Tema").tag(false)
+                                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                                            .padding()
+                                            .foregroundStyle(.white)
+                                            .background(
+                                                RoundedRectangle(cornerRadius: 25)
+                                                    .fill(Color.blue)
+                                            )
+                                            .tint(Color.blue)
+                                        
+                                        
+                                    }
+                                    .pickerStyle(SegmentedPickerStyle())
+                                    .padding(8)
                                     .background(
-                                        RoundedRectangle(cornerRadius: 25)
-                                            .fill(Color.blue)
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .fill(Color("pickerbackground"))
                                     )
-                                    .tint(Color.blue)
-                                
+                                    .padding()
+                                }
+                                .padding(.bottom,5)
                                 
                             }
-                            .pickerStyle(SegmentedPickerStyle())
-                            .padding(8)
-                            .background(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .fill(Color("pickerbackground"))
-                            )
-                            .padding()
                         }
-                        .padding(.bottom,5)
                     }
                     .padding()
                     
@@ -53,10 +64,10 @@ struct ProfileView: View {
                     if isActive {
                         AchievementView()
                             .frame(maxHeight: .infinity)
-//                            .padding(.bottom, 10)
+                        //                            .padding(.bottom, 10)
                     }else{
                         ThemeView()
-//                            .padding()
+                        //                            .padding()
                             .frame(maxWidth: .infinity)
                     }
                 }
@@ -100,5 +111,4 @@ struct ProfileView: View {
             }
     }
 }
-
 

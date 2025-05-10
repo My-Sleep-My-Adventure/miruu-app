@@ -19,11 +19,12 @@ struct ThemeView: View {
     var body: some View {
             VStack{
                 HStack(){
-                    Text("List Tema")
+                    Text("Daftar Tema")
+                        .font(.system( size: 16, weight: .bold, design: .rounded))
                         .font(.title3)
-                        
                     Spacer()
                     Text("\(data.unlockedCountTheme)/\(data.listDataTheme.count)")
+                        .font(.system(size: 15, design: .rounded))
                         .foregroundStyle(Color.gray)
                     
                 }
@@ -86,11 +87,11 @@ struct ThemeView: View {
                     .padding()
                 }
             }
-            
-            .background(Color("FEFCFA"))
+            .background(Color("FEFCFA").opacity(0.7))
             .clipShape(RoundedRectangle(cornerRadius: 20))
         .padding(.top,8)
         .padding(.horizontal)
+        
         
         
     }
