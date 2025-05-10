@@ -120,7 +120,3 @@ struct DetailChallengeView: View {
         }
     }
 }
-
-//#Preview {
-//    DetailChallengeView()
-//}

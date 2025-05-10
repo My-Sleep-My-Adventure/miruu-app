@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TipKit
 
 struct ContentView: View {
     @EnvironmentObject var navModel: NavigationModel
@@ -22,6 +23,15 @@ struct ContentView: View {
     @State private var cardRotation: Double = -450
     @State private var cardID = UUID()
     
+    // Group for TipKit
+//    @State var HomeContentTips = TipGroup {
+//        BeginningTip()
+//        ShuffleTheme()
+//    }
+    
+    let beginningTip = BeginningTip()
+    let shuffleTip = ShuffleThemeTip()
+    
     var body: some View {
         NavigationStack(path: $navModel.path){
             ZStack {
@@ -29,11 +39,12 @@ struct ContentView: View {
                     .resizable()
                     .aspectRatio(contentMode:.fill)
                     .ignoresSafeArea(edges: .all)
-                
+                                
                 DisplayGif(gifName: "dragonform2", size: 290)
                     .offset(y: -40)
                     .zIndex(0)
                 VStack{
+                    TipView(beginningTip)
                     VStack{
                         Spacer()
                         Text("Miruu")
@@ -108,6 +119,7 @@ struct ContentView: View {
                             .disabled(!activeTheme)
                             .cornerRadius(6)
                             .shadow(radius: activeTheme ? 4 : 0, x: 0, y: activeTheme ? 4 : 0)
+                            .popoverTip(shuffleTip)
                         }
                         .padding(.bottom, 60)
                     }}

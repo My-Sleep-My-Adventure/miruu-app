@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 @main
 struct MSMAApp: App {
@@ -18,6 +19,8 @@ struct MSMAApp: App {
         if #available(iOS 15.0, *) {
             UIToolbar.appearance().scrollEdgeAppearance = appearance
         }
+        
+        try? Tips.configure()
     }
 
     var body: some Scene {

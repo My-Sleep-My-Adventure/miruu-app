@@ -27,7 +27,6 @@ struct AchievementView: View {
                 Text("\(data.unlockedCountAchievement)/\(data.listDataAchievement.count)")
                     .font(.system(size: 15, design: .rounded))
                     .foregroundStyle(Color.gray)
-                
             }
             .padding(.top)
             .padding(.horizontal, 30)
@@ -46,6 +45,7 @@ struct AchievementView: View {
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
                                             .frame(width: 85, height: 85)
+                                            .frame(width: 70, height: 90)
                                         //                                            .clipShape(Circle())
                                         
                                         Text(data.listDataAchievement[index].name)
@@ -63,6 +63,7 @@ struct AchievementView: View {
                                         .stroke(Color.gray, lineWidth: 2)
                                         .fill(Color("A5D4DA"))
                                         .frame(width: 75, height: 75)
+                                        .frame(width: 70, height: 90)
                                         .overlay(
                                             Text("?")
                                                 .font(.title)
@@ -81,6 +82,7 @@ struct AchievementView: View {
             }
         }
         .background(Color("FEFCFA").opacity(0.7))       .clipShape(RoundedRectangle(cornerRadius: 20))
+        .clipShape(RoundedRectangle(cornerRadius: 20))
         .padding(.horizontal)
     }
 }
@@ -88,3 +90,4 @@ struct AchievementView: View {
 #Preview {
     AchievementView()
 }
+

@@ -60,6 +60,8 @@ struct EditableRectangularImageDocumentation: View {
     
     // Env for database
     @Environment(\.modelContext) private var modelContext
+    
+    // Env for dismiss
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -154,10 +156,6 @@ struct EditableRectangularImageDocumentation: View {
                         }
                     }
                     .padding(.top, 10)
-                    
-//                    NavigationLink(destination: SavedStoriesView(), isActive: $navigateToSavedStories) {
-//                        EmptyView()
-//                    }
                 }
                 .padding()
             }
