@@ -22,7 +22,7 @@ struct MSMAApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            test()
                 .environmentObject(navModel)
                 .modelContainer(for: Story.self)
         }

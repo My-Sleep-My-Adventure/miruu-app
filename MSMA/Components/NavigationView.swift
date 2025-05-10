@@ -26,7 +26,7 @@ struct NavigationView: View {
                 }
 
                 Spacer()
-                NavigationLink(destination: ProfileView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)){
+                NavigationLink(destination: ProfileView()){
                     VStack {
                         Image(systemName: "person.fill")
                             .imageScale(.large)

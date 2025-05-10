@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var navModel: NavigationModel
-    @AppStorage("pickedThemeId") var pickedThemeId: Int?
-    @AppStorage("themePicked") var themePicked: Bool?
+    @Binding var pickedThemeId: Int?
+    @Binding var themePicked: Bool?
     
     @State private var shuffleCount: Int = 3
     @State private var data = Data()
@@ -131,58 +131,49 @@ struct ContentView: View {
                     .zIndex(2)
                 }
             }
-            .toolbar {
-                ToolbarItem(placement: .bottomBar){
-                    HStack{
-                        Spacer()
-                        Button{
-                            navModel.path.append(Route.main)
-                            navModel.currentRoute = Route.main
-                        }label: {
-                            VStack {
-                                Image(systemName: "house.fill")
-                                    .imageScale(.large)
-                                Text("Home")
-                            }
-                            .foregroundStyle(Color(navModel.currentRoute == Route.main ? "AccentColor" : "foregroundGrey"))
-                        }
-                        .disabled(navModel.currentRoute == Route.main)
-                        Spacer()
-                        Button{
-                            navModel.path.append(Route.profile)
-                            navModel.currentRoute = Route.profile
-                        }label: {
-                            VStack {
-                                Image(systemName: "person.fill")
-                                    .imageScale(.large)
-                                Text("Profile")
-                            }
-                            .foregroundStyle(Color(navModel.currentRoute == Route.profile ? "AccentColor" : "foregroundGrey"))
-                        }
-                        .disabled(navModel.currentRoute == Route.profile)
-                        Spacer()
-                    }
-                    .padding(.top)
-                    
-                }
-            }
+//            .toolbar {
+//                ToolbarItem(placement: .bottomBar){
+//                    HStack{
+//                        Spacer()
+//                        Button{
+//                            navModel.path.append(Route.main)
+//                            navModel.currentRoute = Route.main
+//                        }label: {
+//                            VStack {
+//                                Image(systemName: "house.fill")
+//                                    .imageScale(.large)
+//                                Text("Home")
+//                            }
+//                            .foregroundStyle(Color(navModel.currentRoute == Route.main ? "AccentColor" : "foregroundGrey"))
+//                        }
+//                        .disabled(navModel.currentRoute == Route.main)
+//                        Spacer()
+//                        Button{
+//                            navModel.path.append(Route.profile)
+//                            navModel.currentRoute = Route.profile
+//                        }label: {
+//                            VStack {
+//                                Image(systemName: "person.fill")
+//                                    .imageScale(.large)
+//                                Text("Profile")
+//                            }
+//                            .foregroundStyle(Color(navModel.currentRoute == Route.profile ? "AccentColor" : "foregroundGrey"))
+//                        }
+//                        .disabled(navModel.currentRoute == Route.profile)
+//                        Spacer()
+//                    }
+//                    .padding(.top)
+//                    
+//                }
+//            }
             .navigationDestination(for: Route.self){route in
                 switch route{
                 case .home:
-                    ContentView()
+                    ContentView(pickedThemeId: $pickedThemeId, themePicked: $themePicked)
                 case .main:
                     HomeView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)
                 case .profile:
-                    ProfileView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)
-                }
-            }
-            .onAppear {
-                let themePicked = themePicked ?? false
-                if themePicked,
-                   let id = pickedThemeId,
-                   data.listDataTheme.contains(where: { $0.id == id }) {
-                    navModel.path.append(Route.main)
-                    navModel.currentRoute = .main
+                    ProfileView()
                 }
             }
 
@@ -196,8 +187,4 @@ struct ContentView: View {
     
 }
 
-#Preview {
-    ContentView()
-        .environmentObject(NavigationModel())
-}
 

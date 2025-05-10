@@ -13,6 +13,7 @@ struct DetailChallengeView: View {
     var challenge: Challenge
 
     var body: some View {
+        NavigationStack {
             GeometryReader { geometry in
                 ZStack(alignment: .bottom) {
                     // Background gradient
@@ -27,11 +28,11 @@ struct DetailChallengeView: View {
                         .resizable()
                         .frame(width: geometry.size.width, height: 218)
                         .position(x: geometry.size.width / 2, y: geometry.size.height - 50)
-
+                    
                     VStack(spacing: 20) {
                         // Spacer for top padding
                         Spacer().frame(height: geometry.size.height * 0.08)
-
+                        
                         // Mission Panel
                         VStack(alignment: .leading, spacing: 16) {
                             HStack(alignment: .top) {
@@ -41,28 +42,28 @@ struct DetailChallengeView: View {
                                     Text(challenge.name)
                                         .font(.headline)
                                         .bold()
-//                                    Text("Meet an online driver )
-//                                        .font(.subheadline)
-//                                        .underline()
-//                                        .foregroundColor(.brown)
+                                    //                                    Text("Meet an online driver )
+                                    //                                        .font(.subheadline)
+                                    //                                        .underline()
+                                    //                                        .foregroundColor(.brown)
                                 }
                             }
-
+                            
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("Deskripsi misi:")
                                     .fontWeight(.bold)
                                 Text(challenge.description)
                             }
-
+                            
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("Perhatian: ")
                                     .fontWeight(.bold)
                                 Text(challenge.caution)
-//                                ForEach(0..<4, id: \.self) { _ in
-//                                    Text("- Lorem ipsum dolor dolor dolor")
-//                                }
+                                //                                ForEach(0..<4, id: \.self) { _ in
+                                //                                    Text("- Lorem ipsum dolor dolor dolor")
+                                //                                }
                             }
-
+                            
                             VStack(alignment: .center, spacing: 4) {
                                 Text("Hadiah:")
                                     .fontWeight(.bold)
@@ -114,8 +115,9 @@ struct DetailChallengeView: View {
                             .font(.headline)
                     }
                 }
-                .navigationBarTitleDisplayMode(.inline)
             }
+            .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
 

@@ -10,11 +10,9 @@ import SwiftUI
 struct ProfileView: View {
     @EnvironmentObject var navModel: NavigationModel
     
-    @Binding var themePicked: Bool?
-    @Binding var pickedThemeId: Int?
-    
     @State private var isActive: Bool = false
     var body: some View {
+        NavigationStack {
             ZStack{
                 LinearGradient(gradient: Gradient(colors: [Color("7FC2CA"), Color("FFFFFF")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
                 VStack(spacing: 0) {
@@ -74,41 +72,43 @@ struct ProfileView: View {
                 //                .background(Color("pickerbackground"))
             }
             .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .bottomBar){
-                    HStack{
-                        Spacer()
-                        Button{
-                            navModel.path.append(Route.main)
-                            navModel.currentRoute = Route.main
-                        }label: {
-                            VStack {
-                                Image(systemName: "house.fill")
-                                    .imageScale(.large)
-                                Text("Home")
-                            }
-                            .foregroundStyle(Color(navModel.currentRoute == Route.main ? "AccentColor" : "foregroundGrey"))
-                        }
-                        .disabled(navModel.currentRoute == Route.main)
-                        Spacer()
-                        Button{
-                            navModel.path.append(Route.profile)
-                            navModel.currentRoute = Route.profile
-                        }label: {
-                            VStack {
-                                Image(systemName: "person.fill")
-                                    .imageScale(.large)
-                                Text("Profile")
-                            }
-                            .foregroundStyle(Color(navModel.currentRoute == Route.profile ? "AccentColor" : "foregroundGrey"))
-                        }
-                        .disabled(navModel.currentRoute == Route.profile)
-                        Spacer()
-                    }
-                    .padding(.top)
-                    
-                }
-            }
+        }
+        
+//            .toolbar {
+//                ToolbarItem(placement: .bottomBar){
+//                    HStack{
+//                        Spacer()
+//                        Button{
+//                            navModel.path.append(Route.main)
+//                            navModel.currentRoute = Route.main
+//                        }label: {
+//                            VStack {
+//                                Image(systemName: "house.fill")
+//                                    .imageScale(.large)
+//                                Text("Home")
+//                            }
+//                            .foregroundStyle(Color(navModel.currentRoute == Route.main ? "AccentColor" : "foregroundGrey"))
+//                        }
+//                        .disabled(navModel.currentRoute == Route.main)
+//                        Spacer()
+//                        Button{
+//                            navModel.path.append(Route.profile)
+//                            navModel.currentRoute = Route.profile
+//                        }label: {
+//                            VStack {
+//                                Image(systemName: "person.fill")
+//                                    .imageScale(.large)
+//                                Text("Profile")
+//                            }
+//                            .foregroundStyle(Color(navModel.currentRoute == Route.profile ? "AccentColor" : "foregroundGrey"))
+//                        }
+//                        .disabled(navModel.currentRoute == Route.profile)
+//                        Spacer()
+//                    }
+//                    .padding(.top)
+//                    
+//                }
+//            }
     }
 }
 

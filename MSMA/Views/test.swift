@@ -8,27 +8,31 @@
 import SwiftUI
 
 struct test: View {
+    @EnvironmentObject var navModel: NavigationModel
+    @AppStorage("pickedThemeId") var pickedThemeId: Int?
+    @AppStorage("themePicked") var themePicked: Bool?
+    
     var body: some View {
-        
-        ZStack {
-            LinearGradient(
-                gradient: Gradient(colors: [Color("7FC2CA"), Color("FFFFFF")]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            
-            VStack {
-                Spacer()
-                Image("grass")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: 399)
-                    .ignoresSafeArea(edges: .bottom)
-                    .frame(maxHeight: .infinity, alignment: .bottom)
+        TabView{
+            if let themePicked = themePicked{
+                if themePicked == true{
+                    HomeView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)
+                        .tabItem {
+                            Label("Home", systemImage: "house")
+                        }
+                }
+                else {
+                    ContentView(pickedThemeId: $pickedThemeId, themePicked: $themePicked)
+                        .tabItem {
+                            Label("Home", systemImage: "house")
+                        }
+                }
             }
-            
+            ProfileView()
+                .tabItem {
+                    Label("Profile", systemImage: "person.circle")
+                }
         }
-        .ignoresSafeArea(.all)
     }
 }
 
@@ -37,4 +41,5 @@ struct test: View {
 
 #Preview {
     test()
+        .environmentObject(NavigationModel())
 }
