@@ -12,6 +12,7 @@ import TipKit
 @main
 struct MSMAApp: App {
     @StateObject private var navModel = NavigationModel()
+    
     init() {
         let appearance = UIToolbarAppearance()
         appearance.backgroundColor = UIColor(named: "FFFFFF")?.withAlphaComponent(50)
