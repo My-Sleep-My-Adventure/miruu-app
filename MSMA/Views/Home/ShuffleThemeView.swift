@@ -8,7 +8,7 @@
 import SwiftUI
 import TipKit
 
-struct ContentView: View {
+struct ShuffleThemeView: View {
     @EnvironmentObject var navModel: NavigationModel
     @Binding var pickedThemeId: Int?
     @Binding var themePicked: Bool?
@@ -173,9 +173,9 @@ struct ContentView: View {
             .navigationDestination(for: Route.self){route in
                 switch route{
                 case .home:
-                    ContentView(pickedThemeId: $pickedThemeId, themePicked: $themePicked)
+                    ShuffleThemeView(pickedThemeId: $pickedThemeId, themePicked: $themePicked)
                 case .main:
-                    HomeView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)
+                    QuestView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)
                 case .profile:
                     ProfileView()
                 }

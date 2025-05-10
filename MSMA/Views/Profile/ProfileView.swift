@@ -62,53 +62,14 @@ struct ProfileView: View {
                     if isActive {
                         AchievementView()
                             .frame(maxHeight: .infinity)
-                        //                            .padding(.bottom, 10)
-                    }else{
+                    } else {
                         ThemeView()
-                        //                            .padding()
                             .frame(maxWidth: .infinity)
                     }
                 }
-                //                .background(Color("pickerbackground"))
             }
             .navigationBarBackButtonHidden(true)
         }
-        
-//            .toolbar {
-//                ToolbarItem(placement: .bottomBar){
-//                    HStack{
-//                        Spacer()
-//                        Button{
-//                            navModel.path.append(Route.main)
-//                            navModel.currentRoute = Route.main
-//                        }label: {
-//                            VStack {
-//                                Image(systemName: "house.fill")
-//                                    .imageScale(.large)
-//                                Text("Home")
-//                            }
-//                            .foregroundStyle(Color(navModel.currentRoute == Route.main ? "AccentColor" : "foregroundGrey"))
-//                        }
-//                        .disabled(navModel.currentRoute == Route.main)
-//                        Spacer()
-//                        Button{
-//                            navModel.path.append(Route.profile)
-//                            navModel.currentRoute = Route.profile
-//                        }label: {
-//                            VStack {
-//                                Image(systemName: "person.fill")
-//                                    .imageScale(.large)
-//                                Text("Profile")
-//                            }
-//                            .foregroundStyle(Color(navModel.currentRoute == Route.profile ? "AccentColor" : "foregroundGrey"))
-//                        }
-//                        .disabled(navModel.currentRoute == Route.profile)
-//                        Spacer()
-//                    }
-//                    .padding(.top)
-//                    
-//                }
-//            }
     }
 }
 

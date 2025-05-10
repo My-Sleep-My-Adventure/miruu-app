@@ -1,13 +1,13 @@
 //
-//  ContentView.swift
+//  QuestDetailView.swift
 //  MSMA
 //
-//  Created by M Ikhsan Azis Pane on 04/05/25.
+//  Created by Pramuditha Muhammad Ikhwan on 10/05/25.
 //
 
 import SwiftUI
 
-struct DetailChallengeView: View {
+struct QuestDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var challenge: Challenge
@@ -120,3 +120,7 @@ struct DetailChallengeView: View {
         }
     }
 }
+
+//#Preview {
+//    QuestDetailView()
+//}

@@ -26,7 +26,7 @@ struct MSMAApp: App {
 
     var body: some Scene {
         WindowGroup {
-            test()
+            HomeView()
                 .environmentObject(navModel)
                 .modelContainer(for: Story.self)
         }

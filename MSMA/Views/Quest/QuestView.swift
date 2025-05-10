@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct QuestView: View {
     @EnvironmentObject var navModel: NavigationModel
     @Environment(\.dismiss) var dismiss
     @Binding var themePicked: Bool?
@@ -73,10 +73,7 @@ struct HomeView: View {
                             VStack(spacing: 15) {
                                 ForEach(0..<5) { index in
                                     NavigationLink{
-                                        DetailChallengeView(challenge: selectedTheme.challenges[index])
-                                        //                                    if let challenge = selectedTheme.challenges[ {
-                                        //                                        DetailChallengeView(challenge: challenge)
-                                        //                                    }
+                                        QuestDetailView(challenge: selectedTheme.challenges[index])
                                     }
                                     label: {
                                         HStack {
@@ -154,43 +151,6 @@ struct HomeView: View {
                         }
                     }
                 }
-                
-//                .toolbar {
-//                    ToolbarItem(placement: .bottomBar){
-//                        HStack{
-//                            Spacer()
-//                            Button{
-//                                navModel.path.append(Route.main)
-//                                navModel.currentRoute = Route.main
-//                            }label: {
-//                                VStack {
-//                                    Image(systemName: "house.fill")
-//                                        .imageScale(.large)
-//                                    Text("Home")
-//                                }
-//                                .foregroundStyle(Color(navModel.currentRoute == Route.main ? "AccentColor" : "foregroundGrey"))
-//                            }
-//                            .disabled(navModel.currentRoute == Route.main)
-//                            Spacer()
-//                            Button{
-//                                navModel.path.append(Route.profile)
-//                                navModel.currentRoute = Route.profile
-//                            }label: {
-//                                VStack {
-//                                    Image(systemName: "person.fill")
-//                                        .imageScale(.large)
-//                                    Text("Profile")
-//                                }
-//                                .foregroundStyle(Color(navModel.currentRoute == Route.profile ? "AccentColor" : "foregroundGrey"))
-//                            }
-//                            .disabled(navModel.currentRoute == Route.profile)
-//                            Spacer()
-//                        }
-//                        .padding(.top)
-//                        
-//                    }
-//                }
-                
             }
             .navigationBarBackButtonHidden(true)
         }
