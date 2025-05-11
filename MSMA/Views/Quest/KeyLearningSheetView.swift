@@ -55,8 +55,11 @@ struct EditableRectangularImageDocumentation: View {
     @State private var keyLearningStory: String = ""
     @State private var showSuccessAlert: Bool = false
     @State private var navigateToSavedStories = false
-    
+    @State private var showImagePicker = false
+    @State private var showImageSourceDialog = false
+    @State private var imageSourceType: UIImagePickerController.SourceType = .photoLibrary
     @ObservedObject var viewModel: KeyLearningModel
+    
     
     // Env for database
     @Environment(\.modelContext) private var modelContext
@@ -95,14 +98,14 @@ struct EditableRectangularImageDocumentation: View {
                     // Image & Picker
                     RectangularImageDocumentation(imageState: viewModel.imageState)
                     
-                    if case .empty = viewModel.imageState {
-                        PhotosPicker(selection: $viewModel.imageSelection, matching: .images) {
+                    Button {
+                        showImageSourceDialog = true
+                    } label: {
+                        if case .empty = viewModel.imageState {
                             ZStack {
                                 AddImage()
                             }
-                        }
-                    } else {
-                        PhotosPicker(selection: $viewModel.imageSelection, matching: .images) {
+                        } else {
                             HStack(spacing: 8) {
                                 Text("Pilih gambar lagi")
                                 Image(systemName: "square.and.arrow.up")
@@ -110,7 +113,17 @@ struct EditableRectangularImageDocumentation: View {
                             .foregroundStyle(.blue)
                             .padding(.top, 5)
                         }
-                        .buttonStyle(.plain)
+                    }
+                    .confirmationDialog("Pilih Sumber Gambar", isPresented: $showImageSourceDialog) {
+                        Button("Ambil Foto") {
+                            imageSourceType = .camera
+                            showImagePicker = true
+                        }
+                        Button("Pilih dari Album") {
+                            imageSourceType = .photoLibrary
+                            showImagePicker = true
+                        }
+                        Button("Batal", role: .cancel) {}
                     }
 
                     // Text Editor
@@ -127,6 +140,11 @@ struct EditableRectangularImageDocumentation: View {
                             )
                         )
                         .autocorrectionDisabled(true)
+                        .sheet(isPresented: $showImagePicker) {
+                            CameraAndPhotoPicker(sourceType: imageSourceType) { image in
+                                viewModel.setImage(image)
+                            }
+                        }
 
                     // Save Button
                     Button {

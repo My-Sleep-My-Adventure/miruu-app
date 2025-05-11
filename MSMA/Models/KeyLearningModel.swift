@@ -19,7 +19,7 @@ class KeyLearningModel: ObservableObject {
         case success(ImageDocumentation)
         case failure(Error)
     }
-
+    
     enum TransferError: Error {
         case importFailed
     }
@@ -53,6 +53,7 @@ class KeyLearningModel: ObservableObject {
         }
     }
     
+    
     // MARK: - Private Methods
     
     private func loadTransferable(from imageSelection: PhotosPickerItem) -> Progress {
@@ -72,5 +73,10 @@ class KeyLearningModel: ObservableObject {
                 }
             }
         }
+    }
+    func setImage(_ image: UIImage) {
+        let swiftUIImage = Image(uiImage: image)
+        let documentation = ImageDocumentation(image: swiftUIImage, uiImage: image)
+        self.imageState = .success(documentation)
     }
 }
