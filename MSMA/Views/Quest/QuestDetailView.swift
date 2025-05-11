@@ -10,6 +10,12 @@ import SwiftUI
 struct QuestDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     
+    // State binding for key learning sheet
+    @State private var isKeyLearningSheetPresented: Bool = false
+    
+    // State binding for keyLearningViewModel
+    @StateObject var keyLearningViewModel = KeyLearningModel()
+    
     var challenge: Challenge
 
     var body: some View {
@@ -88,6 +94,8 @@ struct QuestDetailView: View {
                         Spacer()
                     }
                     
+                    // MARK: Fix this button size
+    
                     // Button fixed above grass
                     Button(action: {
                         // Action here
@@ -98,6 +106,9 @@ struct QuestDetailView: View {
 //                        challenge.
                         
                         
+
+                        isKeyLearningSheetPresented.toggle()
+
                     }) {
                         Text("Tandai selesai")
                             .foregroundColor(.white)
@@ -109,6 +120,9 @@ struct QuestDetailView: View {
                             .shadow(radius: 4)
                     }
                     .padding(.bottom, geometry.safeAreaInsets.bottom + 32)
+                    .sheet(isPresented: $isKeyLearningSheetPresented) {
+                        EditableRectangularImageDocumentation(viewModel: keyLearningViewModel)
+                    }
                 }
                 .navigationBarBackButtonHidden(true)
                 .navigationTitle("Achievement")

@@ -4,11 +4,11 @@
 //
 //  Created by M Ikhsan Azis Pane on 04/05/25.
 //
-
 import SwiftUI
 
 struct QuestView: View {
     @EnvironmentObject var navModel: NavigationModel
+    @EnvironmentObject var questController: QuestController
     @Environment(\.dismiss) var dismiss
     @Binding var themePicked: Bool?
     @Binding var pickedThemeId: Int?
@@ -29,6 +29,9 @@ struct QuestView: View {
     
     // State binding for keyLearningViewModel
     @StateObject var keyLearningViewModel = KeyLearningModel()
+    
+    // Timer to check for theme expiration while the view is active
+    private let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
 
     var body: some View {
         NavigationStack {
@@ -40,8 +43,7 @@ struct QuestView: View {
                             ZStack {
                                 Image("cloud")
                                 Button{
-                                    themePicked = false
-                                    pickedThemeId = nil
+                                    questController.resetTheme()
                                     navModel.path = NavigationPath()
                                     navModel.path.append(Route.home)
                                 } label: {
@@ -51,12 +53,11 @@ struct QuestView: View {
                                     HStack{
                                         VStack(alignment: .leading){
                                             Text(selectedTheme.name)
-                                            // Font rounded
                                                 .font(.title)
                                                 .fontDesign(.rounded)
                                                 .bold()
                                             
-                                            Text("23h 15m")
+                                            Text(questController.formattedTimeRemaining)
                                                 .font(.subheadline)
                                                 .foregroundColor(.black)
                                         }
@@ -71,70 +72,15 @@ struct QuestView: View {
                                 }
                             }
                             
-                            //                    .padding()
-                            //                                        .background(Color.red)
-                            
                             VStack(spacing: 15) {
                                 ForEach(0..<5) { index in
-                                    NavigationLink{
-                                        QuestDetailView(challenge: selectedTheme.challenges[index])
-                                    }
-                                    label: {
-                                        HStack {
-                                            ZStack{
-                                                //                                    Image("tabcard\(index+1)")
-                                                HStack{
-                                                    VStack{
-                                                        Circle()
-                                                            .foregroundStyle(.white)
-                                                            .background(Color("FCF5EF"))
-                                                            .frame(width: 50, height: 50)
-                                                            .overlay(Image("cardicon\(index+1)"))
-                                                        
-                                                        
-                                                        
-                                                    }
-                                                    Spacer()
-                                                    Image(systemName: "chevron.right")
-                                                        .foregroundColor(Color("E0610B"))
-                                                }
-                                                
-                                                Spacer()
-                                                VStack(alignment: .leading){
-                                                    Text(selectedTheme.challenges[index].name)
-                                                        .foregroundStyle(.black)
-                                                        .font(.system(size: 18))
-                                                        .bold()
-                                                    
-                                                    Text(selectedTheme.challenges[index].description)
-                                                        .foregroundStyle(.gray)
-                                                        .font(.system(size: 16))
-                                                        .lineLimit(1) // show only one line
-                                                        .truncationMode(.tail)
-                                                    
-                                                }
-                                                .frame(width: 220)
-                                                .padding(.leading, 20)
-                                            }
-                                            
-                                        }
-                                        .padding()
-                                        .frame(maxWidth: 340, maxHeight: 75)
-                                        .background(Color("FCF5EF"))
-                                        .cornerRadius(25)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 25)
-                                                .stroke(Color("A5D4DA"), lineWidth: 1)
-                                        )
-                                        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
-                                    }
-                                    //                            }
-                                    
+                                    QuestRow(challenge: selectedTheme.challenges[index], index: index, isCompleted: selectedTheme.challenges[index].completed ?? false)
                                 }
                             }
                             .padding(.horizontal)
-                            //            }
+                            
                             Spacer()
+                            
                             Button {
                                 if let pickedId = pickedThemeId,
                                    let index = data.listDataTheme.firstIndex(where: { $0.id == pickedId }) {
@@ -186,10 +132,10 @@ struct QuestView: View {
                                 
 //                                isKeyLearningSheetPresented.toggle()
                             } label: {
-                                Text("Complete")
+                                Text("Selesaikan Tema")
                                     .foregroundStyle(Color("milk"))
-                                    .padding(.vertical, 20)
                                     .frame(maxWidth: 323, maxHeight: 50)
+                                    .padding(.vertical, 20)
                                     .background(Color("E0610B"))
                                     .fontWeight(.bold)
                             }
@@ -246,8 +192,19 @@ struct QuestView: View {
             )
 
             .navigationBarBackButtonHidden(true)
+            .onReceive(timer) { _ in
+                questController.checkAndResetThemeIfNeeded()
+                if questController.themePicked == nil || questController.themePicked == false {
+                    // Theme has been reset by the timer, navigate back
+                    navModel.path = NavigationPath()
+                    navModel.path.append(Route.home)
+                }
+            }
+            .onAppear {
+                // Check if theme should be reset immediately when view appears
+                questController.checkAndResetThemeIfNeeded()
+            }
         }
-        
     }
 }
 

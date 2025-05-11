@@ -267,11 +267,16 @@ import SwiftUI
 import TipKit
 
 struct ShuffleThemeView: View {
+
     //    @EnvironmentObject var navModel: NavigationModel
     @Binding var pickedThemeId: Int?
     @Binding var themePicked: Bool?
     
     //    @ObservedObject var questController: QuestController
+
+    
+    @ObservedObject var questController: QuestController
+
     
     @State private var shuffleCount: Int = 3
     @State private var data = Data()
@@ -283,7 +288,9 @@ struct ShuffleThemeView: View {
     
     let beginningTip = BeginningTip()
     let shuffleTip = ShuffleThemeTip()
-    //    let takeThemeTip = TakeThemeTip()
+
+    let takeThemeTip = TakeThemeTip()
+
     
     var body: some View {
         ZStack {
@@ -386,6 +393,27 @@ struct ShuffleThemeView: View {
                         //                        .disabled(generated == nil)
                         //                        .cornerRadius(6)
                         //                        .shadow(radius: generated != nil ? 4 : 0, x: 0, y: generated != nil ? 4 : 0)
+                        Button {
+                            if let _ = generated {
+                                // Take theme, update timestamp, and set properties
+                                DispatchQueue.main.async {
+                                    themePicked = true
+                                    pickedThemeId = generated?.id
+                                    questController.updateThemeTimestamp()
+                                }
+                            }
+                        } label: {
+                            Text("Ambil Tema")
+                                .foregroundStyle(Color(generated != nil ? "milk" : "foregroundGrey"))
+                                .padding(.vertical, 20)
+                                .frame(maxWidth: 200)
+                                .background(Color(generated != nil ? "AccentColor" : "backgroundGrey"))
+                                .fontWeight(.bold)
+                        }
+                        .popoverTip(takeThemeTip)
+                        .disabled(generated == nil)
+                        .cornerRadius(6)
+                        .shadow(radius: generated != nil ? 4 : 0, x: 0, y: generated != nil ? 4 : 0)
                     }
                     .padding(.bottom, 70)
                 }
@@ -413,7 +441,8 @@ struct ShuffleThemeView: View {
                 shuffleCount = 3
             }
             // Ensure theme is properly reset if needed
-            //            questController.checkAndResetThemeIfNeeded()
+
+            questController.checkAndResetThemeIfNeeded()
         }
     }
 }
