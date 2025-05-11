@@ -12,6 +12,7 @@ import TipKit
 @main
 struct MSMAApp: App {
     @StateObject private var navModel = NavigationModel()
+    @StateObject private var data = Data()
     
     init() {
         let appearance = UIToolbarAppearance()
@@ -28,6 +29,7 @@ struct MSMAApp: App {
         WindowGroup {
             test()
                 .environmentObject(navModel)
+                .environmentObject(data) 
                 .modelContainer(for: Story.self)
         }
     }

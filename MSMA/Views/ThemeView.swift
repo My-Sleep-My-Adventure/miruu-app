@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ThemeView: View {
-    @State private var data = Data()
+//    @State private var data = Data()
+    @EnvironmentObject var data: Data
     enum AchievementStatus: String {
         case complete = "complete"
         case incomplete = "incomplete"

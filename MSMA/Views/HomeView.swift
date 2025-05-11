@@ -13,12 +13,16 @@ struct HomeView: View {
     @Binding var themePicked: Bool?
     @Binding var pickedThemeId: Int?
     
+    @State private var showCompletionPopup = false
+    @State private var animatePopup = false
+    
     var selectedTheme: ThemeData? {
         guard let id = pickedThemeId else { return nil }
         return data.listDataTheme.first { $0.id == id }
     }
 
-    @State var data = Data()
+//    @State var data = Data()
+    @EnvironmentObject var data : Data 
     
     // State binding for key learning sheet
     @State private var isKeyLearningSheetPresented: Bool = false
@@ -135,7 +139,39 @@ struct HomeView: View {
                             //            }
                             Spacer()
                             Button {
-                                isKeyLearningSheetPresented.toggle()
+                                if let pickedId = pickedThemeId,
+                                   let index = data.listDataTheme.firstIndex(where: { $0.id == pickedId }) {
+                                    data.listDataTheme[index].status = .complete
+                                }
+
+                                withAnimation {
+                                    showCompletionPopup = true
+                                    animatePopup = true
+                                }
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                    // Animate popup disappearing
+                                    withAnimation {
+                                        animatePopup = false
+                                    }
+
+                                    // Second delay to allow popup hide animation to finish
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+//                                        showCompletionPopup = false
+
+                                        // Navigate to Profile
+                                        navModel.path.append(Route.profile)
+                                        navModel.currentRoute = .profile
+                                    }
+                                }
+//                                if let pickedId = pickedThemeId,
+//                                   let index = data.listDataTheme.firstIndex(where: { $0.id == pickedId }) {
+//                                    data.listDataTheme[index-1].status = .complete
+//                                }
+//                                print(data.listDataTheme[pickedThemeId!-1].name, data.listDataTheme[pickedThemeId!].status)
+////                                data.listDataTheme[index].status
+                                
+//                                isKeyLearningSheetPresented.toggle()
                             } label: {
                                 Text("Complete")
                                     .foregroundStyle(Color("milk"))
@@ -192,6 +228,47 @@ struct HomeView: View {
 //                }
                 
             }
+            .overlay(
+                Group {
+                    if showCompletionPopup, let theme = selectedTheme {
+                        ZStack {
+                            Color.black.opacity(0.4)
+                                .edgesIgnoringSafeArea(.all)
+                                .onTapGesture {
+                                    withAnimation {
+                                        animatePopup = false
+                                    }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                        showCompletionPopup = false
+                                    }
+                                }
+
+                            VStack {
+                                Image(theme.image)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 200, height: 200)
+                                    .scaleEffect(animatePopup ? 1 : 0.5)
+                                    .opacity(animatePopup ? 1 : 0)
+                                    .animation(.spring(), value: animatePopup)
+
+                                Text("Theme Completed!")
+                                    .font(.title2)
+                                    .bold()
+                                    .padding(.top)
+                                    .foregroundColor(.white)
+                            }
+                            .padding()
+                            .background(Color("7FC2CA"))
+                            .cornerRadius(20)
+                            .shadow(radius: 10)
+                            .padding(40)
+                        }
+                        .transition(.opacity)
+                    }
+                }
+            )
+
             .navigationBarBackButtonHidden(true)
         }
         

@@ -67,9 +67,9 @@ struct ThemeData {
 }
 
 //var data = AchievementData(id: 1, name: "Test", description: "Test")
-struct Data{
+class Data : ObservableObject{
     var listDataAchievement = [AchievementData]()
-    var listDataTheme = [ThemeData]()
+    @Published var listDataTheme = [ThemeData]()
     
     init() {
         listDataAchievement = [
@@ -617,8 +617,11 @@ struct Data{
         return listDataAchievement.filter { $0.status == true }.count
     }
     
+//    var unlockedCountTheme: Int {
+//        return listDataTheme.filter { $0.status == .complete || $0.status == .complete}.count
+//    }
     var unlockedCountTheme: Int {
-        return listDataTheme.filter { $0.status == .complete || $0.status == .complete}.count
+        listDataTheme.filter { $0.status != .locked }.count
     }
     
     func generateData() -> ThemeData {
@@ -626,13 +629,16 @@ struct Data{
         return generatedData
     }
     
-    mutating func completeTheme(_ pickedTheme: Int) {
+    func completeTheme(_ pickedTheme: Int) {
         self.listDataTheme[pickedTheme].status = .complete
     }
     
-    mutating func completeChallenge(_ pickedTheme: Int) {
+    func completeChallenge(_ pickedTheme: Int) {
         self.listDataAchievement[pickedTheme].status = true
     }
+    
+    
+    
 }
 
 

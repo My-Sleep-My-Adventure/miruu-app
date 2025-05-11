@@ -72,9 +72,11 @@ struct ContentView: View {
                                         .font(.system(size: 20))
                                 }
                             }
+                            .frame(maxWidth: .infinity)
+                            .multilineTextAlignment(.center)
                             Spacer()
                         }
-                        .padding(.horizontal, 50)
+//                        .padding(.horizontal, 50)
                         
                         // Buttons section
                         HStack(spacing: 20) {
@@ -101,25 +103,25 @@ struct ContentView: View {
                             .cornerRadius(5)
                             .shadow(radius: 4, x: 0, y: 4)
                             
-                            Button {
-                                if activeTheme {
-                                    themePicked = true
-                                    pickedThemeId = generated?.id
-                                    navModel.path.append(Route.main)
-                                    navModel.currentRoute = .main
-                                }
-                            } label: {
-                                Text("Ambil Tema")
-                                    .foregroundStyle(Color(activeTheme ? "milk" : "foregroundGrey"))
-                                    .padding(.vertical, 20)
-                                    .frame(maxWidth: 200)
-                                    .background(Color(activeTheme ? "AccentColor" : "backgroundGrey"))
-                                    .fontWeight(.bold)
-                            }
-                            .disabled(!activeTheme)
-                            .cornerRadius(6)
-                            .shadow(radius: activeTheme ? 4 : 0, x: 0, y: activeTheme ? 4 : 0)
-                            .popoverTip(shuffleTip)
+//                            Button {
+//                                if activeTheme {
+//                                    themePicked = true
+//                                    pickedThemeId = generated?.id
+//                                    navModel.path.append(Route.main)
+//                                    navModel.currentRoute = .main
+//                                }
+//                            } label: {
+//                                Text("Ambil Tema")
+//                                    .foregroundStyle(Color(activeTheme ? "milk" : "foregroundGrey"))
+//                                    .padding(.vertical, 20)
+//                                    .frame(maxWidth: 200)
+//                                    .background(Color(activeTheme ? "AccentColor" : "backgroundGrey"))
+//                                    .fontWeight(.bold)
+//                            }
+//                            .disabled(!activeTheme)
+//                            .cornerRadius(6)
+//                            .shadow(radius: activeTheme ? 4 : 0, x: 0, y: activeTheme ? 4 : 0)
+//                            .popoverTip(shuffleTip)
                         }
                         .padding(.bottom, 60)
                     }}
@@ -129,6 +131,9 @@ struct ContentView: View {
                         isPresented: $showPopup,
                         generated: $generated,
                         navigate: $navigate,
+                        pickedThemeId: $pickedThemeId,
+                        themePicked: $themePicked,
+                        shuffleCount: $shuffleCount,
                         rotationAngle: cardRotation,
                         cardID: cardID
                     )

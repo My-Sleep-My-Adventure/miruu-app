@@ -15,7 +15,7 @@ struct test: View {
     var body: some View {
         TabView{
             if let themePicked = themePicked{
-                if themePicked == true{
+                if themePicked == true {
                     HomeView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)
                         .tabItem {
                             Label("Home", systemImage: "house")
@@ -42,4 +42,5 @@ struct test: View {
 #Preview {
     test()
         .environmentObject(NavigationModel())
+        .environmentObject(Data())
 }
