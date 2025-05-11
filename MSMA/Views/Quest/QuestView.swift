@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct QuestView: View {
     @EnvironmentObject var navModel: NavigationModel
     @Environment(\.dismiss) var dismiss
     @Binding var themePicked: Bool?
@@ -77,10 +77,7 @@ struct HomeView: View {
                             VStack(spacing: 15) {
                                 ForEach(0..<5) { index in
                                     NavigationLink{
-                                        DetailChallengeView(challenge: selectedTheme.challenges[index])
-                                        //                                    if let challenge = selectedTheme.challenges[ {
-                                        //                                        DetailChallengeView(challenge: challenge)
-                                        //                                    }
+                                        QuestDetailView(challenge: selectedTheme.challenges[index])
                                     }
                                     label: {
                                         HStack {
@@ -144,26 +141,42 @@ struct HomeView: View {
                                     data.listDataTheme[index].status = .complete
                                 }
 
-                                withAnimation {
-                                    showCompletionPopup = true
-                                    animatePopup = true
-                                }
+//                                withAnimation {
+//                                    showCompletionPopup = true
+//                                    animatePopup = true
+//                                }
                                 
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                                    // Animate popup disappearing
-                                    withAnimation {
-                                        animatePopup = false
-                                    }
-
-                                    // Second delay to allow popup hide animation to finish
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                
+//                                
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+//                                    // Animate popup disappearing
+////                                    withAnimation {
+////                                        animatePopup = false
+////                                    }
+//
+//                                    // Second delay to allow popup hide animation to finish
+//                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
 //                                        showCompletionPopup = false
-
-                                        // Navigate to Profile
-                                        navModel.path.append(Route.profile)
-                                        navModel.currentRoute = .profile
+//
+//                                        // Navigate to Profile
+//
+//                                    }
+//                                }
+                                
+                                withAnimation {
+                                        showCompletionPopup = true
+                                        animatePopup = true
                                     }
-                                }
+
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                            showCompletionPopup = false
+
+                                            navModel.currentTab = .profile
+                                            
+                                            themePicked = false
+                                        }
+                                    }
 //                                if let pickedId = pickedThemeId,
 //                                   let index = data.listDataTheme.firstIndex(where: { $0.id == pickedId }) {
 //                                    data.listDataTheme[index-1].status = .complete
@@ -190,43 +203,6 @@ struct HomeView: View {
                         }
                     }
                 }
-                
-//                .toolbar {
-//                    ToolbarItem(placement: .bottomBar){
-//                        HStack{
-//                            Spacer()
-//                            Button{
-//                                navModel.path.append(Route.main)
-//                                navModel.currentRoute = Route.main
-//                            }label: {
-//                                VStack {
-//                                    Image(systemName: "house.fill")
-//                                        .imageScale(.large)
-//                                    Text("Home")
-//                                }
-//                                .foregroundStyle(Color(navModel.currentRoute == Route.main ? "AccentColor" : "foregroundGrey"))
-//                            }
-//                            .disabled(navModel.currentRoute == Route.main)
-//                            Spacer()
-//                            Button{
-//                                navModel.path.append(Route.profile)
-//                                navModel.currentRoute = Route.profile
-//                            }label: {
-//                                VStack {
-//                                    Image(systemName: "person.fill")
-//                                        .imageScale(.large)
-//                                    Text("Profile")
-//                                }
-//                                .foregroundStyle(Color(navModel.currentRoute == Route.profile ? "AccentColor" : "foregroundGrey"))
-//                            }
-//                            .disabled(navModel.currentRoute == Route.profile)
-//                            Spacer()
-//                        }
-//                        .padding(.top)
-//                        
-//                    }
-//                }
-                
             }
             .overlay(
                 Group {

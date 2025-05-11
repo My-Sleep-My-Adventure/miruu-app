@@ -35,7 +35,7 @@ struct PopUpView: View {
             VStack(spacing: 20) {
                 Image(generated?.image ?? "Unable to load data")
                     .resizable()
-                    .frame(maxWidth: 200, maxHeight: 240)
+                    .frame(maxWidth: 200, maxHeight: 200)
                     .scaledToFill()
                 
                 Text(generated?.name ?? "Unable to load data")
@@ -73,7 +73,7 @@ struct PopUpView: View {
                 .cornerRadius(6)
             }
             .padding()
-            .frame(maxWidth: 350, maxHeight: 400)
+            .frame(maxWidth: 350, maxHeight: 410)
             .background(Color.white)
             .cornerRadius(20)
             .shadow(radius: 10)
@@ -86,5 +86,6 @@ struct PopUpView: View {
             }
             .id(cardID)
         }
+
     }
 }

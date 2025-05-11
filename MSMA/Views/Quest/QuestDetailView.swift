@@ -1,13 +1,13 @@
 //
-//  ContentView.swift
+//  QuestDetailView.swift
 //  MSMA
 //
-//  Created by M Ikhsan Azis Pane on 04/05/25.
+//  Created by Pramuditha Muhammad Ikhwan on 10/05/25.
 //
 
 import SwiftUI
 
-struct DetailChallengeView: View {
+struct QuestDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var challenge: Challenge
@@ -17,17 +17,22 @@ struct DetailChallengeView: View {
             GeometryReader { geometry in
                 ZStack(alignment: .bottom) {
                     // Background gradient
-                    LinearGradient(gradient: Gradient(colors: [Color("7FC2CA"), Color("FFFFFF")]),
-                                   startPoint: .top,
-                                   endPoint: .bottom
-                    )
+                    VStack{
+                        LinearGradient(gradient: Gradient(colors: [Color("7FC2CA"), Color("FFFFFF")]),
+                                       startPoint: .top,
+                                       endPoint: .bottom
+                        )
+
+                        // Grass at bottom
+                        Image("grass")
+                            .resizable()
+                            .frame(width: geometry.size.width, height: 218)
+//                            .position(x: geometry.size.width / 2, y: geometry.size.height - 50)
+                            .background(Color.red)
+                    }
                     .ignoresSafeArea()
-                    
-                    // Grass at bottom
-                    Image("grass")
-                        .resizable()
-                        .frame(width: geometry.size.width, height: 218)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height - 50)
+
+                        
                     
                     VStack(spacing: 20) {
                         // Spacer for top padding
@@ -86,6 +91,12 @@ struct DetailChallengeView: View {
                     // Button fixed above grass
                     Button(action: {
                         // Action here
+//                        if let pickedId = pickedThemeId,
+//                           let index = data.listDataTheme.firstIndex(where: { $0.id == pickedId }) {
+//                            data.listDataTheme[index].status = .complete
+//                        }
+//                        challenge.
+                        
                         
                     }) {
                         Text("Tandai selesai")
@@ -120,3 +131,7 @@ struct DetailChallengeView: View {
         }
     }
 }
+
+//#Preview {
+//    QuestDetailView()
+//}
