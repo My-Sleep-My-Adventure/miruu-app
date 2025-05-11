@@ -16,6 +16,5 @@ struct BeginningTip: Tip {
     var message: Text? {
         Text("Ketuk di sini untuk mendapatkan tema. Kamu punya 2 kesempatan setiap hari untuk mengacak ulang.")
     }
-
 }
 

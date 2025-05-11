@@ -7,20 +7,14 @@
 
 import SwiftUI
 
-struct AchievDetail: View {
+struct AchievementDetail: View {
     @Environment(\.presentationMode) var presentationMode
     let data: AchievementData
     
     var body: some View {
         ZStack {
-//            LinearGradient(gradient: Gradient(colors: [Color("7FC2CA"), Color("FFFFFF")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
             Color("A5D4DA")
                 .ignoresSafeArea(.all)
-//            ZStack {
-//                Spacer()
-//                Spacer()
-//                Image("cloud2")
-//            }
             VStack {
                 Spacer()
                 Image("cloud3")
@@ -33,10 +27,6 @@ struct AchievDetail: View {
                 Text(data.name)
                     .font(.title2)
                     .bold()
-        //        RoundedRectangle(cornerRadius: 20)
-        //            .stroke( Color.black, lineWidth: 2)
-        //            .frame(width: 150, height: 150)
-        //            .padding(50)
                 VStack {
                     Image(data.image)
                         .resizable() //
@@ -71,5 +61,5 @@ struct AchievDetail: View {
 }
 
 #Preview {
-    AchievDetail(data: AchievementData(id: 1, name: "Achiev 1", description: "You Have successfully get achiement 1", image: "", status: false))
+    AchievementDetail(data: AchievementData(id: 1, name: "Achiev 1", description: "You Have successfully get achiement 1", image: "", status: false))
 }

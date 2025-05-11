@@ -14,12 +14,6 @@ struct AchievementView: View {
     var body: some View {
         VStack{
             HStack(){
-                //                    Text("Pencapaian")
-                //                        .font(.title3)
-                //
-                //                    Spacer()
-                //                    Text("\(data.unlockedCountAchievement)/\(data.listDataAchievement.count)")
-                //                        .foregroundStyle(Color.gray)
                 Text("Daftar Pencapaian")
                     .font(.system( size: 16, weight: .bold, design: .rounded))
                     .font(.title3)
@@ -38,7 +32,7 @@ struct AchievementView: View {
                     ForEach(0..<data.listDataAchievement.count) { index in
                         VStack {
                             if data.listDataAchievement[index].status {
-                                NavigationLink(destination: AchievDetail(data: data.listDataAchievement[index])) {
+                                NavigationLink(destination: AchievementDetail(data: data.listDataAchievement[index])) {
                                     VStack {
                                         
                                         Image("achiev\(index+1)")

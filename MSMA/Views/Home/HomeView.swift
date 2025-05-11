@@ -9,29 +9,30 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var navModel: NavigationModel
+    
+    // Storage for theme picked. Ensure that when user quit the application, it will save the current theme id.
     @AppStorage("pickedThemeId") var pickedThemeId: Int?
     @AppStorage("themePicked") var themePicked: Bool?
     
     var body: some View {
-        TabView{
-            if let themePicked = themePicked{
-                if themePicked == true {
+        TabView(selection: $navModel.currentTab) {
+            Group {
+                if let themePicked = themePicked, themePicked {
                     QuestView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)
-                        .tabItem {
-                            Label("Home", systemImage: "house")
-                        }
-                }
-                else {
+                } else {
                     ShuffleThemeView(pickedThemeId: $pickedThemeId, themePicked: $themePicked)
-                        .tabItem {
-                            Label("Home", systemImage: "house")
-                        }
                 }
             }
+            .tabItem {
+                Label("Home", systemImage: "house")
+            }
+            .tag(Tab.home)
+            
             ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person.circle")
                 }
+                .tag(Tab.profile)
         }
     }
 }
