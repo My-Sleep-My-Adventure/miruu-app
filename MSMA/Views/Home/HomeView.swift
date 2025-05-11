@@ -4,23 +4,32 @@
 //
 //  Created by M Ikhsan Azis Pane on 08/05/25.
 //
-
 import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var navModel: NavigationModel
     
-    // Storage for theme picked. Ensure that when user quit the application, it will save the current theme id.
-    @AppStorage("pickedThemeId") var pickedThemeId: Int?
-    @AppStorage("themePicked") var themePicked: Bool?
+    // Create a single instance of QuestController for the entire app
+    @StateObject var questController = QuestController()
     
     var body: some View {
         TabView(selection: $navModel.currentTab) {
             Group {
-                if let themePicked = themePicked, themePicked {
-                    QuestView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)
+                if let themePicked = questController.themePicked, themePicked {
+                    QuestView(
+                        themePicked: $questController.themePicked,
+                        pickedThemeId: $questController.pickedThemeId
+                    )
+                    .environmentObject(questController)
+                    .onAppear {
+                        questController.checkAndResetThemeIfNeeded()
+                    }
                 } else {
-                    ShuffleThemeView(pickedThemeId: $pickedThemeId, themePicked: $themePicked)
+                    ShuffleThemeView(
+                        pickedThemeId: $questController.pickedThemeId,
+                        themePicked: $questController.themePicked,
+                        questController: questController
+                    )
                 }
             }
             .tabItem {
@@ -33,6 +42,11 @@ struct HomeView: View {
                     Label("Profile", systemImage: "person.circle")
                 }
                 .tag(Tab.profile)
+        }
+        .tint(Color.accent)
+        // Add an app-wide timer check to ensure theme resets even when in other tabs
+        .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { _ in
+            questController.checkAndResetThemeIfNeeded()
         }
     }
 }

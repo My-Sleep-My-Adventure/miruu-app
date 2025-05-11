@@ -14,11 +14,7 @@ struct ShuffleThemeTip: Tip {
     }
     
     var message: Text? {
-        Text("""
-        Objek: Amati benda sekitar
-        Tempat: Jelajahi lokasi
-        Orang: Ajak interaksi
-        """)
+        Text("Ketuk di sini untuk mendapatkan tema. Kamu punya 3 kesempatan untuk mengacak tema.")
     }
 }
 

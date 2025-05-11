@@ -148,8 +148,8 @@ struct EditableRectangularImageDocumentation: View {
                             .frame(maxWidth: 320, maxHeight: 50)
                             .padding(.vertical, 20)
                             .background(Color("E0610B"))
-                            .clipShape(RoundedRectangle(cornerRadius: 20))
                     }
+                    .cornerRadius(20)
                     .alert("Berhasil menyimpan gambar", isPresented: $showSuccessAlert) {
                         Button("Oke") {
                             dismiss()

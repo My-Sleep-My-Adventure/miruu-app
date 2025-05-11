@@ -4,20 +4,19 @@
 //
 //  Created by M Ikhsan Azis Pane on 04/05/25.
 //
-
 import SwiftUI
 import TipKit
 
 struct ShuffleThemeView: View {
-    @EnvironmentObject var navModel: NavigationModel
+//    @EnvironmentObject var navModel: NavigationModel
     @Binding var pickedThemeId: Int?
     @Binding var themePicked: Bool?
+    
+    @ObservedObject var questController: QuestController
     
     @State private var shuffleCount: Int = 3
     @State private var data = Data()
     @State var generated: ThemeData? = nil
-//    @State private var activeTheme = false
-//    @State var navigate = false
     @State var showPopup = false
     
     @State private var cardRotation: Double = -450
@@ -25,6 +24,7 @@ struct ShuffleThemeView: View {
     
     let beginningTip = BeginningTip()
     let shuffleTip = ShuffleThemeTip()
+    let takeThemeTip = TakeThemeTip()
     
     var body: some View {
         ZStack {
@@ -38,9 +38,6 @@ struct ShuffleThemeView: View {
                 .zIndex(0)
             
             VStack{
-                TipView(beginningTip)
-                    .padding()
-                
                 VStack{
                     Spacer()
                     Text("Miruu")
@@ -51,6 +48,9 @@ struct ShuffleThemeView: View {
                         .position(x: 200, y: 30)
                     Spacer()
                 }
+                
+                TipView(beginningTip)
+                    .padding()
                 
                 VStack {
                     if let generated = generated{
@@ -64,7 +64,7 @@ struct ShuffleThemeView: View {
                     }
                 }
                 .frame(width: 307, height: 70)
-                //                    .padding(.bottom, 47)
+                
                 VStack {
                     HStack {
                         HStack(spacing: 4) {
@@ -72,6 +72,7 @@ struct ShuffleThemeView: View {
                                 Image(systemName: "heart.fill")
                                     .foregroundColor(.red)
                                     .font(.system(size: 20))
+                                    .opacity(shuffleCount > 0 ? 1 : 0)
                             }
                         }
                         Spacer()
@@ -98,13 +99,15 @@ struct ShuffleThemeView: View {
                         }
                         .cornerRadius(5)
                         .shadow(radius: 4, x: 0, y: 4)
+                        .popoverTip(shuffleTip)
                         
                         Button {
                             if let _ = generated {
-                                // Update properties in single operation
+                                // Take theme, update timestamp, and set properties
                                 DispatchQueue.main.async {
                                     themePicked = true
                                     pickedThemeId = generated?.id
+                                    questController.updateThemeTimestamp()
                                 }
                             }
                         } label: {
@@ -115,10 +118,10 @@ struct ShuffleThemeView: View {
                                 .background(Color(generated != nil ? "AccentColor" : "backgroundGrey"))
                                 .fontWeight(.bold)
                         }
+                        .popoverTip(takeThemeTip)
                         .disabled(generated == nil)
                         .cornerRadius(6)
                         .shadow(radius: generated != nil ? 4 : 0, x: 0, y: generated != nil ? 4 : 0)
-                        .popoverTip(shuffleTip)
                     }
                     .padding(.bottom, 60)
                 }
@@ -129,12 +132,20 @@ struct ShuffleThemeView: View {
                 PopUpView(
                     isPresented: $showPopup,
                     generated: $generated,
-                    navigate: .constant(false), // Removed navigation
+                    navigate: .constant(false),
                     rotationAngle: cardRotation,
                     cardID: cardID
                 )
                 .zIndex(2)
             }
+        }
+        .onAppear {
+            // Reset shuffle count when view appears
+            if shuffleCount < 3 {
+                shuffleCount = 3
+            }
+            // Ensure theme is properly reset if needed
+            questController.checkAndResetThemeIfNeeded()
         }
     }
 }
