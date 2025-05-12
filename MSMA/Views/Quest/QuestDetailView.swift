@@ -16,7 +16,17 @@ struct QuestDetailView: View {
     // State binding for keyLearningViewModel
     @StateObject var keyLearningViewModel = KeyLearningModel()
     
+    //State binding for levelController
+    @StateObject var levelController = LevelProgressController()
+    
+    // Challenge/Quest object
     var challenge: Challenge
+    
+    // Identifier for this quest
+    let questId: Int
+    
+    // Quest complete identifier
+    let isCompleted: Bool
 
     var body: some View {
         NavigationStack {
@@ -33,7 +43,6 @@ struct QuestDetailView: View {
                         Image("grass")
                             .resizable()
                             .frame(width: geometry.size.width, height: 218)
-//                            .position(x: geometry.size.width / 2, y: geometry.size.height - 50)
                             .background(Color.red)
                     }
                     .ignoresSafeArea()
@@ -44,40 +53,43 @@ struct QuestDetailView: View {
                         // Spacer for top padding
                         Spacer().frame(height: geometry.size.height * 0.08)
                         
+                        
                         // Mission Panel
                         VStack(alignment: .leading, spacing: 16) {
-                            HStack(alignment: .top) {
-                                Image(systemName: "cardicon1")
-                                    .padding(.top, 4)
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(challenge.name)
-                                        .font(.headline)
-                                        .bold()
-                                    //                                    Text("Meet an online driver )
-                                    //                                        .font(.subheadline)
-                                    //                                        .underline()
-                                    //                                        .foregroundColor(.brown)
+                            
+                            if isCompleted {
+                                VStack(alignment: .leading) {
+                                    Text("Kamu sudah menyelesaikan challenge ini!")
+                                        .font(.caption)
                                 }
+                                .frame(maxWidth: .infinity)
+                                .padding(.all, 4)
+                                .foregroundStyle(.white)
+                                .background(Color.success)
+                                .cornerRadius(9)
+                            }
+                            
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(challenge.name)
+                                    .font(.title2)
+                                    .bold()
                             }
                             
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("Deskripsi misi:")
-                                    .fontWeight(.bold)
+                                    .fontWeight(.semibold)
                                 Text(challenge.description)
                             }
                             
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("Perhatian: ")
-                                    .fontWeight(.bold)
+                                    .fontWeight(.semibold)
                                 Text(challenge.caution)
-                                //                                ForEach(0..<4, id: \.self) { _ in
-                                //                                    Text("- Lorem ipsum dolor dolor dolor")
-                                //                                }
                             }
                             
                             VStack(alignment: .center, spacing: 4) {
                                 Text("Hadiah:")
-                                    .fontWeight(.bold)
+                                    .fontWeight(.semibold)
                                 Text("\(challenge.xp)")
                                     .padding(.vertical, 6)
                                     .padding(.horizontal, 12)
@@ -95,33 +107,26 @@ struct QuestDetailView: View {
                     }
                     
                     // MARK: Fix this button size
-    
                     // Button fixed above grass
-                    Button(action: {
-                        // Action here
-//                        if let pickedId = pickedThemeId,
-//                           let index = data.listDataTheme.firstIndex(where: { $0.id == pickedId }) {
-//                            data.listDataTheme[index].status = .complete
-//                        }
-//                        challenge.
-                        
-                        
-
-                        isKeyLearningSheetPresented.toggle()
-
-                    }) {
-                        Text("Tandai selesai")
-                            .foregroundColor(.white)
-                            .padding(.vertical, 20)
-                            .bold()
-                            .frame(width: 200)
-                            .background(Color("AccentColor"))
-                            .cornerRadius(18)
-                            .shadow(radius: 4)
-                    }
-                    .padding(.bottom, geometry.safeAreaInsets.bottom + 32)
-                    .sheet(isPresented: $isKeyLearningSheetPresented) {
-                        EditableRectangularImageDocumentation(viewModel: keyLearningViewModel)
+                    if !isCompleted {
+                        Button(action: {
+                            isKeyLearningSheetPresented.toggle()
+                        }) {
+                            Text("Tandai selesai")
+                                .foregroundColor(.white)
+                                .padding(.vertical, 20)
+                                .bold()
+                                .frame(width: 200)
+                                .background(Color("AccentColor"))
+                                .cornerRadius(18)
+                                .shadow(radius: 4)
+                        }
+                        .padding(.bottom, geometry.safeAreaInsets.bottom + 32)
+                        .sheet(isPresented: $isKeyLearningSheetPresented) {
+                            EditableRectangularImageDocumentation(viewModel: keyLearningViewModel, questId: questId)
+                                .presentationDragIndicator(.visible)
+                                .environmentObject(levelController)
+                        }
                     }
                 }
                 .navigationBarBackButtonHidden(true)

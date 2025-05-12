@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @EnvironmentObject var navModel: NavigationModel
+    @EnvironmentObject var levelController: LevelProgressController
     
     @State private var isActive: Bool = false
     var body: some View {
@@ -22,7 +22,7 @@ struct ProfileView: View {
                                 Image("cloud")
                             }
                             VStack{
-                                LevelProgress()
+                                LevelProgress(levelController: levelController)
                                 
                                 Section{
                                     Picker("Status", selection: $isActive) {

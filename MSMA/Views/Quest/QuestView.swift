@@ -5,6 +5,7 @@
 //  Created by M Ikhsan Azis Pane on 04/05/25.
 //
 import SwiftUI
+import SwiftData
 
 struct QuestView: View {
     @EnvironmentObject var navModel: NavigationModel
@@ -25,7 +26,7 @@ struct QuestView: View {
     @EnvironmentObject var data : Data
     
     // State binding for key learning sheet
-    @State private var isKeyLearningSheetPresented: Bool = false
+    @State private var isThemeStoryViewPresented: Bool = false
     
     // State binding for keyLearningViewModel
     @StateObject var keyLearningViewModel = KeyLearningModel()
@@ -33,6 +34,19 @@ struct QuestView: View {
     // Timer to check for theme expiration while the view is active
     private let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     
+    // Query of stories to check if the quest is completed
+    @Query var stories: [Story] // Get all stories from SwiftData
+    
+    // Check if the quest is completed where the user already log the story
+    var completedQuestIds: [Int] {
+        stories.map { $0.questId }
+    }
+    
+    // Condition checking to disabled the "Selesaikan Tema" button
+    var isCompletedQuestEmpty: Bool {
+        completedQuestIds.isEmpty
+    }
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -74,7 +88,11 @@ struct QuestView: View {
                             
                             VStack(spacing: 15) {
                                 ForEach(0..<5) { index in
-                                    QuestRow(challenge: selectedTheme.challenges[index], index: index, isCompleted: selectedTheme.challenges[index].completed ?? false)
+                                    QuestRow(
+                                        challenge: selectedTheme.challenges[index],
+                                        index: index,
+                                        completedQuestsIds: completedQuestIds
+                                    )
                                 }
                             }
                             .padding(.horizontal)
@@ -86,30 +104,21 @@ struct QuestView: View {
                                    let index = data.listDataTheme.firstIndex(where: { $0.id == pickedId }) {
                                     data.listDataTheme[index].status = .complete
                                 }
-                                isKeyLearningSheetPresented.toggle()
-
-
+                                isThemeStoryViewPresented.toggle()
                             } label: {
                                 Text("Selesaikan Tema")
                                     .foregroundStyle(Color("milk"))
                                     .frame(maxWidth: 323, maxHeight: 50)
                                     .padding(.vertical, 20)
-                                    .background(Color("E0610B"))
+                                    .background(isCompletedQuestEmpty ? Color.gray.opacity(0.6) : Color("E0610B"))
                                     .fontWeight(.bold)
                             }
+                            .disabled(isCompletedQuestEmpty)
                             .cornerRadius(20)
                             .shadow(radius: 4, y: 4)
-                            .sheet(isPresented: $isKeyLearningSheetPresented) {
-                                EditableRectangularImageDocumentation(
-                                    viewModel: keyLearningViewModel,
+                            .sheet(isPresented: $isThemeStoryViewPresented) {
+                                ThemeStoryView(
                                     onCompletion: {
-//                                        if let pickedId = pickedThemeId,
-//                                           let index = data.listDataTheme.firstIndex(where: { $0.id == pickedId }) {
-//                                            data.listDataTheme[index].status = .complete
-//                                            print(data.listDataTheme[index].status)
-//                                        }
-
-                                        
                                         withAnimation {
                                             showCompletionPopup = true
                                             animatePopup = true
@@ -124,11 +133,9 @@ struct QuestView: View {
                                         }
                                     }
                                 )
+                                .presentationDragIndicator(.visible)
+                                .presentationDetents([.medium])
                             }
-
-//                            .sheet(isPresented: $isKeyLearningSheetPresented) {
-//                                EditableRectangularImageDocumentation(viewModel: keyLearningViewModel)
-//                            }
                             .padding(.top, 20)
                             .padding(.bottom, 80)
                         }
@@ -148,7 +155,6 @@ struct QuestView: View {
                     }
                 }
             )
-            
             .navigationBarBackButtonHidden(true)
             .onReceive(timer) { _ in
                 questController.checkAndResetThemeIfNeeded()

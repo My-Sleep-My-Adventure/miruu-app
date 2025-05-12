@@ -15,11 +15,13 @@ struct ThemeData {
         case tempat
         case orang
     }
+    
     enum themeStatus: String {
         case complete
         case incomplete
         case locked
     }
+    
     var id : Int
     var name : String
     var category: categories
@@ -32,9 +34,10 @@ struct ThemeData {
 }
 
 struct Challenge {
+    var id: Int
     var category: String
     var name: String
-    var image: String
+    var image: String // MARK: coba tes jadiin id
     var xp: Int
     var description: String
     var caution: String

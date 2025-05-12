@@ -51,8 +51,6 @@ struct RectangularImageDocumentation: View {
 // MARK: - Main View
 
 struct EditableRectangularImageDocumentation: View {
-    @State private var showAnimationCard = false
-    @State private var navigateToProfile = false
     
     @State private var keyLearningStory: String = ""
     @State private var showSuccessAlert: Bool = false
@@ -62,26 +60,23 @@ struct EditableRectangularImageDocumentation: View {
     @State private var imageSourceType: UIImagePickerController.SourceType = .photoLibrary
     @ObservedObject var viewModel: KeyLearningModel
     
-    var onCompletion: () -> Void = {}
-    
-    
+    @State private var navigateToProfile = false
+        
     // Env for database
     @Environment(\.modelContext) private var modelContext
     
     // Env for dismiss
     @Environment(\.dismiss) private var dismiss
+    
+    // Identifier for quest
+    let questId: Int
+    
+    @EnvironmentObject var levelController: LevelProgressController
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 16) {
-                    
-                    // Drag indicator
-                    Capsule()
-                        .fill(Color.secondary.opacity(0.3))
-                        .frame(width: 30, height: 3)
-                        .padding(.top, 10)
-                    
                     // Title and Instructions
                     VStack(alignment: .center, spacing: 8) {
                         Text("Catatan Petualangan")
@@ -155,13 +150,8 @@ struct EditableRectangularImageDocumentation: View {
                         if case let .success(doc) = viewModel.imageState {
                             saveStory(image: doc.uiImage, storyText: keyLearningStory, modelContext: modelContext)
                             showSuccessAlert = true
-                            
-                            // Navigasi setelah alert muncul sebentar
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                                navigateToSavedStories = true
-                            }
                         } else {
-                            
+                            showSuccessAlert = false
                         }
                     } label: {
                         Text("Simpan")
@@ -175,12 +165,9 @@ struct EditableRectangularImageDocumentation: View {
                     .alert("Berhasil menyimpan gambar", isPresented: $showSuccessAlert) {
                         Button("Oke") {
                             
-                            showAnimationCard = true
                             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                                showAnimationCard = false
                                 navigateToProfile = true
                             }
-                            onCompletion()
                             dismiss()
                         }
                     }
@@ -202,8 +189,11 @@ struct EditableRectangularImageDocumentation: View {
         do {
             try imageData.write(to: fileURL)
             
-            let newStory = Story(imagePath: fileURL.path, storyText: storyText)
+            let newStory = Story(imagePath: fileURL.path, storyText: storyText, questId: questId)
             modelContext.insert(newStory)
+            
+            // Give XP to user after saving story
+            levelController.addXP(100)
         } catch {
             print("Gagal menyimpan gambar \(error.localizedDescription)")
         }

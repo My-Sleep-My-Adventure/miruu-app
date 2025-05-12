@@ -84,25 +84,6 @@ struct ShuffleThemeView: View {
                     
                     // Buttons section
                     HStack(spacing: 20) {
-//                        Button {
-//                            if shuffleCount > 0 {
-//                                generated = data.generateData()
-//                                pickedThemeId = generated?.id
-//                                cardRotation = -90
-//                                cardID = UUID()
-//                                showPopup = true
-//                                shuffleCount -= 1
-//                            }
-//                        } label: {
-//                            Image(systemName: "shuffle")
-//                                .foregroundStyle(Color("AccentColor"))
-//                                .frame(width: 65,height: 55)
-//                                .background(Color("milk"))
-//                                .font(.system(size: 24, weight: .bold))
-//                        }
-//                        .cornerRadius(5)
-//                        .shadow(radius: 4, x: 0, y: 4)
-//                        .popoverTip(shuffleTip)
                         Button {
                             if shuffleCount > 0 {
                                 generated = data.generateData()
@@ -116,35 +97,12 @@ struct ShuffleThemeView: View {
                             Image(systemName: "shuffle")
                                 .foregroundStyle(Color("AccentColor"))
                                 .frame(maxWidth: 200, maxHeight: 55)
-//                                .frame(width: 65,height: 55)
                                 .background(Color("milk"))
                                 .font(.system(size: 24, weight: .bold))
                         }
                         .cornerRadius(5)
                         .shadow(radius: 4, x: 0, y: 4)
                         .popoverTip(shuffleTip)
-                        
-//                        Button {
-//                            if let _ = generated {
-//                                // Take theme, update timestamp, and set properties
-//                                DispatchQueue.main.async {
-//                                    themePicked = true
-//                                    pickedThemeId = generated?.id
-//                                    questController.updateThemeTimestamp()
-//                                }
-//                            }
-//                        } label: {
-//                            Text("Ambil Tema")
-//                                .foregroundStyle(Color(generated != nil ? "milk" : "foregroundGrey"))
-//                                .padding(.vertical, 20)
-//                                .frame(maxWidth: 200)
-//                                .background(Color(generated != nil ? "AccentColor" : "backgroundGrey"))
-//                                .fontWeight(.bold)
-//                        }
-//                        .popoverTip(takeThemeTip)
-//                        .disabled(generated == nil)
-//                        .cornerRadius(6)
-//                        .shadow(radius: generated != nil ? 4 : 0, x: 0, y: generated != nil ? 4 : 0)
                     }
                     .padding(.bottom, 60)
                 }
@@ -160,7 +118,8 @@ struct ShuffleThemeView: View {
                     themePicked: $themePicked,
                     shuffleCount: $shuffleCount,
                     rotationAngle: cardRotation,
-                    cardID: cardID
+                    cardID: cardID,
+                    questController: questController
                 )
                 .padding(.bottom, 140)
                 .zIndex(2)

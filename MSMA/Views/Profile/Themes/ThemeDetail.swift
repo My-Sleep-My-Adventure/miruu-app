@@ -10,7 +10,7 @@ import SwiftData
 
 struct ThemeDetail: View {
     @Environment(\.presentationMode) var presentationMode
-    
+        
     let data: ThemeData
     
     var body: some View {

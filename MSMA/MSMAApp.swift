@@ -29,8 +29,8 @@ struct MSMAApp: App {
         WindowGroup {
             HomeView()
                 .environmentObject(navModel)
-                .environmentObject(data) 
-                .modelContainer(for: Story.self)
+                .environmentObject(data)
         }
+        .modelContainer(for: [Story.self])
     }
 }
