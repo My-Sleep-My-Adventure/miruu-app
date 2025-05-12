@@ -21,7 +21,7 @@ struct ThemeStoryView: View {
     
     @State private var selectedFeeling: Feeling? = nil
     @State private var themeStoryText: String = ""
-    
+    @EnvironmentObject var data: Data
     var onCompletion: () -> Void = {}
     
     // Env for dismiss
@@ -71,7 +71,9 @@ struct ThemeStoryView: View {
                 .autocorrectionDisabled(true)
             
             Button {
-                
+//                onCompletion()
+                showSuccessAlert = true
+                data.listDataAchievement[0].status = true
             } label: {
                 Text("Simpan Jejakmu!")
                     .foregroundColor(Color("milk"))
@@ -90,8 +92,9 @@ struct ThemeStoryView: View {
                         showAnimationCard = false
                         navigateToProfile = true
                     }
-                    onCompletion()
+                 
                     dismiss()
+                    onCompletion()
                 }
             }
             .padding(.top, 10)
