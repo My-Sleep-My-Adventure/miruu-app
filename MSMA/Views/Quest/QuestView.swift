@@ -141,6 +141,7 @@ struct QuestView: View {
                                                 }
                                             }
                                         }
+                                         
                                     }
                                 )
                                 .presentationDragIndicator(.visible)
