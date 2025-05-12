@@ -1,15 +1,16 @@
-//
-//  ThemeView.swift
-//  MSMA
-//
-//  Created by M Ikhsan Azis Pane on 04/05/25.
-//
+////
+////  ThemeView.swift
+////  MSMA
+////
+////  Created by M Ikhsan Azis Pane on 04/05/25.
+////
 
 import SwiftUI
 
 struct ThemeView: View {
-//    @State private var data = Data()
+//    @ObservedObject private var data = Data()
     @EnvironmentObject var data: Data
+    
     enum AchievementStatus: String {
         case complete = "complete"
         case incomplete = "incomplete"
@@ -38,9 +39,7 @@ struct ThemeView: View {
                             VStack {
                                 if data.listDataTheme[index].status == .complete {
                                     NavigationLink(destination: ThemeDetail(data : data.listDataTheme[index])) {
-    //                                    Circle()
-    //                                        .stroke( Color.blue, lineWidth: 2)
-    //                                        .frame(width: 60, height: 60)
+
                                         Image(data.listDataTheme[index].image)
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
@@ -64,16 +63,7 @@ struct ThemeView: View {
                                         .font(.caption)
                                         .foregroundColor(.black)
                                 }else{
-//                                    RoundedRectangle(cornerRadius: 10)
-//                                        .fill(Color("A5D4DA"))
-//                                        .stroke(Color.black, lineWidth: 1)
-//                                        .frame(width: 70, height: 90)
-//                                        .overlay(
-//                                            Text("?")
-//                                                .font(.largeTitle)
-//                                                .foregroundColor(Color("pickerbackground"))
-//                                                .bold()
-//                                        )
+
                                     Image("grayscaleframe")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)

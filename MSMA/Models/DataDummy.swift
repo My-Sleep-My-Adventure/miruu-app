@@ -8,69 +8,6 @@
 import Foundation
 import SwiftUI
 
-//<<<<<<< HEAD
-class NavigationModel: ObservableObject {
-    @Published var path = NavigationPath()
-    @Published var currentRoute: Route = .main
-    @Published var currentTab: Tab = .home
-}
-
-// Tab routing
-enum Tab {
-    case home, profile
-}
-
-enum Route {
-    case home
-    case main
-    case profile
-}
-
-struct AchievementData {
-    var id : Int
-    var name : String
-    var description : String
-    var image : String
-    var status : Bool
-}
-
-struct Challenge {
-    var category: String
-    var name: String
-    var image: String
-    var xp: Int
-    var description: String
-    var caution: String
-}
-
-struct StoryData {
-    var id: UUID = UUID()
-    var imagePath: String
-    var storyText: String
-    var createdAt: Date = Date()
-}
-
-struct ThemeData {
-    enum categories : String {
-        case objek
-        case tempat
-        case orang
-    }
-    enum themeStatus: String {
-        case complete
-        case incomplete
-        case locked
-    }
-    var id : Int
-    var name : String
-    var category: categories
-    var description: String
-    var xp: Int
-    var status: themeStatus
-    var image : String
-    var challenges : [Challenge]
-    var stories : StoryData?
-}
 
 //var data = AchievementData(id: 1, name: "Test", description: "Test")
 class Data : ObservableObject{
@@ -642,11 +579,11 @@ class Data : ObservableObject{
         return generatedData
     }
     
-    func completeTheme(_ pickedTheme: Int) {
-        self.listDataTheme[pickedTheme].status = .complete
+     func completeTheme(_ pickedTheme: Int) {
+        listDataTheme[pickedTheme].status = .complete
     }
     
-    func completeChallenge(_ pickedTheme: Int) {
+     func completeChallenge(_ pickedTheme: Int) {
         self.listDataAchievement[pickedTheme].status = true
     }
     

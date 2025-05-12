@@ -3,7 +3,8 @@
 //  MSMA
 //
 //  Created by M Ikhsan Azis Pane on 08/05/25.
-//
+
+
 import SwiftUI
 
 struct HomeView: View {
@@ -13,21 +14,6 @@ struct HomeView: View {
     @StateObject var questController = QuestController()
     
     var body: some View {
-//<<<<<<< HEAD:MSMA/Views/test.swift
-//        TabView{
-//            if let themePicked = themePicked{
-//                if themePicked == true {
-//                    HomeView(themePicked: $themePicked, pickedThemeId: $pickedThemeId)
-//                        .tabItem {
-//                            Label("Home", systemImage: "house")
-//                        }
-//                }
-//                else {
-//                    ContentView(pickedThemeId: $pickedThemeId, themePicked: $themePicked)
-//                        .tabItem {
-//                            Label("Home", systemImage: "house")
-//                        }
-//=======
         TabView(selection: $navModel.currentTab) {
             Group {
                 if let themePicked = questController.themePicked, themePicked {
@@ -40,14 +26,11 @@ struct HomeView: View {
                         questController.checkAndResetThemeIfNeeded()
                     }
                 } else {
-
-//                    ShuffleThemeView(pickedThemeId: $pickedThemeId, themePicked: $themePicked)
                     ShuffleThemeView(
                         pickedThemeId: $questController.pickedThemeId,
                         themePicked: $questController.themePicked,
                         questController: questController
                     )
-
                 }
             }
             .tabItem {

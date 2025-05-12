@@ -20,9 +20,9 @@ struct QuestView: View {
         guard let id = pickedThemeId else { return nil }
         return data.listDataTheme.first { $0.id == id }
     }
-
-//    @State var data = Data()
-    @EnvironmentObject var data : Data 
+    
+    //    @State var data = Data()
+    @EnvironmentObject var data : Data
     
     // State binding for key learning sheet
     @State private var isKeyLearningSheetPresented: Bool = false
@@ -32,7 +32,7 @@ struct QuestView: View {
     
     // Timer to check for theme expiration while the view is active
     private let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
-
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -86,51 +86,9 @@ struct QuestView: View {
                                    let index = data.listDataTheme.firstIndex(where: { $0.id == pickedId }) {
                                     data.listDataTheme[index].status = .complete
                                 }
+                                isKeyLearningSheetPresented.toggle()
 
-//                                withAnimation {
-//                                    showCompletionPopup = true
-//                                    animatePopup = true
-//                                }
-                                
-                                
-//                                
-//                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-//                                    // Animate popup disappearing
-////                                    withAnimation {
-////                                        animatePopup = false
-////                                    }
-//
-//                                    // Second delay to allow popup hide animation to finish
-//                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-//                                        showCompletionPopup = false
-//
-//                                        // Navigate to Profile
-//
-//                                    }
-//                                }
-                                
-                                withAnimation {
-                                        showCompletionPopup = true
-                                        animatePopup = true
-                                    }
 
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                            showCompletionPopup = false
-
-                                            navModel.currentTab = .profile
-                                            
-                                            themePicked = false
-                                        }
-                                    }
-//                                if let pickedId = pickedThemeId,
-//                                   let index = data.listDataTheme.firstIndex(where: { $0.id == pickedId }) {
-//                                    data.listDataTheme[index-1].status = .complete
-//                                }
-//                                print(data.listDataTheme[pickedThemeId!-1].name, data.listDataTheme[pickedThemeId!].status)
-////                                data.listDataTheme[index].status
-                                
-//                                isKeyLearningSheetPresented.toggle()
                             } label: {
                                 Text("Selesaikan Tema")
                                     .foregroundStyle(Color("milk"))
@@ -142,8 +100,35 @@ struct QuestView: View {
                             .cornerRadius(20)
                             .shadow(radius: 4, y: 4)
                             .sheet(isPresented: $isKeyLearningSheetPresented) {
-                                EditableRectangularImageDocumentation(viewModel: keyLearningViewModel)
+                                EditableRectangularImageDocumentation(
+                                    viewModel: keyLearningViewModel,
+                                    onCompletion: {
+//                                        if let pickedId = pickedThemeId,
+//                                           let index = data.listDataTheme.firstIndex(where: { $0.id == pickedId }) {
+//                                            data.listDataTheme[index].status = .complete
+//                                            print(data.listDataTheme[index].status)
+//                                        }
+
+                                        
+                                        withAnimation {
+                                            showCompletionPopup = true
+                                            animatePopup = true
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                            animatePopup = false
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                                showCompletionPopup = false
+                                                navModel.currentTab = .profile
+                                                themePicked = false
+                                            }
+                                        }
+                                    }
+                                )
                             }
+
+//                            .sheet(isPresented: $isKeyLearningSheetPresented) {
+//                                EditableRectangularImageDocumentation(viewModel: keyLearningViewModel)
+//                            }
                             .padding(.top, 20)
                             .padding(.bottom, 80)
                         }
@@ -153,44 +138,17 @@ struct QuestView: View {
             .overlay(
                 Group {
                     if showCompletionPopup, let theme = selectedTheme {
-                        ZStack {
-                            Color.black.opacity(0.4)
-                                .edgesIgnoringSafeArea(.all)
-                                .onTapGesture {
-                                    withAnimation {
-                                        animatePopup = false
-                                    }
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                        showCompletionPopup = false
-                                    }
-                                }
-
-                            VStack {
-                                Image(theme.image)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 200, height: 200)
-                                    .scaleEffect(animatePopup ? 1 : 0.5)
-                                    .opacity(animatePopup ? 1 : 0)
-                                    .animation(.spring(), value: animatePopup)
-
-                                Text("Theme Completed!")
-                                    .font(.title2)
-                                    .bold()
-                                    .padding(.top)
-                                    .foregroundColor(.white)
-                            }
-                            .padding()
-                            .background(Color("7FC2CA"))
-                            .cornerRadius(20)
-                            .shadow(radius: 10)
-                            .padding(40)
-                        }
-                        .transition(.opacity)
+                        CompletionView(
+                            themePicked: $themePicked,
+                            pickedThemeId: $pickedThemeId,
+                            showCompletionPopup: $showCompletionPopup,
+                            animatePopup: $animatePopup,
+                            selectedTheme: theme
+                        )
                     }
                 }
             )
-
+            
             .navigationBarBackButtonHidden(true)
             .onReceive(timer) { _ in
                 questController.checkAndResetThemeIfNeeded()

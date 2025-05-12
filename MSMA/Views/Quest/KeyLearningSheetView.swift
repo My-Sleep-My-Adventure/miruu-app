@@ -51,6 +51,8 @@ struct RectangularImageDocumentation: View {
 // MARK: - Main View
 
 struct EditableRectangularImageDocumentation: View {
+    @State private var showAnimationCard = false
+    @State private var navigateToProfile = false
     
     @State private var keyLearningStory: String = ""
     @State private var showSuccessAlert: Bool = false
@@ -59,6 +61,8 @@ struct EditableRectangularImageDocumentation: View {
     @State private var showImageSourceDialog = false
     @State private var imageSourceType: UIImagePickerController.SourceType = .photoLibrary
     @ObservedObject var viewModel: KeyLearningModel
+    
+    var onCompletion: () -> Void = {}
     
     
     // Env for database
@@ -170,6 +174,13 @@ struct EditableRectangularImageDocumentation: View {
                     .cornerRadius(20)
                     .alert("Berhasil menyimpan gambar", isPresented: $showSuccessAlert) {
                         Button("Oke") {
+                            
+                            showAnimationCard = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                showAnimationCard = false
+                                navigateToProfile = true
+                            }
+                            onCompletion()
                             dismiss()
                         }
                     }
