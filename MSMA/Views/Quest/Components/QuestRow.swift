@@ -6,15 +6,24 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct QuestRow: View {
     let challenge: Challenge
     let index: Int
-    let isCompleted: Bool
+    let completedQuestsIds: [Int]
+
+//    var isCompleted: Bool {
+//        !matchingStories.isEmpty
+//    }
+//
+    var isCompleted: Bool {
+        completedQuestsIds.contains(challenge.id)
+    }
 
     var body: some View {
         NavigationLink {
-            QuestDetailView(challenge: challenge)
+            QuestDetailView(challenge: challenge, questId: challenge.id, isCompleted: isCompleted)
         } label: {
             HStack {
                 ZStack {

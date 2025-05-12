@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct HomeView: View {
+    // Environment for modelContext
+    @Environment(\.modelContext) private var modelContext
+    
     @EnvironmentObject var navModel: NavigationModel
     
     // Create a single instance of QuestController for the entire app
     @StateObject var questController = QuestController()
+    
+    // Injek StateObject di main root karena Quest Nested dan Level Progress beda path asu
+    @StateObject var levelController = LevelProgressController()
     
     var body: some View {
         TabView(selection: $navModel.currentTab) {
@@ -44,6 +50,7 @@ struct HomeView: View {
                     Label("Profile", systemImage: "person.circle")
                 }
                 .tag(Tab.profile)
+                .environmentObject(levelController)
         }
         .tint(Color.accent)
         // Add an app-wide timer check to ensure theme resets even when in other tabs

@@ -17,7 +17,6 @@ struct ThemeView: View {
         case locked = "locked"
     }
     
-    
     var body: some View {
             VStack{
                 HStack(){
@@ -82,14 +81,8 @@ struct ThemeView: View {
             .clipShape(RoundedRectangle(cornerRadius: 20))
         .padding(.top,8)
         .padding(.horizontal)
-        
-        
-        
     }
-    
 }
-
-
 
 #Preview {
     ThemeView()
