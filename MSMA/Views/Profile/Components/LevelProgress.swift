@@ -26,11 +26,15 @@ struct LevelProgress: View {
                     .animation(.easeInOut(duration: 0.5), value: levelController.currentLevelXPProgress)
                 
                 // Character Image
-                Image("drago")
-                    .resizable()
+                DisplayGif(gifName: "dragonform2", size: 120)
                     .scaledToFit()
                     .frame(width: 120, height: 120)
-                    .position(x: 60, y: 70)
+
+//                Image("drago")
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: 120, height: 120)
+//                    .position(x: 60, y: 70)
                 
                 if levelController.currentLevel >= levelController.maxLevel {
                     Text("Max Level!")

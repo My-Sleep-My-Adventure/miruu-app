@@ -20,16 +20,16 @@ struct DisplayGif: View {
             if let gifImage {
                 gifImage
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
+                    .frame(width: size, height: size)
             } else {
-                Text("Oops!")
+                Text("The Dragon is Hiding")
                     .foregroundStyle(.white)
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 16).fill(.black))
                 
             }
         }
-        .padding()
         .onAppear {
             if let asset {
                 let gifData = asset.data as CFData
@@ -38,7 +38,6 @@ struct DisplayGif: View {
                 }
             }
         }
-        .frame(maxWidth: size, maxHeight: size, alignment: .center)
 
     }
 }
