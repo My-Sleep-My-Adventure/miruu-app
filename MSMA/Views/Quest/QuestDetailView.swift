@@ -60,10 +60,12 @@ struct QuestDetailView: View {
                             if isCompleted {
                                 VStack(alignment: .leading) {
                                     Text("Kamu sudah menyelesaikan challenge ini!")
-                                        .font(.caption)
+                                        .font(.subheadline)
+                                        .multilineTextAlignment(.center)
+                                        .fontWeight(.semibold)
                                 }
                                 .frame(maxWidth: .infinity)
-                                .padding(.all, 4)
+                                .padding(.all, 6)
                                 .foregroundStyle(.white)
                                 .background(Color.success)
                                 .cornerRadius(9)
@@ -87,15 +89,19 @@ struct QuestDetailView: View {
                                 Text(challenge.caution)
                             }
                             
-                            VStack(alignment: .center, spacing: 4) {
+                            VStack(alignment: .leading, spacing: 4) {
                                 Text("Hadiah:")
                                     .fontWeight(.semibold)
-                                Text("\(challenge.xp)")
-                                    .padding(.vertical, 6)
-                                    .padding(.horizontal, 12)
-                                    .background(Color.green)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(6)
+                                    .padding(.bottom, 4)
+                                HStack {
+                                    Image(systemName: "trophy.fill")
+                                    Text("\(challenge.xp) XP")
+                                        .fontWeight(.semibold)
+                                }
+                                .padding(.all, 4)
+                                .background(Color.success)
+                                .foregroundColor(.white)
+                                .cornerRadius(6)
                             }
                         }
                         .padding()
@@ -112,15 +118,15 @@ struct QuestDetailView: View {
                         Button(action: {
                             isKeyLearningSheetPresented.toggle()
                         }) {
-                            Text("Tandai selesai")
+                            Text("Tuntaskan Misi")
                                 .foregroundColor(.white)
-                                .padding(.vertical, 20)
+                                .frame(maxWidth: 323, maxHeight: 50)
+                                .padding(.vertical, 5)
                                 .bold()
-                                .frame(width: 200)
                                 .background(Color("AccentColor"))
-                                .cornerRadius(18)
-                                .shadow(radius: 4)
                         }
+                        .cornerRadius(20)
+                        .shadow(radius: 4)
                         .padding(.bottom, geometry.safeAreaInsets.bottom + 32)
                         .sheet(isPresented: $isKeyLearningSheetPresented) {
                             EditableRectangularImageDocumentation(viewModel: keyLearningViewModel, questId: questId)
