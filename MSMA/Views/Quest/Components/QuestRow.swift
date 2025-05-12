@@ -52,9 +52,9 @@ struct QuestRow: View {
             .padding()
             .frame(maxWidth: 340, maxHeight: 75)
             .background(Color("FCF5EF"))
-            .cornerRadius(25)
+            .cornerRadius(13)
             .overlay(
-                RoundedRectangle(cornerRadius: 25)
+                RoundedRectangle(cornerRadius: 13)
                     .stroke(isCompleted ? Color.success : Color("A5D4DA"), lineWidth: isCompleted ? 3 : 1)
             )
             .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)

@@ -144,11 +144,17 @@ struct EditableRectangularImageDocumentation: View {
                             )
                         )
                         .autocorrectionDisabled(true)
-                        .sheet(isPresented: $showImagePicker) {
+                        .fullScreenCover(isPresented: $showImagePicker) {
                             CameraAndPhotoPicker(sourceType: imageSourceType) { image in
                                 viewModel.setImage(image)
                             }
                         }
+
+//                        .sheet(isPresented: $showImagePicker) {
+//                            CameraAndPhotoPicker(sourceType: imageSourceType) { image in
+//                                viewModel.setImage(image)
+//                            }
+//                        }
 
                     // Save Button
                     Button {

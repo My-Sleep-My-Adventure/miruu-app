@@ -36,6 +36,7 @@ struct HomeView: View {
             .tabItem {
                 Label("Home", systemImage: "house")
             }
+            
             .tag(Tab.home)
             
             ProfileView()

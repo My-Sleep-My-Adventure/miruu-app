@@ -19,14 +19,14 @@ class Data : ObservableObject{
     
     init() {
         listDataAchievement = [
-            AchievementData(id: 1, name: "Perintis", description: "Kamu telah menyelesaikan tantangan pertama! Setiap pohon dimulai dari kecambah!", image: "achiev1", status: true),
-            AchievementData(id: 2, name: "Silat Lidah", description: "Kamu memulai 10 obrolan dengan penuh percaya diri. Hening? Gak kenal tuh!", image: "achiev2", status: true),
+            AchievementData(id: 1, name: "Perintis", description: "Kamu telah menyelesaikan tantangan pertama! Setiap pohon dimulai dari kecambah!", image: "achiev1", status: false),
+            AchievementData(id: 2, name: "Silat Lidah", description: "Kamu memulai 10 obrolan dengan penuh percaya diri. Hening? Gak kenal tuh!", image: "achiev2", status: false),
             AchievementData(id: 3, name: "Petir Kilat", description: "Kamu menyelesaikan 7 tantangan berturut-turut tanpa salah langkah. Keren!", image: "achiev3", status: false),
-            AchievementData(id: 4, name: "Seniman", description: "Kamu telah membuat 10 karya unik! Tanganmu bukan cuma ajaib, tapi bisa sulap ide jadi nyata", image: "achiev4", status: true),
-            AchievementData(id: 5, name: "Dukun Serba Bisa", description: "kamu menyelesaikan 10 masalah dunia nyata? Semua masalah kamu punya solusinya!", image: "achiev5", status: true),
-            AchievementData(id: 6, name: "Bangkit Kembali", description: "Kamu menyelesaikan tantangan setelah gagal, Pantang nyerah, makin dihantam makin jadi! ih takutnyaaat", image: "achiev6", status: true),
+            AchievementData(id: 4, name: "Seniman", description: "Kamu telah membuat 10 karya unik! Tanganmu bukan cuma ajaib, tapi bisa sulap ide jadi nyata", image: "achiev4", status: false),
+            AchievementData(id: 5, name: "Dukun Serba Bisa", description: "kamu menyelesaikan 10 masalah dunia nyata? Semua masalah kamu punya solusinya!", image: "achiev5", status: false),
+            AchievementData(id: 6, name: "Bangkit Kembali", description: "Kamu menyelesaikan tantangan setelah gagal, Pantang nyerah, makin dihantam makin jadi! ih takutnyaaat", image: "achiev6", status: false),
             AchievementData(id: 7, name: "Raja Terakhir", description: "Kamu menyelesaikan semua tantangan di semua Tema! Sempurna! tselamat! ", image: "achiev7", status: false),
-            AchievementData(id: 8, name: "Petualang", description: "Kamu menyelesaikan 5 tantangan dalam 5 tema! , Kamu adalah si petualang sejati!", image: "achiev8", status: true),
+            AchievementData(id: 8, name: "Petualang", description: "Kamu menyelesaikan 5 tantangan dalam 5 tema! , Kamu adalah si petualang sejati!", image: "achiev8", status: false),
             AchievementData(id: 9, name: "Penguasa Waktu", description: "Kamu menaklukkan 10 tantangan waktu. Waktu? Atur Sesuka mu!", image: "achiev9", status: false)
         ]
 

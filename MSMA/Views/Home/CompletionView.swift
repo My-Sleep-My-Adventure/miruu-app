@@ -24,25 +24,43 @@ struct CompletionView: View {
                     withAnimation {
                         animatePopup = false
                     }
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         showCompletionPopup = false
                     }
                 }
             
             VStack {
-                Image(selectedTheme!.image)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 200, height: 200)
-                    .scaleEffect(animatePopup ? 1 : 0.5)
-                    .opacity(animatePopup ? 1 : 0)
-                    .animation(.spring(), value: animatePopup)
-                
-                Text("Theme Completed!")
-                    .font(.title2)
-                    .bold()
-                    .padding(.top)
-                    .foregroundColor(.white)
+                if let theme = selectedTheme {
+                    Image(theme.image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200, height: 200)
+                    Text(theme.name)
+                    
+                    Text("Theme Completed!")
+                        .font(.title2)
+                        .bold()
+                        .padding(.top)
+                        .foregroundColor(.white)
+                } else {
+                    Text("No Theme Selected")
+                }
+//                Image(selectedTheme!.image)
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: 200, height: 200)
+//                    .scaleEffect(animatePopup ? 1 : 0.5)
+//                    .opacity(animatePopup ? 1 : 0)
+//                    .animation(.spring(), value: animatePopup)
+//                
+//                Text(selectedTheme!.name)
+//                
+//                Text("Theme Completed!")
+//                    .font(.title2)
+//                    .bold()
+//                    .padding(.top)
+//                    .foregroundColor(.white)
             }
             .padding()
             .background(Color("7FC2CA"))

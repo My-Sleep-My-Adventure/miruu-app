@@ -16,6 +16,14 @@ struct QuestView: View {
     @State private var showCompletionPopup = false
     @State private var animatePopup = false
     
+    //    @State private var showCompletionPopup = false
+    @State private var showAchievementPopup = false
+    //    @State private var themePicked = false
+    //    @State private var pickedThemeId: Int?
+    //    @State private var animatePopup = false
+    
+    //    @EnvironmentObject var navModel: NavigationModel
+    
     var selectedTheme: ThemeData? {
         guard let id = pickedThemeId else { return nil }
         return data.listDataTheme.first { $0.id == id }
@@ -85,10 +93,10 @@ struct QuestView: View {
                                 if let pickedId = pickedThemeId,
                                    let index = data.listDataTheme.firstIndex(where: { $0.id == pickedId }) {
                                     data.listDataTheme[index].status = .complete
-                                }
+                                    data.listDataAchievement[0].status = true                                }
                                 isKeyLearningSheetPresented.toggle()
-
-
+                                
+                                
                             } label: {
                                 Text("Selesaikan Tema")
                                     .foregroundStyle(Color("milk"))
@@ -97,41 +105,75 @@ struct QuestView: View {
                                     .background(Color("E0610B"))
                                     .fontWeight(.bold)
                             }
+                            
                             .cornerRadius(20)
                             .shadow(radius: 4, y: 4)
                             .sheet(isPresented: $isKeyLearningSheetPresented) {
                                 EditableRectangularImageDocumentation(
                                     viewModel: keyLearningViewModel,
                                     onCompletion: {
-//                                        if let pickedId = pickedThemeId,
-//                                           let index = data.listDataTheme.firstIndex(where: { $0.id == pickedId }) {
-//                                            data.listDataTheme[index].status = .complete
-//                                            print(data.listDataTheme[index].status)
-//                                        }
-
+                                        //                                        if let pickedId = pickedThemeId,
+                                        //                                           let index = data.listDataTheme.firstIndex(where: { $0.id == pickedId }) {
+                                        //                                            data.listDataTheme[index].status = .complete
+                                        //                                            print(data.listDataTheme[index].status)
+                                        //                                        }
+                                        //                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                        //                                                showCompletionPopup = false
+                                        //                                                showAchievementPopup = true
+                                        //                                                animatePopup = true
+                                        //
+                                        //                                                // After another 2 seconds, navigate to profile
+                                        //                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                        //                                                    showAchievementPopup = false
+                                        //                                                    animatePopup = false
+                                        //                                                    navModel.currentTab = .profile
+                                        //                                                    themePicked = false
+                                        //                                                }
+                                        //                                            }
+                                        showCompletionPopup = true
+                                        themePicked = true
                                         
-                                        withAnimation {
-                                            showCompletionPopup = true
-                                            animatePopup = true
-                                        }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                            animatePopup = false
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                        // Let SwiftUI show CompletionView first
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                            // Wait to hide CompletionView and show AchievePopUpView
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                                                 showCompletionPopup = false
-                                                navModel.currentTab = .profile
-                                                themePicked = false
+                                                showAchievementPopup = true
+                                                animatePopup = true
+                                                
+                                                // Finally, go to Profile after showing achievement
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                                    showAchievementPopup = false
+                                                    animatePopup = false
+                                                    navModel.currentTab = .profile
+                                                    themePicked = false
+                                                }
                                             }
                                         }
+                                        //
+                                        //                                        withAnimation {
+                                        //                                            showCompletionPopup = true
+                                        //                                            animatePopup = true
+                                        //                                        }
+                                        //                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                        //                                            animatePopup = false
+                                        //                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                        //                                                showCompletionPopup = false
+                                        //                                                navModel.currentTab = .profile
+                                        //                                                themePicked = false
+                                        //                                            }
+                                        //                                        }
                                     }
                                 )
                             }
-
-//                            .sheet(isPresented: $isKeyLearningSheetPresented) {
-//                                EditableRectangularImageDocumentation(viewModel: keyLearningViewModel)
-//                            }
+                            
+                            //                            .sheet(isPresented: $isKeyLearningSheetPresented) {
+                            //                                EditableRectangularImageDocumentation(viewModel: keyLearningViewModel)
+                            //                            }
                             .padding(.top, 20)
                             .padding(.bottom, 80)
                         }
+                        //                        .background(.red)
                     }
                 }
             }
@@ -145,9 +187,47 @@ struct QuestView: View {
                             animatePopup: $animatePopup,
                             selectedTheme: theme
                         )
+                    } else if showAchievementPopup {
+                        AchievePopUpView(
+                            showCompletionPopup: $showAchievementPopup,
+                            animatePopup: $animatePopup
+                        )
                     }
                 }
             )
+            
+            //            .overlay(
+            //                Group {
+            //                    if showCompletionPopup, let theme = selectedTheme {
+            //                        ZStack {
+            ////                            CompletionView(
+            ////                                themePicked: $themePicked,
+            ////                                pickedThemeId: $pickedThemeId,
+            ////                                showCompletionPopup: $showCompletionPopup,
+            ////                                animatePopup: $animatePopup,
+            ////                                selectedTheme: theme
+            ////                            )
+            //                            AchievePopUpView(showCompletionPopup: $showCompletionPopup,
+            //                                             animatePopup: $animatePopup)
+            //                        }
+            //                    }
+            //                }
+            //            )
+            
+            //            .overlay(
+            //                Group {
+            //                    if showCompletionPopup, let theme = selectedTheme {
+            //                        CompletionView(
+            //                            themePicked: $themePicked,
+            //                            pickedThemeId: $pickedThemeId,
+            //                            showCompletionPopup: $showCompletionPopup,
+            //                            animatePopup: $animatePopup,
+            //                            selectedTheme: theme
+            //                        )
+            //                        AchievePopUpView(isPresented: $showCompletionPopup)
+            //                    }
+            //                }
+            //            )
             
             .navigationBarBackButtonHidden(true)
             .onReceive(timer) { _ in

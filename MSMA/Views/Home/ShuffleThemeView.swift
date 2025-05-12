@@ -32,7 +32,8 @@ struct ShuffleThemeView: View {
             Image("backgroundImage1")
                 .resizable()
                 .aspectRatio(contentMode:.fill)
-                .ignoresSafeArea(edges: .all)
+                .ignoresSafeArea()
+                .background(.red)
             
             DisplayGif(gifName: "dragonform2", size: 290)
                 .offset(y: -40)
@@ -149,6 +150,7 @@ struct ShuffleThemeView: View {
                     .padding(.bottom, 60)
                 }
             }
+//            .background(.blue)
             .padding(.vertical, 170)
             
             if showPopup {
@@ -166,6 +168,8 @@ struct ShuffleThemeView: View {
                 .zIndex(2)
             }
         }
+//        .background(Color.red)
+        
         .onAppear {
             // Reset shuffle count when view appears
             if shuffleCount < 3 {
@@ -174,6 +178,7 @@ struct ShuffleThemeView: View {
             // Ensure theme is properly reset if needed
             questController.checkAndResetThemeIfNeeded()
         }
+
     }
 }
 

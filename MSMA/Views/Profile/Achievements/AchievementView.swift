@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AchievementView: View {
-    @State private var data = Data()
+    @EnvironmentObject var data: Data
     //    var limit = data.listData.count
     
     var body: some View {
@@ -53,27 +53,28 @@ struct AchievementView: View {
                                 
                             } else {
                                 VStack {
-                                    Circle()
-                                        .stroke(Color.gray, lineWidth: 2)
-                                        .fill(Color("A5D4DA"))
-                                        .frame(width: 75, height: 75)
-                                        .frame(width: 70, height: 90)
-                                        .overlay(
-                                            Text("?")
-                                                .font(.title)
-                                                .foregroundColor(Color("pickerbackground"))
-                                                .bold()
-                                        )
                                     
-                                    Text("")
+                                    Image("lockachieve")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 85, height: 85)
+                                        .frame(width: 70, height: 90)
+                                    //                                            .clipShape(Circle())
+                                    
+                                    Text("Locked")
+                                        .font(.caption)
+                                        .bold()
+                                        .foregroundColor(.black)
+                                    
                                 }
                                 .padding(.vertical, 8)
                             }
                         }
+                        
                     }
                 }
-                .padding()
             }
+            .padding()
         }
         .background(Color("FEFCFA").opacity(0.7))       .clipShape(RoundedRectangle(cornerRadius: 20))
         .clipShape(RoundedRectangle(cornerRadius: 20))

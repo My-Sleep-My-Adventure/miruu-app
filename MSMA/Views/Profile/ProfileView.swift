@@ -10,7 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     @EnvironmentObject var navModel: NavigationModel
     
-    @State private var isActive: Bool = false
+    @State private var isActive: Bool = true
     var body: some View {
         NavigationStack {
             ZStack{
