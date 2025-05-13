@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LevelProgress: View {
     @ObservedObject var levelController: LevelProgressController
-
+    
     var body: some View {
         VStack {
             ZStack {
@@ -26,10 +26,11 @@ struct LevelProgress: View {
                     .animation(.easeInOut(duration: 0.5), value: levelController.currentLevelXPProgress)
                 
                 // Character Image
-                DisplayGif(gifName: "dragonform2", size: 120)
+                DisplayGif(gifName: levelController.currentDragonForm, size: 200)
                     .scaledToFit()
                     .frame(width: 120, height: 120)
-
+                    .offset(y: 10)
+                
 //                Image("drago")
 //                    .resizable()
 //                    .scaledToFit()
@@ -44,7 +45,7 @@ struct LevelProgress: View {
                         .frame(width: 100, height: 30)
                         .background(Gradient(colors: [.orange, .yellow]))
                         .cornerRadius(20)
-                        .position(x: 60, y: 114)
+                        .position(x: 200, y: 114)
                 } else {
                     Text("Level \(levelController.currentLevel)")
                         .font(.system(size: 17, weight: .bold, design: .rounded))
@@ -54,10 +55,10 @@ struct LevelProgress: View {
                         .frame(width: 100, height: 30)
                         .background(Gradient(colors: [.orange, .yellow]))
                         .cornerRadius(20)
-                        .position(x: 60, y: 114)
+                        .position(x: 200, y: 114)
                 }
             }
-            .frame(width: 120, height: 120)
+
             .padding(.top)
             
             Text("\(levelController.currentXP - levelController.totalXPForLevel(levelController.currentLevel)) / \(levelController.xpNeeded(for: levelController.currentLevel)) XP")

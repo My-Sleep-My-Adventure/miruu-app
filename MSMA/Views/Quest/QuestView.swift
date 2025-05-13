@@ -13,7 +13,7 @@ struct QuestView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var themePicked: Bool?
     @Binding var pickedThemeId: Int?
-    
+    @ObservedObject var levelController: LevelProgressController
     @State private var showCompletionPopup = false
     @State private var animatePopup = false
     
@@ -81,7 +81,7 @@ struct QuestView: View {
                                         
                                         Spacer()
                                         
-                                        DisplayGif(gifName: "dragonform2", size: 160)
+                                        DisplayGif(gifName: levelController.currentDragonForm, size: 160)
                                             .frame(maxWidth: 160, maxHeight: 160)
                                     }
                                     .padding()

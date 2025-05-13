@@ -55,7 +55,16 @@ class LevelProgressController: ObservableObject {
         let progressInLevel = Double(currentXP - xpForCurrentLevel)
         return min(progressInLevel / Double(xpForNextLevel), 1.0)
     }
-
+    var currentDragonForm: String {
+        switch currentLevel {
+        case 20...:
+            return "dragonform4"
+        case 10..<20:
+            return "dragonform3"
+        default:
+            return "dragonform2"
+        }
+    }
     func addXP(_ amount: Int) {
         let xpAfter = currentXP + amount
         let xpToNextLevel = totalXPForLevel(currentLevel + 1)

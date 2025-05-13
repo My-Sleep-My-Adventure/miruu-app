@@ -14,6 +14,7 @@ struct ShuffleThemeView: View {
     @Binding var themePicked: Bool?
     
     @ObservedObject var questController: QuestController
+    @ObservedObject var levelController: LevelProgressController
     
     @State private var shuffleCount: Int = 3
     @State private var data = Data()
@@ -35,7 +36,7 @@ struct ShuffleThemeView: View {
                 .ignoresSafeArea()
                 .background(.red)
             
-            DisplayGif(gifName: "dragonform2", size: 290)
+            DisplayGif(gifName: levelController.currentDragonForm, size: 290)
                 .offset(y: -40)
                 .zIndex(0)
             

@@ -35,7 +35,8 @@ struct HomeView: View {
                     ShuffleThemeView(
                         pickedThemeId: $questController.pickedThemeId,
                         themePicked: $questController.themePicked,
-                        questController: questController
+                        questController: questController,
+                        levelController: levelController
                     )
                 }
             }
