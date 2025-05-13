@@ -25,7 +25,8 @@ struct HomeView: View {
                 if let themePicked = questController.themePicked, themePicked {
                     QuestView(
                         themePicked: $questController.themePicked,
-                        pickedThemeId: $questController.pickedThemeId
+                        pickedThemeId: $questController.pickedThemeId,
+                        levelController: levelController
                     )
                     .environmentObject(questController)
                     .onAppear {
