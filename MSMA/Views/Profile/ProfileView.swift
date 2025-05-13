@@ -10,6 +10,8 @@ import SwiftUI
 struct ProfileView: View {
     @EnvironmentObject var levelController: LevelProgressController
     
+    @EnvironmentObject var data: Data
+    
     @State private var isActive: Bool = true
     var body: some View {
         NavigationStack {
@@ -22,7 +24,8 @@ struct ProfileView: View {
                                 Image("cloud")
                             }
                             VStack{
-                                LevelProgress(levelController: levelController)
+                                LevelProgress()
+                                    .environmentObject(levelController)
                                 
                                 Section{
                                     Picker("Status", selection: $isActive) {
@@ -57,11 +60,10 @@ struct ProfileView: View {
                         }
                     }
                     .padding()
-                    
-                    
                     if isActive {
                         AchievementView()
                             .frame(maxHeight: .infinity)
+                            .environmentObject(data)
                     } else {
                         ThemeView()
                             .frame(maxWidth: .infinity)

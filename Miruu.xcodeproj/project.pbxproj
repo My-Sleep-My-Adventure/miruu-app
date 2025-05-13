@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		0852AEA32DC757BC00016AFF /* MSMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MSMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0852AEA32DC757BC00016AFF /* Miruu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Miruu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,7 +40,7 @@
 		0852AEA42DC757BC00016AFF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0852AEA32DC757BC00016AFF /* MSMA.app */,
+				0852AEA32DC757BC00016AFF /* Miruu.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0852AEA22DC757BC00016AFF /* MSMA */ = {
+		0852AEA22DC757BC00016AFF /* Miruu */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0852AEB12DC757BD00016AFF /* Build configuration list for PBXNativeTarget "MSMA" */;
+			buildConfigurationList = 0852AEB12DC757BD00016AFF /* Build configuration list for PBXNativeTarget "Miruu" */;
 			buildPhases = (
 				0852AE9F2DC757BC00016AFF /* Sources */,
 				0852AEA02DC757BC00016AFF /* Frameworks */,
@@ -63,11 +63,11 @@
 			fileSystemSynchronizedGroups = (
 				0852AEA52DC757BC00016AFF /* MSMA */,
 			);
-			name = MSMA;
+			name = Miruu;
 			packageProductDependencies = (
 			);
 			productName = MSMA;
-			productReference = 0852AEA32DC757BC00016AFF /* MSMA.app */;
+			productReference = 0852AEA32DC757BC00016AFF /* Miruu.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -85,7 +85,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0852AE9E2DC757BC00016AFF /* Build configuration list for PBXProject "MSMA" */;
+			buildConfigurationList = 0852AE9E2DC757BC00016AFF /* Build configuration list for PBXProject "Miruu" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0852AEA22DC757BC00016AFF /* MSMA */,
+				0852AEA22DC757BC00016AFF /* Miruu */,
 			);
 		};
 /* End PBXProject section */
@@ -254,8 +254,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MSMA/Preview Content\"";
+				DEVELOPMENT_TEAM = RR3T853788;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.adventure-games";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "$(Miru) Kami butuh akses foto untuk memilih gambar dari album.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "$(Miru) Kami butuh akses kamera untuk mengambil gambar petualanganmu.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -284,8 +286,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MSMA/Preview Content\"";
+				DEVELOPMENT_TEAM = RR3T853788;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.adventure-games";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "$(Miru) Kami butuh akses foto untuk memilih gambar dari album.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "$(Miru) Kami butuh akses kamera untuk mengambil gambar petualanganmu.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -309,7 +313,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0852AE9E2DC757BC00016AFF /* Build configuration list for PBXProject "MSMA" */ = {
+		0852AE9E2DC757BC00016AFF /* Build configuration list for PBXProject "Miruu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0852AEAF2DC757BD00016AFF /* Debug */,
@@ -318,7 +322,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0852AEB12DC757BD00016AFF /* Build configuration list for PBXNativeTarget "MSMA" */ = {
+		0852AEB12DC757BD00016AFF /* Build configuration list for PBXNativeTarget "Miruu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0852AEB22DC757BD00016AFF /* Debug */,

@@ -21,7 +21,6 @@ struct AchievementDetail: View {
             }
             .ignoresSafeArea(.all)
             
-            
             VStack() {
                 Spacer()
                 Text(data.name)
@@ -36,6 +35,7 @@ struct AchievementDetail: View {
                     
                 }
                 Text(data.description)
+                    .multilineTextAlignment(.center)
                 Spacer()
                 Spacer()
             }

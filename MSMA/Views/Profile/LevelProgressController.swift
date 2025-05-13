@@ -9,6 +9,9 @@ import Foundation
 import SwiftUI
 
 class LevelProgressController: ObservableObject {
+    
+    @Published var currentDragonForm: String
+    
     @Published var currentXP: Int {
         didSet {
             UserDefaults.standard.set(currentXP, forKey: "currentXP")
@@ -18,6 +21,7 @@ class LevelProgressController: ObservableObject {
     @Published var currentLevel: Int {
         didSet {
             UserDefaults.standard.set(currentLevel, forKey: "currentLevel")
+            updateDragonForm()
         }
     }
     
@@ -27,11 +31,17 @@ class LevelProgressController: ObservableObject {
         self.currentXP = UserDefaults.standard.integer(forKey: "currentXP")
         self.currentLevel = UserDefaults.standard.integer(forKey: "currentLevel")
         
+        // Default dragon form
+        self.currentDragonForm = "dragonform2"
+        
         // Default fallback if first time
         if currentLevel == 0 {
             currentXP = 0
             currentLevel = 1
         }
+        
+        // Set dragon form based on current level when initializing
+        updateDragonForm()
     }
     
     func xpNeeded(for level: Int) -> Int {
@@ -55,16 +65,30 @@ class LevelProgressController: ObservableObject {
         let progressInLevel = Double(currentXP - xpForCurrentLevel)
         return min(progressInLevel / Double(xpForNextLevel), 1.0)
     }
-    var currentDragonForm: String {
-        switch currentLevel {
-        case 20...:
-            return "dragonform4"
-        case 10..<20:
-            return "dragonform3"
-        default:
-            return "dragonform2"
+    
+    private func updateDragonForm() {
+        let newForm: String
+        
+        if currentLevel < 10 {
+            newForm = "dragonform2"
+        } else if currentLevel >= 10 && currentLevel < 20 {
+            newForm = "dragonform3"
+        } else if currentLevel >= 20 && currentLevel < 30 {
+            newForm = "dragonform4"
+        } else {
+            newForm = "dragonform2"
+        }
+        
+        // Only update if the form is actually different
+        if newForm != currentDragonForm {
+            DispatchQueue.main.async {
+                self.currentDragonForm = newForm
+                print("Dragon form updated to: \(newForm) at level \(self.currentLevel)")
+            }
         }
     }
+
+    
     func addXP(_ amount: Int) {
         let xpAfter = currentXP + amount
         let xpToNextLevel = totalXPForLevel(currentLevel + 1)
@@ -92,6 +116,7 @@ class LevelProgressController: ObservableObject {
             if self.currentLevel < self.maxLevel {
                 self.currentLevel += 1
             }
+            
             withAnimation {
                 self.currentXP = min(xpAfter, self.totalXPForLevel(self.maxLevel))
                 

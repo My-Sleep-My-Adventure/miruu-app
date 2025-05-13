@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0852AEA22DC757BC00016AFF"
-               BuildableName = "MSMA.app"
-               BlueprintName = "MSMA"
-               ReferencedContainer = "container:MSMA.xcodeproj">
+               BuildableName = "Miruu.app"
+               BlueprintName = "Miruu"
+               ReferencedContainer = "container:Miruu.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0852AEA22DC757BC00016AFF"
-            BuildableName = "MSMA.app"
-            BlueprintName = "MSMA"
-            ReferencedContainer = "container:MSMA.xcodeproj">
+            BuildableName = "Miruu.app"
+            BlueprintName = "Miruu"
+            ReferencedContainer = "container:Miruu.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0852AEA22DC757BC00016AFF"
-            BuildableName = "MSMA.app"
-            BlueprintName = "MSMA"
-            ReferencedContainer = "container:MSMA.xcodeproj">
+            BuildableName = "Miruu.app"
+            BlueprintName = "Miruu"
+            ReferencedContainer = "container:Miruu.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

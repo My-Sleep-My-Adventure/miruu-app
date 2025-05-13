@@ -17,6 +17,8 @@ struct QuestRow: View {
 //        !matchingStories.isEmpty
 //    }
 //
+    @EnvironmentObject var levelController: LevelProgressController
+    
     var isCompleted: Bool {
         completedQuestsIds.contains(challenge.id)
     }
@@ -24,6 +26,7 @@ struct QuestRow: View {
     var body: some View {
         NavigationLink {
             QuestDetailView(challenge: challenge, questId: challenge.id, isCompleted: isCompleted)
+                .environmentObject(levelController)
         } label: {
             HStack {
                 ZStack {

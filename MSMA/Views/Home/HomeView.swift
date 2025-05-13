@@ -17,7 +17,9 @@ struct HomeView: View {
     @StateObject var questController = QuestController()
     
     // Injek StateObject di main root karena Quest Nested dan Level Progress beda path asu
-    @StateObject var levelController = LevelProgressController()
+    @EnvironmentObject var levelController: LevelProgressController
+    
+    @EnvironmentObject var data: Data
     
     var body: some View {
         TabView(selection: $navModel.currentTab) {
@@ -25,10 +27,10 @@ struct HomeView: View {
                 if let themePicked = questController.themePicked, themePicked {
                     QuestView(
                         themePicked: $questController.themePicked,
-                        pickedThemeId: $questController.pickedThemeId,
-                        levelController: levelController
+                        pickedThemeId: $questController.pickedThemeId
                     )
                     .environmentObject(questController)
+                    .environmentObject(levelController)
                     .onAppear {
                         questController.checkAndResetThemeIfNeeded()
                     }
@@ -36,11 +38,12 @@ struct HomeView: View {
                     ShuffleThemeView(
                         pickedThemeId: $questController.pickedThemeId,
                         themePicked: $questController.themePicked,
-                        questController: questController,
-                        levelController: levelController
+                        questController: questController
                     )
+                    .environmentObject(levelController)
                 }
             }
+            
             .tabItem {
                 Label("Home", systemImage: "house")
             }
@@ -53,6 +56,7 @@ struct HomeView: View {
                 }
                 .tag(Tab.profile)
                 .environmentObject(levelController)
+                .environmentObject(data)
         }
         .tint(Color.accent)
         // Add an app-wide timer check to ensure theme resets even when in other tabs
@@ -67,4 +71,5 @@ struct HomeView: View {
     HomeView()
         .environmentObject(NavigationModel())
         .environmentObject(Data())
+        .environmentObject(LevelProgressController())
 }

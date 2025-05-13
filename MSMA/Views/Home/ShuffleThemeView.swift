@@ -14,7 +14,7 @@ struct ShuffleThemeView: View {
     @Binding var themePicked: Bool?
     
     @ObservedObject var questController: QuestController
-    @ObservedObject var levelController: LevelProgressController
+    @EnvironmentObject var levelController: LevelProgressController
     
     @State private var shuffleCount: Int = 3
     @State private var data = Data()

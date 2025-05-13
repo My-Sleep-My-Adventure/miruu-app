@@ -13,7 +13,6 @@ struct QuestView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var themePicked: Bool?
     @Binding var pickedThemeId: Int?
-    @ObservedObject var levelController: LevelProgressController
     @State private var showCompletionPopup = false
     @State private var animatePopup = false
     
@@ -23,6 +22,9 @@ struct QuestView: View {
         guard let id = pickedThemeId else { return nil }
         return data.listDataTheme.first { $0.id == id }
     }
+    
+    // Env object container for levelController passing
+    @EnvironmentObject var levelController: LevelProgressController
     
     //    @State var data = Data()
     @EnvironmentObject var data : Data
@@ -46,7 +48,7 @@ struct QuestView: View {
     
     // Condition checking to disabled the "Selesaikan Tema" button
     var isCompletedQuestEmpty: Bool {
-        completedQuestIds.isEmpty
+        completedQuestIds.count < 5
     }
 
     var body: some View {
@@ -58,13 +60,13 @@ struct QuestView: View {
                         VStack {
                             ZStack {
                                 Image("cloud")
-                                Button{
-                                    questController.resetTheme()
-                                    navModel.path = NavigationPath()
-                                    navModel.path.append(Route.home)
-                                } label: {
-                                    Text("reset")
-                                }
+//                                Button{
+//                                    questController.resetTheme()
+//                                    navModel.path = NavigationPath()
+//                                    navModel.path.append(Route.home)
+//                                } label: {
+//                                    Text("reset")
+//                                }
                                 VStack {
                                     HStack{
                                         VStack(alignment: .leading){
@@ -81,7 +83,7 @@ struct QuestView: View {
                                         
                                         Spacer()
                                         
-                                        DisplayGif(gifName: levelController.currentDragonForm, size: 160)
+                                        DisplayGif(gifName: levelController.currentDragonForm, size: 200)
                                             .frame(maxWidth: 160, maxHeight: 160)
                                     }
                                     .padding()
@@ -95,6 +97,7 @@ struct QuestView: View {
                                         index: index,
                                         completedQuestsIds: completedQuestIds
                                     )
+                                    .environmentObject(levelController)
                                 }
                             }
                             .padding(.horizontal)

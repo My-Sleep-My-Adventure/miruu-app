@@ -37,7 +37,7 @@ class Data : ObservableObject{
                 category: .objek,
                 description: "Tantangan-tantangan kecil tentang kesadaran lingkungan, aksi bersih, dan kreativitas dengan limbah.",
                 xp: 100,
-                status: .complete,
+                status: .locked,
                 image: "sampah",
                 challenges: [
                     Challenge(
@@ -99,7 +99,7 @@ class Data : ObservableObject{
                 category: .objek,
                 description: "Eksplorasi musik dari benda sehari-hari, aksi dadakan, dan kreativitas tanpa batas.",
                 xp: 100,
-                status: .complete,
+                status: .locked,
                 image: "alatmusik",
                 challenges: [
                     Challenge(
@@ -155,7 +155,7 @@ class Data : ObservableObject{
                 category: .objek,
                 description: "Tantangan seputar kreativitas visual, ekspresi diri, dan cara melihat dunia dari lensa berbeda.",
                 xp: 100,
-                status: .incomplete,
+                status: .locked,
                 image: "kamera",
                 challenges: [
                     Challenge(
@@ -270,7 +270,7 @@ class Data : ObservableObject{
                 category: .objek,
                 description: "Gunakan HP-mu bukan hanya untuk scroll, tapi sebagai alat eksplorasi komunikasi, kreativitas, dan kontrol diri.",
                 xp: 100,
-                status: .complete,
+                status: .locked,
                 image: "hp",
                 challenges: [
                     Challenge(
@@ -326,7 +326,7 @@ class Data : ObservableObject{
                 category: .tempat,
                 description: "Nikmati suasana warkop sambil menyelami berbagai tantangan sosial, hemat, dan kreatif yang menyenangkan.",
                 xp: 100,
-                status: .complete,
+                status: .locked,
                 image: "warkop",
                 challenges: [
                     Challenge(
@@ -438,7 +438,7 @@ class Data : ObservableObject{
                 category: .tempat,
                 description: "Jelajahi mall dengan berbagai tantangan yang menguji komunikasi, kreativitas, dan keterampilan manajemen waktu.",
                 xp: 100,
-                status: .complete,
+                status: .locked,
                 image: "mall",
                 challenges: [
                     Challenge(

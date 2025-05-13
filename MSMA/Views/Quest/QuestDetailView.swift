@@ -17,7 +17,7 @@ struct QuestDetailView: View {
     @StateObject var keyLearningViewModel = KeyLearningModel()
     
     //State binding for levelController
-    @StateObject var levelController = LevelProgressController()
+    @EnvironmentObject var levelController: LevelProgressController
     
     // Challenge/Quest object
     var challenge: Challenge
@@ -38,7 +38,6 @@ struct QuestDetailView: View {
                                        startPoint: .top,
                                        endPoint: .bottom
                         )
-
                         // Grass at bottom
                         Image("grass")
                             .resizable()
@@ -153,6 +152,7 @@ struct QuestDetailView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar(.hidden, for: .tabBar)
         }
     }
 }

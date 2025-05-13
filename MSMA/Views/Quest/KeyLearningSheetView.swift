@@ -170,7 +170,6 @@ struct EditableRectangularImageDocumentation: View {
                     .cornerRadius(20)
                     .alert("Berhasil menyimpan gambar", isPresented: $showSuccessAlert) {
                         Button("Oke") {
-                            
                             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                                 navigateToProfile = true
                             }
@@ -199,7 +198,7 @@ struct EditableRectangularImageDocumentation: View {
             modelContext.insert(newStory)
             
             // Give XP to user after saving story
-            levelController.addXP(100)
+            levelController.addXP(50000)
         } catch {
             print("Gagal menyimpan gambar \(error.localizedDescription)")
         }

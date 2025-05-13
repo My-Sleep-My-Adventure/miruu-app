@@ -13,6 +13,7 @@ import TipKit
 struct MSMAApp: App {
     @StateObject private var navModel = NavigationModel()
     @StateObject private var data = Data()
+    @StateObject private var levelController = LevelProgressController()
     
     init() {
         let appearance = UIToolbarAppearance()
@@ -30,6 +31,8 @@ struct MSMAApp: App {
             HomeView()
                 .environmentObject(navModel)
                 .environmentObject(data)
+                .environmentObject(levelController)
+                .preferredColorScheme(.light)
         }
         .modelContainer(for: [Story.self])
     }

@@ -24,6 +24,9 @@ struct ThemeStoryView: View {
     @EnvironmentObject var data: Data
     var onCompletion: () -> Void = {}
     
+    // Env for database
+    @Environment(\.modelContext) private var modelContext
+    
     // Env for dismiss
     @Environment(\.dismiss) private var dismiss
     
@@ -71,9 +74,8 @@ struct ThemeStoryView: View {
                 .autocorrectionDisabled(true)
             
             Button {
-//                onCompletion()
-                showSuccessAlert = true
                 data.listDataAchievement[0].status = true
+                showSuccessAlert = true
             } label: {
                 Text("Simpan Jejakmu!")
                     .foregroundColor(Color("milk"))
@@ -86,13 +88,11 @@ struct ThemeStoryView: View {
             .padding(.top, 20)
             .alert("Berhasil menyimpan gambar", isPresented: $showSuccessAlert) {
                 Button("Oke") {
-                    
                     showAnimationCard = true
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         showAnimationCard = false
                         navigateToProfile = true
                     }
-                 
                     dismiss()
                     onCompletion()
                 }
