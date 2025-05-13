@@ -151,7 +151,6 @@ class Data : ObservableObject{
             ),
             ThemeData(
                 id: 3,
-<<<<<<< HEAD
                 name: "Kamera",
                 category: .objek,
                 description: "Tantangan seputar kreativitas visual, ekspresi diri, dan cara melihat dunia dari lensa berbeda.",
@@ -211,64 +210,6 @@ class Data : ObservableObject{
             ),
             ThemeData(
                 id: 4,
-=======
->>>>>>> 6f7acaa (fix: theme story view)
-                name: "Foto",
-                category: .objek,
-                description: "Eksplorasi cerita dan kreativitas melalui foto-foto lama dan baru yang ada di perangkatmu.",
-                xp: 100,
-                status: .locked,
-                image: "foto",
-                challenges: [
-                    Challenge(
-                        id: 1,
-                        category: "Communication",
-                        name: "Caption Seru",
-                        image: "caption_seru",
-                        xp: 100,
-                        description: "Kirim 1 foto lama ke grup keluarga dan minta semua kasih caption lucu. Atau tunjukkan foto lawas ke teman dan minta mereka tulis caption fiksi tentang momen itu.",
-                        caution: "Pastikan foto yang dibagikan tidak sensitif atau membuat tidak nyaman orang lain."
-                    ),
-                    Challenge(
-                        id: 2,
-                        category: "Problem Solving",
-                        name: "Tebak Potongan",
-                        image: "tebak_potongan",
-                        xp: 100,
-                        description: "Crop bagian aneh dari satu foto dan tantang teman untuk menebak itu apa.",
-                        caution: "Gunakan foto pribadi atau bebas hak cipta agar tidak melanggar privasi."
-                    ),
-                    Challenge(
-                        id: 3,
-                        category: "Confidence",
-                        name: "Wallpaper Berani",
-                        image: "wallpaper_berani",
-                        xp: 100,
-                        description: "Jadikan foto awkward kamu sebagai wallpaper HP untuk sehari. Atau post foto random di IG Story.",
-                        caution: "Pastikan nyaman secara pribadi, dan hindari mem-posting foto yang bisa disalahartikan."
-                    ),
-                    Challenge(
-                        id: 4,
-                        category: "Time Management",
-                        name: "Bersih Galeri",
-                        image: "bersih_galeri",
-                        xp: 100,
-                        description: "Bersih-bersih galeri HP selama 7 menit dan buang foto blur atau duplikat.",
-                        caution: "Pastikan kamu tidak menghapus foto penting tanpa backup terlebih dahulu."
-                    ),
-                    Challenge(
-                        id: 5,
-                        category: "Creativity",
-                        name: "Cover Majalah",
-                        image: "cover_majalah",
-                        xp: 100,
-                        description: "Edit satu foto jadi cover majalah palsu (contoh: People’s Blurry Photo of the Year), atau buat iklan palsu dari 3 foto acak (misal: 'Minuman rahasia pelupa masa lalu!').",
-                        caution: "Gunakan kreativitasmu tanpa menyertakan wajah orang lain tanpa izin."
-                    )
-                ]
-            ),
-            ThemeData(
-                id: 4,
                 name: "Warung Makan",
                 category: .tempat,
                 description: "Nikmati suasana warung makan sambil menyelami berbagai tantangan sosial, hemat, dan kreatif yang menyenangkan.",
@@ -310,7 +251,7 @@ class Data : ObservableObject{
                         name: "Warung Ekspres",
                         image: "warung_ekspres",
                         xp: 100,
-                        description: "Tantang diri untuk ngobrol, pesan, makan, dan keluar warkop dalam 25 menit.",
+                        description: "Tantang diri untuk ngobrol, pesan, makan, dan keluar warung makan dalam 25 menit.",
                         caution: "Pastikan kamu tidak terburu-buru sehingga mengganggu kenyamanan pelanggan lain atau pelayanan."
 
                     ),
@@ -388,11 +329,7 @@ class Data : ObservableObject{
                 description: "Tantangan seputar kreativitas visual, ekspresi diri, dan cara melihat dunia dari lensa berbeda.",
                 xp: 100,
                 status: .locked,
-<<<<<<< HEAD
-                image: "warkop",
-=======
                 image: "kamera",
->>>>>>> 6f7acaa (fix: theme story view)
                 challenges: [
                     Challenge(
                         id: 1,
