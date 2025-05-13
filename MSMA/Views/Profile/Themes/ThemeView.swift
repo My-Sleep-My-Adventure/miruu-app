@@ -45,7 +45,7 @@ struct ThemeView: View {
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 86, height: 106)
-                                        .padding(.vertical, 8)
+  
                                 }
                                 
                                 Text(data.listDataTheme[index].name)
@@ -57,7 +57,6 @@ struct ThemeView: View {
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 86, height: 106)
-                                        .padding(.vertical, 8)
                                 }
                                 
                                 Text(data.listDataTheme[index].name)
@@ -68,18 +67,18 @@ struct ThemeView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 86, height: 106)
-                                    .padding(.vertical, 8)
                                 Text("           ")
                             }
                         }
+                        .padding(.bottom, 8)
                     }
                 }
                 .padding()
             }
         }
+        .frame(maxWidth: .infinity,maxHeight: .infinity)
         .background(Color("FEFCFA").opacity(0.7))
         .clipShape(RoundedRectangle(cornerRadius: 20))
-        .padding(.top, 8)
         .padding(.horizontal)
     }
 }

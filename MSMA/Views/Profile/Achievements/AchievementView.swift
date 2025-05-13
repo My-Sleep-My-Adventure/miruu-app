@@ -12,7 +12,7 @@ struct AchievementView: View {
     //    var limit = data.listData.count
     
     var body: some View {
-        VStack{
+        VStack(){
             HStack(){
                 Text("Daftar Pencapaian")
                     .font(.system( size: 16, weight: .bold, design: .rounded))
@@ -27,7 +27,7 @@ struct AchievementView: View {
             
             
             
-            VStack {
+            VStack() {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 5) {
                     ForEach(0..<data.listDataAchievement.count) { index in
                         VStack {
@@ -39,7 +39,7 @@ struct AchievementView: View {
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
                                             .frame(width: 85, height: 85)
-                                            .frame(width: 70, height: 90)
+ 
                                         //                                            .clipShape(Circle())
                                         
                                         Text(data.listDataAchievement[index].name)
@@ -48,7 +48,7 @@ struct AchievementView: View {
                                             .foregroundColor(.black)
                                         
                                     }
-                                    .padding(.vertical, 8)
+                                    .padding(.bottom, 8)
                                 }
                                 
                             } else {
@@ -58,8 +58,7 @@ struct AchievementView: View {
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
                                         .frame(width: 85, height: 85)
-                                        .frame(width: 70, height: 90)
-                                    //                                            .clipShape(Circle())
+              
                                     
                                     Text("Locked")
                                         .font(.caption)
@@ -67,15 +66,18 @@ struct AchievementView: View {
                                         .foregroundColor(.black)
                                     
                                 }
-                                .padding(.vertical, 8)
+                                .padding(.bottom, 8)
                             }
                         }
+                        .padding(.bottom, 8)
                         
                     }
                 }
             }
+            
             .padding()
         }
+        .frame(alignment: .top)
         .background(Color("FEFCFA").opacity(0.7))       .clipShape(RoundedRectangle(cornerRadius: 20))
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .padding(.horizontal)
