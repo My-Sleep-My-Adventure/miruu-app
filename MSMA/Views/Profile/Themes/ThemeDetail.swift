@@ -11,6 +11,7 @@ import SwiftData
 
 struct ThemeDetail: View {
     @Environment(\.presentationMode) var presentationMode
+    
     @Query var allStories: [Story]
     
     let data: ThemeData
@@ -32,96 +33,99 @@ struct ThemeDetail: View {
         }
     }
     
+    var date: String = "13 Mei 2025"
+    
     var body: some View {
-        VStack(spacing: 0) {
-            Image("roller")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 40)
-            
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 20) {
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 20) {
+                VStack(spacing: 8) {
+                    Text("Jurnal Petualangan")
+                        .font(.title2)
+                        .bold()
+
                     Text(data.name)
                         .font(.title2)
                         .bold()
                     
+                    Image("smileactive")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                    
+                    Text("Kamu berhasil nyelesaiin tema ini pada tanggal \(date)")
+                        .font(.body)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                }
+                .padding()
+
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Cerita Dalam Setiap Misi")
+                        .font(.headline)
+                        .padding(.bottom, 5)
+
                     if !allStories.isEmpty {
-                        // Group stories by questId
                         ForEach(1...5, id: \.self) { currentQuestId in
                             if let story = allStories.first(where: { $0.questId == currentQuestId }) {
-                                VStack(spacing: 12) {
-                                    // Display quest number/name
-                                    Text("Quest \(currentQuestId)")
-                                        .font(.headline)
-                                        .padding(.bottom, 4)
-                                    
+                                HStack(alignment: .top, spacing: 12) {
                                     if !story.imagePath.isEmpty {
-                                        // Load image from file path
                                         loadImage(from: story.imagePath)
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
-                                            .frame(width: 200, height: 200)
-                                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                                            .shadow(radius: 3)
+                                            .frame(width: 120, height: 170)
+                                            .clipped()
+                                            .cornerRadius(12)
                                     }
-                                    
+
                                     Text(story.storyText)
                                         .font(.body)
-                                        .multilineTextAlignment(.center)
-                                        .frame(width: 200)
-                                    
-                                    Divider()
-                                        .padding(.vertical, 5)
+                                        .multilineTextAlignment(.leading)
+                                        .fixedSize(horizontal: false, vertical: true)
                                 }
+                                .padding()
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .background(Color.white)
+                                .cornerRadius(16)
+                                .shadow(radius: 2)
                             } else {
-                                // Quest exists but no story for it yet
-                                VStack {
-                                    Text("Quest \(currentQuestId)")
-                                        .font(.headline)
-                                    
-                                    Text("Belum ada cerita untuk quest ini")
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                        .italic()
-                                    
-                                    Divider()
-                                        .padding(.vertical, 5)
-                                }
+                                Text("Belum ada cerita untuk quest ini")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                                    .italic()
+                                    .padding()
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .background(Color.white.opacity(0.7))
+                                    .cornerRadius(10)
                             }
                         }
                     } else {
-                        VStack {
-                            Text("Belum ada cerita ...")
-                                .font(.title3)
-                                .bold()
-                                .padding()
-                        }
+                        Text("Belum ada cerita ...")
+                            .font(.title3)
+                            .bold()
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .shadow(radius: 3)
                     }
                 }
-                .padding()
             }
             .padding()
-            .frame(width: 280)
-            .frame(maxHeight: 400)
-            .background(.scrollyellow)
-            .overlay(Rectangle().stroke(.scrollbrown, lineWidth: 4))
-            
-            // Bottom Roller
-            Image("roller")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 40)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.horizontal, 40)
-        .background(LinearGradient(gradient: Gradient(colors: [Color("7FC2CA"), Color("FFFFFF")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all))
-        
+        .background(
+            LinearGradient(
+                gradient: Gradient(colors: [Color("7FC2CA"), .white]),
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .edgesIgnoringSafeArea(.all)
+        )
         .navigationBarBackButtonHidden(true)
         .navigationTitle("Cerita Petualangan")
         .foregroundStyle(.black)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {presentationMode.wrappedValue.dismiss()}) {
+                Button(action: { presentationMode.wrappedValue.dismiss() }) {
                     Image(systemName: "chevron.left")
                         .foregroundStyle(.black)
                 }
@@ -139,6 +143,6 @@ struct ThemeDetail: View {
 
 
 
-//#Preview {
-//    ThemeDetail(data : ThemeData(id: 1, name: "theme", category: .objek, description: "some description", xp: 0, status:.complete, image:"", challenges: []))
-//}
+#Preview {
+    ThemeDetail(data : ThemeData(id: 1, name: "theme", category: .objek, description: "some description", xp: 0, status:.complete, image:"", challenges: []))
+}

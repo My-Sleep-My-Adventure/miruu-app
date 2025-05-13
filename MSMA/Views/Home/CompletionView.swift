@@ -36,13 +36,16 @@ struct CompletionView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 200, height: 200)
-                    Text(theme.name)
+//                    Text(theme.name)
                     
-                    Text("Theme Completed!")
-                        .font(.title2)
-                        .bold()
+                    Text("Kamu Berhasil Menyelesaikan Tema!!!")
+                        .font(.system(size: 20, design: .rounded))
+                        .font(.caption)
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(Color("E0610B"))
                         .padding(.top)
-                        .foregroundColor(.white)
+                        .shadow(color: .white.opacity(0.9), radius: 4)
+                        .shadow(color: .white.opacity(0.9), radius: 4)
                 } else {
                     Text("No Theme Selected")
                 }
@@ -63,7 +66,8 @@ struct CompletionView: View {
 //                    .foregroundColor(.white)
             }
             .padding()
-            .background(Color("7FC2CA"))
+            .background(Color("FEFCFA").opacity(0.8))
+//            .background(Color("FEFCFA"))
             .cornerRadius(20)
             .shadow(radius: 10)
             .padding(40)

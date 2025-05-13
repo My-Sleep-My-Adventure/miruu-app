@@ -27,6 +27,20 @@ struct AchievePopUpView: View {
                 }
             
             VStack(spacing: 20) {
+                VStack{
+                    Text("Pencapaian Pertamamu!!")
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(Color("E0610B"))
+                        .shadow(color: .gray.opacity(0.3), radius: 4)
+      
+                }
+                .padding()
+                .background(Color("FEFCFA").opacity(0.8))
+                .cornerRadius(20)
+                
+                
+                
                 Image("achiev1")
                     .resizable()
                     .scaledToFit()

@@ -80,31 +80,36 @@ struct ShuffleThemeView: View {
                         }
                         .frame(maxWidth: .infinity)
                         .multilineTextAlignment(.center)
+                        .padding(.bottom, 20)
                         Spacer()
                     }
                     .padding(.horizontal, 50)
                     
                     // Buttons section
                     HStack(spacing: 20) {
-                        Button {
-                            if shuffleCount > 0 {
-                                generated = data.generateData()
-                                pickedThemeId = generated?.id
-                                cardRotation = -90
-                                cardID = UUID()
-                                showPopup = true
-                                shuffleCount -= 1
+                        if shuffleCount > 0 {
+                            Button {
+                                if shuffleCount > 0 {
+                                    generated = data.generateData()
+                                    pickedThemeId = generated?.id
+                                    cardRotation = -90
+                                    cardID = UUID()
+                                    showPopup = true
+                                    shuffleCount -= 1
+                                }
+                            } label: {
+                                Text("Dapatkan Tema")
+                                    .foregroundStyle(Color("milk"))
+                                    .padding(.vertical, 60)
+                                    .frame(maxWidth: 323, maxHeight: 60)
+                                    .background(shuffleCount > 3 ? Color.gray.opacity(0.8) : Color("E0610B"))
+                                    .fontWeight(.bold)
                             }
-                        } label: {
-                            Image(systemName: "shuffle")
-                                .foregroundStyle(Color("AccentColor"))
-                                .frame(maxWidth: 200, maxHeight: 55)
-                                .background(Color("milk"))
-                                .font(.system(size: 24, weight: .bold))
+                            .cornerRadius(20)
+                            .shadow(radius: 4, y: 4)
+                            .popoverTip(shuffleTip)
+//                            .disabled(shuffleCount > 3)
                         }
-                        .cornerRadius(5)
-                        .shadow(radius: 4, x: 0, y: 4)
-                        .popoverTip(shuffleTip)
                     }
                     .padding(.bottom, 60)
                 }

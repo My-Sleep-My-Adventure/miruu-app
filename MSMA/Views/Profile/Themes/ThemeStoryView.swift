@@ -76,6 +76,8 @@ struct ThemeStoryView: View {
             Button {
                 data.listDataAchievement[0].status = true
                 showSuccessAlert = true
+                dismiss()
+                onCompletion()
             } label: {
                 Text("Simpan Jejakmu!")
                     .foregroundColor(Color("milk"))
@@ -86,17 +88,17 @@ struct ThemeStoryView: View {
             }
             .cornerRadius(20)
             .padding(.top, 20)
-            .alert("Berhasil menyimpan gambar", isPresented: $showSuccessAlert) {
-                Button("Oke") {
-                    showAnimationCard = true
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                        showAnimationCard = false
-                        navigateToProfile = true
-                    }
-                    dismiss()
-                    onCompletion()
-                }
-            }
+//            .alert("Berhasil menyimpan gambar", isPresented: $showSuccessAlert) {
+//                Button("Oke") {
+//                    showAnimationCard = true
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+//                        showAnimationCard = false
+//                        navigateToProfile = true
+//                    }
+//                    dismiss()
+//                    onCompletion()
+//                }
+//            }
             .padding(.top, 10)
         }
     }

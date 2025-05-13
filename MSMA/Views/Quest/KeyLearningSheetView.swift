@@ -198,7 +198,7 @@ struct EditableRectangularImageDocumentation: View {
             modelContext.insert(newStory)
             
             // Give XP to user after saving story
-            levelController.addXP(50000)
+            levelController.addXP(100)
         } catch {
             print("Gagal menyimpan gambar \(error.localizedDescription)")
         }
