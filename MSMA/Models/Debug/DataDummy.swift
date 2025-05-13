@@ -151,6 +151,7 @@ class Data : ObservableObject{
             ),
             ThemeData(
                 id: 3,
+<<<<<<< HEAD
                 name: "Kamera",
                 category: .objek,
                 description: "Tantangan seputar kreativitas visual, ekspresi diri, dan cara melihat dunia dari lensa berbeda.",
@@ -210,6 +211,8 @@ class Data : ObservableObject{
             ),
             ThemeData(
                 id: 4,
+=======
+>>>>>>> 6f7acaa (fix: theme story view)
                 name: "Foto",
                 category: .objek,
                 description: "Eksplorasi cerita dan kreativitas melalui foto-foto lama dan baru yang ada di perangkatmu.",
@@ -261,6 +264,64 @@ class Data : ObservableObject{
                         xp: 100,
                         description: "Edit satu foto jadi cover majalah palsu (contoh: People’s Blurry Photo of the Year), atau buat iklan palsu dari 3 foto acak (misal: 'Minuman rahasia pelupa masa lalu!').",
                         caution: "Gunakan kreativitasmu tanpa menyertakan wajah orang lain tanpa izin."
+                    )
+                ]
+            ),
+            ThemeData(
+                id: 4,
+                name: "Warung Makan",
+                category: .tempat,
+                description: "Nikmati suasana warung makan sambil menyelami berbagai tantangan sosial, hemat, dan kreatif yang menyenangkan.",
+                xp: 100,
+                status: .locked,
+                image: "warkop",
+                challenges: [
+                    Challenge(
+                        id: 1,
+                        category: "Communication",
+                        name: "Pelayan Dadakan",
+                        image: "pelayan_dadakan",
+                        xp: 100,
+                        description: "Minta izin ke pemilik warung makan untuk menjadi pelayan dadakan dan mengantar makanan ke orang lain.",
+                        caution: "Pastikan kamu sudah meminta izin ke warung dan mengantar makanan dengan hati-hati."
+                    ),
+                    Challenge(
+                        id: 2,
+                        category: "Problem Solving",
+                        name: "Budget Warung",
+                        image: "budget_warung",
+                        xp: 100,
+                        description: "Temukan cara paling murah menikmati warung makan favoritmu dengan uang pas Rp7.000.",
+                        caution: "Pastikan uang yang kamu bawa cukup, dan jangan merasa tertekan untuk membeli lebih dari yang direncanakan."
+
+                    ),
+                    Challenge(
+                        id: 3,
+                        category: "Confidence",
+                        name: "Koki Tamu Spesial",
+                        image: "koki_tamu_spesial",
+                        xp: 100,
+                        description: "Menjadi koki tamu dan buat satu hidangan dari menu yang ada langsung di sebuah warung makan.",
+                        caution: "Pastikan kamu sudah izin ke pemilik warung dan sudah disetujui."
+                    ),
+                    Challenge(
+                        id: 4,
+                        category: "Time Management",
+                        name: "Warung Ekspres",
+                        image: "warung_ekspres",
+                        xp: 100,
+                        description: "Tantang diri untuk ngobrol, pesan, makan, dan keluar warkop dalam 25 menit.",
+                        caution: "Pastikan kamu tidak terburu-buru sehingga mengganggu kenyamanan pelanggan lain atau pelayanan."
+
+                    ),
+                    Challenge(
+                        id: 5,
+                        category: "Creativity",
+                        name: "Emoji Pengujung",
+                        image: "emoji_pengunjung",
+                        xp: 100,
+                        description: "Gambar ekspresi pengunjung di warung dalam bentuk emoji di tisu.",
+                        caution: "Pastikan kamu tidak mengganggu orang lain saat menggambar, dan jaga privasi orang yang digambar."
                     )
                 ]
             ),
@@ -322,57 +383,64 @@ class Data : ObservableObject{
             ),
             ThemeData(
                 id: 6,
-                name: "Warkop",
-                category: .tempat,
-                description: "Nikmati suasana warkop sambil menyelami berbagai tantangan sosial, hemat, dan kreatif yang menyenangkan.",
+                name: "Kamera",
+                category: .objek,
+                description: "Tantangan seputar kreativitas visual, ekspresi diri, dan cara melihat dunia dari lensa berbeda.",
                 xp: 100,
                 status: .locked,
+<<<<<<< HEAD
                 image: "warkop",
+=======
+                image: "kamera",
+>>>>>>> 6f7acaa (fix: theme story view)
                 challenges: [
                     Challenge(
                         id: 1,
                         category: "Communication",
-                        name: "Saran Random",
-                        image: "saran_random",
+                        name: "Teka-Teki Visual",
+                        image: "teka_teki_visual",
                         xp: 100,
-                        description: "Minta rekomendasi menu dari pengunjung random.",
-                        caution: "Hati-hati dengan orang yang terlalu sibuk atau tidak nyaman dengan percakapan tak terduga."
+                        description: "Kirim satu foto 'aneh' ke 3 teman dan suruh mereka tebak ceritanya.",
+                        caution: "Pastikan fotonya tidak menyinggung atau membingungkan secara negatif.",
+                        completed: true
                     ),
                     Challenge(
                         id: 2,
                         category: "Problem Solving",
-                        name: "Budget Warkop",
-                        image: "budget_warkop",
+                        name: "Sulap Jepretan",
+                        image: "sulap_jepretan",
                         xp: 100,
-                        description: "Temukan cara paling murah menikmati warkop favoritmu dengan uang pas Rp7.000.",
-                        caution: "Pastikan uang yang kamu bawa cukup, dan jangan merasa tertekan untuk membeli lebih dari yang direncanakan."
+                        description: "Ambil foto objek random yang keliatannya jelek dan buat jadi 'aesthetic' lewat editan.",
+                        caution: "Jangan ambil foto orang tanpa izin, terutama jika ingin mengedit atau membagikannya.",
+                        completed: true
                     ),
                     Challenge(
                         id: 3,
                         category: "Confidence",
-                        name: "Barista Dadakan",
-                        image: "barista_dadakan",
+                        name: "Model Dadakan",
+                        image: "model_dadakan",
                         xp: 100,
-                        description: "Minta ijin menyeduh kopi sendiri di balik meja warkop.",
-                        caution: "Jaga sopan santun saat meminta izin, dan pastikan tidak mengganggu proses kerja barista yang ada."
+                        description: "Pose ala model iklan sabun di depan kaca dan fotoin.",
+                        caution: "Pastikan ruangan aman dan pencahayaan cukup agar tidak membahayakan saat pose.",
+                        completed: true
                     ),
                     Challenge(
                         id: 4,
                         category: "Time Management",
-                        name: "Warkop Ekspres",
-                        image: "warkop_ekspres",
+                        name: "Jepretan Kilat",
+                        image: "jepretan_kilat",
                         xp: 100,
-                        description: "Tantang diri untuk ngobrol, pesan, makan, dan keluar warkop dalam 25 menit.",
-                        caution: "Pastikan kamu tidak terburu-buru sehingga mengganggu kenyamanan pelanggan lain atau pelayanan."
+                        description: "Ambil 3 foto bagus dalam waktu 3 menit di satu ruangan, atau 5 foto dalam 5 menit dengan tema warna dominan hari ini.",
+                        caution: "Perhatikan batas waktu dan jangan terlalu perfeksionis — fokus pada spontanitas."
                     ),
                     Challenge(
                         id: 5,
                         category: "Creativity",
-                        name: "Emoji Pengujung",
-                        image: "emoji_pengunjung",
+                        name: "Poster Misteri",
+                        image: "poster_misteri",
                         xp: 100,
-                        description: "Gambar ekspresi pengunjung di warkop dalam bentuk emoji di tisu.",
-                        caution: "Pastikan kamu tidak mengganggu orang lain saat menggambar, dan jaga privasi orang yang digambar."
+                        description: "Edit satu foto jadi seperti poster film misteri. Atau buat 'cerita 3 foto' — ambil 3 foto acak dan bikin narasi absurd.",
+                        caution: "Gunakan aplikasi edit dengan bijak dan hindari konten yang bisa disalahartikan."
                     )
                 ]
             ),
