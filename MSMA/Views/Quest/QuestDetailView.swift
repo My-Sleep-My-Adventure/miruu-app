@@ -111,7 +111,6 @@ struct QuestDetailView: View {
                         Spacer()
                     }
                     
-                    // MARK: Fix this button size
                     // Button fixed above grass
                     if !isCompleted {
                         Button(action: {

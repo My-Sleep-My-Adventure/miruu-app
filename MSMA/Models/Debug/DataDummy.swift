@@ -19,7 +19,7 @@ class Data : ObservableObject{
     
     init() {
         listDataAchievement = [
-            AchievementData(id: 1, name: "Perintis", description: "Kamu telah menyelesaikan tantangan pertama! Setiap pohon dimulai dari kecambah!", image: "achiev1", status: false),
+            AchievementData(id: 1, name: "Perintis", description: "Kamu telah menyelesaikan tema pertama! Setiap pohon dimulai dari kecambah!", image: "achiev1", status: false),
             AchievementData(id: 2, name: "Silat Lidah", description: "Kamu memulai 10 obrolan dengan penuh percaya diri. Hening? Gak kenal tuh!", image: "achiev2", status: false),
             AchievementData(id: 3, name: "Petir Kilat", description: "Kamu menyelesaikan 7 tantangan berturut-turut tanpa salah langkah. Keren!", image: "achiev3", status: false),
             AchievementData(id: 4, name: "Seniman", description: "Kamu telah membuat 10 karya unik! Tanganmu bukan cuma ajaib, tapi bisa sulap ide jadi nyata", image: "achiev4", status: false),
@@ -43,7 +43,7 @@ class Data : ObservableObject{
                     Challenge(
                         id: 1,
                         category: "Communication",
-                        name: "Tanya Favorit",
+                        name: "Menu Favorit",
                         image: "tanya_favorit_kantin",
                         xp: 100,
                         description: "Tanya ke 3 orang di kantin makanan favorit mereka dan kenapa mereka suka itu.",
@@ -61,16 +61,16 @@ class Data : ObservableObject{
                     Challenge(
                         id: 3,
                         category: "Confidence",
-                        name: "Promo Sendiri",
+                        name: "Langganan Kantin",
                         image: "promo_sendiri",
                         xp: 100,
-                        description: "Minta nomor abang/kakak penjual di kantin dan tanyakan apakah bisa mesen sebelum jam kantin buka.",
+                        description: "Minta nomor abang/kakak penjual di kantin dan tanyakan apakah bisa pesan makan sebelum jam kantin buka.",
                         caution: "Pastikan kamu meminta dengan sopan dan menjelaskan intensimu dengan baik."
                     ),
                     Challenge(
                         id: 4,
                         category: "Time Management",
-                        name: "Speedy Lunch",
+                        name: "Makan Cepat",
                         image: "speedy_lunch",
                         xp: 100,
                         description: "Makan siang lengkap dalam waktu 20 menit termasuk antre, makan, dan beberes.",
@@ -79,7 +79,7 @@ class Data : ObservableObject{
                     Challenge(
                         id: 5,
                         category: "Creativity",
-                        name: "Food Review",
+                        name: "Food Vlogger Cosplay",
                         image: "food_review",
                         xp: 100,
                         description: "Review atau ceritain makanan kantin yang pernah kamu makan ala food vlogger",
@@ -126,7 +126,7 @@ class Data : ObservableObject{
                     Challenge(
                         id: 4,
                         category: "Time Management",
-                        name: "Waktu Chat Ideal",
+                        name: "Uji Nyali",
                         image: "chat_ideal",
                         xp: 100,
                         description: "Kirim foto tanpa konteks ke gebetan, tunggu 5 menit baru boleh kamu hapus.",
@@ -141,12 +141,7 @@ class Data : ObservableObject{
                         description: "Buat playlist lagu dengan urutan yang menceritakan perasaanmu ke gebetan.",
                         caution: "Kalau dibagikan, pastikan tidak terlalu eksplisit jika belum siap terbuka."
                     )
-                ],
-                stories: StoryData(
-                    imagePath: "cerita_crush",
-                    storyText: "Hari ini aku kirim pesan ke orang yang udah lama aku suka. Nggak nyangka dia bales dan jawabannya bikin aku senyum-senyum sendiri. Mungkin ini awal dari sesuatu yang baru?",
-                    createdAt: Date()
-                )
+                ]
             ),
             ThemeData(
                 id: 3,
@@ -163,7 +158,7 @@ class Data : ObservableObject{
                         name: "Teka-Teki Visual",
                         image: "teka_teki_visual",
                         xp: 100,
-                        description: "Kirim satu foto 'aneh' ke 1 teman dan suruh mereka tebak ceritanya.",
+                        description: "Kirim satu foto objek yang di-zoom ke salah satu teman, kemudian suruh mereka menebak itu objek apa.",
                         caution: "Pastikan fotonya tidak menyinggung atau membingungkan secara negatif.",
                         completed: true
                     ),
@@ -173,7 +168,7 @@ class Data : ObservableObject{
                         name: "Sulap Jepretan",
                         image: "sulap_jepretan",
                         xp: 100,
-                        description: "Ambil foto objek random yang keliatannya jelek dan buat jadi 'aesthetic' lewat editan.",
+                        description: "Ambil foto objek random yang keliatannya jelek dan cari cara agar jadi lebih 'aesthetic'.",
                         caution: "Jangan ambil foto orang tanpa izin, terutama jika ingin mengedit atau membagikannya.",
                         completed: true
                     ),
@@ -193,17 +188,23 @@ class Data : ObservableObject{
                         name: "Jepretan Kilat",
                         image: "jepretan_kilat",
                         xp: 100,
-                        description: "Ambil 3 foto bagus dalam waktu 3 menit di satu ruangan, atau 5 foto dalam 5 menit dengan tema warna dominan hari ini.",
+                        description: "Ambil 3 foto jendela dengan angle yang berbeda-beda dalam waktu 2 menit.",
                         caution: "Perhatikan batas waktu dan jangan terlalu perfeksionis — fokus pada spontanitas."
                     ),
                     Challenge(
                         id: 5,
                         category: "Creativity",
-                        name: "Poster Misteri",
+                        name: "Apa itu Edit?",
                         image: "poster_misteri",
                         xp: 100,
-                        description: "Amail 1 foto dengan suasana tertentu dan buatlah caption untuk foto tersebut.",
-                        caution: "Gunakan aplikasi edit dengan bijak dan hindari konten yang bisa disalahartikan."
+                        description: """
+                                    Ambil foto dengan frame yang hanya menggunakan trik fisik.
+                                    
+                                    Contoh: 
+                                    - Tempel plastik bening di kamera buat efek blur
+                                    - Foto lewat gelas bening berisi air untuk efek distorsi.
+                                    """,
+                        caution: "Jangan gunakan aplikasi editing untuk membuat frame-nya."
                     )
                 ]
             ),
@@ -219,7 +220,7 @@ class Data : ObservableObject{
                     Challenge(
                         id: 1,
                         category: "Communication",
-                        name: "Terima Kasih",
+                        name: "Terima Kasih Mentor!",
                         image: "terima_kasih_mentor",
                         xp: 100,
                         description: "Kirim pesan tulus berisi ucapan terima kasih ke mentor (boleh beberapa) yang menurut kamu sangat berjasa membantu challenge 2 ini.",
@@ -228,7 +229,7 @@ class Data : ObservableObject{
                     Challenge(
                         id: 2,
                         category: "Problem Solving",
-                        name: "Tanya Jalan",
+                        name: "Malu Bertanya Sesat di ADA",
                         image: "tanya_jalan",
                         xp: 100,
                         description: "Tanyakan satu masalah kecil yang sedang kamu hadapi tentang aplikasi kamu ke mentor dan catat saran yang dia berikan.",
@@ -237,7 +238,7 @@ class Data : ObservableObject{
                     Challenge(
                         id: 3,
                         category: "Confidence",
-                        name: "Berani Bertanya",
+                        name: "Basa Basic",
                         image: "berani_bertanya",
                         xp: 100,
                         description: "Ajak berbincang mentor yang jarang kamu ajak bicara dan tanyakan dia makan apa pagi ini",
@@ -246,16 +247,16 @@ class Data : ObservableObject{
                     Challenge(
                         id: 4,
                         category: "Time Management",
-                        name: "Waktu Mentor",
+                        name: "Cafe Favorit Mentor",
                         image: "waktu_mentor",
                         xp: 100,
-                        description: "Cari 1 mentor dan minta waktunya 5 menit, lalu tanyakan mereka sudah ke mana saja di Batam ini",
+                        description: "Cari 1 mentor dan minta waktunya 5 menit, lalu tanyakan cafe favorit mereka di Batam, kenapa suka cafe itu, dan menu favorit mereka di cafe itu.",
                         caution: "Tepat waktu dan hormati jadwal mentor."
                     ),
                     Challenge(
                         id: 5,
                         category: "Creativity",
-                        name: "Ilustrasi Inspirasi",
+                        name: "Supermentor",
                         image: "ilustrasi_inspirasi",
                         xp: 100,
                         description: "Cari sticky notes, lalu gambarkan satu mentor dengan superpower yang dia miliki (bisa berdasarkan latar belakang)",
@@ -263,7 +264,6 @@ class Data : ObservableObject{
                     )
                 ]
             )
-            
         ]
         
 //                listDataTheme  = [

@@ -91,9 +91,9 @@ struct QuestView: View {
                             }
                             
                             VStack(spacing: 15) {
-                                ForEach(0..<5) { index in
+                                ForEach(Array(selectedTheme.challenges.enumerated()), id: \.element.id) { index, challenge in
                                     QuestRow(
-                                        challenge: selectedTheme.challenges[index],
+                                        challenge: challenge,
                                         index: index,
                                         completedQuestsIds: completedQuestIds
                                     )
