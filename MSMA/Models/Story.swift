@@ -13,10 +13,10 @@ class Story {
     var id: UUID
     var imagePath: String
     var storyText: String
-    var questId: Int // Relationship to quest id
+    var questId: UUID // Relationship to quest id
     var createdAt: Date
     
-    init(imagePath: String, storyText: String, questId: Int) {
+    init(imagePath: String, storyText: String, questId: UUID) {
         self.id = UUID()
         self.imagePath = imagePath
         self.storyText = storyText

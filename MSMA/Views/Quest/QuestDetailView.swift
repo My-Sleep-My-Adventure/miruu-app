@@ -23,7 +23,7 @@ struct QuestDetailView: View {
     var challenge: Challenge
     
     // Identifier for this quest
-    let questId: Int
+    let questId: UUID
     
     // Quest complete identifier
     let isCompleted: Bool
@@ -114,6 +114,7 @@ struct QuestDetailView: View {
                     // Button fixed above grass
                     if !isCompleted {
                         Button(action: {
+                            print(challenge,questId)
                             isKeyLearningSheetPresented.toggle()
                         }) {
                             Text("Tuntaskan Misi")

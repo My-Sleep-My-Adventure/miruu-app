@@ -42,7 +42,7 @@ struct QuestView: View {
     @Query var stories: [Story] // Get all stories from SwiftData
     
     // Check if the quest is completed where the user already log the story
-    var completedQuestIds: [Int] {
+    var completedQuestIds: [UUID] {
         stories.map { $0.questId }
     }
     
@@ -94,7 +94,8 @@ struct QuestView: View {
                                 ForEach(Array(selectedTheme.challenges.enumerated()), id: \.element.id) { index, challenge in
                                     QuestRow(
                                         challenge: challenge,
-                                        index: index,
+                                        index: index,pickedThemeId: pickedThemeId!,
+                                        
                                         completedQuestsIds: completedQuestIds
                                     )
                                     .environmentObject(levelController)

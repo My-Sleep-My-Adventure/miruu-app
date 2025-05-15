@@ -69,7 +69,7 @@ struct EditableRectangularImageDocumentation: View {
     @Environment(\.dismiss) private var dismiss
     
     // Identifier for quest
-    let questId: Int
+    let questId: UUID
     
     @EnvironmentObject var levelController: LevelProgressController
 
@@ -155,6 +155,7 @@ struct EditableRectangularImageDocumentation: View {
                     Button {
                         if case let .success(doc) = viewModel.imageState {
                             saveStory(image: doc.uiImage, storyText: keyLearningStory, modelContext: modelContext)
+                            
                             showSuccessAlert = true
                         } else {
                             showSuccessAlert = false

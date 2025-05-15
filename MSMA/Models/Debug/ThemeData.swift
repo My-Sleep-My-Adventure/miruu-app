@@ -34,7 +34,8 @@ struct ThemeData {
 }
 
 struct Challenge {
-    var id: Int
+    var id: UUID = UUID()
+    var themeId: Int
     var category: String
     var name: String
     var image: String // MARK: coba tes jadiin id

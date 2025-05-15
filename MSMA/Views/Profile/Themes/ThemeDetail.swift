@@ -33,7 +33,12 @@ struct ThemeDetail: View {
         }
     }
     
-    var date: String = "13 Mei 2025"
+    var date: String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium   // or .short, .long
+        formatter.timeStyle = .none     // omit time if not needed
+        return formatter.string(from: Date())
+    }
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -65,8 +70,8 @@ struct ThemeDetail: View {
                         .padding(.bottom, 5)
 
                     if !allStories.isEmpty {
-                        ForEach(1...5, id: \.self) { currentQuestId in
-                            if let story = allStories.first(where: { $0.questId == currentQuestId }) {
+                        ForEach(allStories, id: \.self) { currentQuestId in
+                            if let story = allStories.first(where: { $0.questId == currentQuestId.questId }) {
                                 HStack(alignment: .top, spacing: 12) {
                                     if !story.imagePath.isEmpty {
                                         loadImage(from: story.imagePath)

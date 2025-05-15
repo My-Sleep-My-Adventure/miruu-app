@@ -31,6 +31,7 @@ struct HomeView: View {
                     )
                     .environmentObject(questController)
                     .environmentObject(levelController)
+                    .environmentObject(data)
                     .onAppear {
                         questController.checkAndResetThemeIfNeeded()
                     }

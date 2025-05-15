@@ -11,7 +11,8 @@ import SwiftData
 struct QuestRow: View {
     let challenge: Challenge
     let index: Int
-    let completedQuestsIds: [Int]
+    let pickedThemeId: Int
+    let completedQuestsIds: [UUID]
 
 //    var isCompleted: Bool {
 //        !matchingStories.isEmpty
@@ -19,8 +20,12 @@ struct QuestRow: View {
 //
     @EnvironmentObject var levelController: LevelProgressController
     
+//    var isCompleted: Bool {
+//        completedQuestsIds.contains(challenge.id)
+//    }
+//    
     var isCompleted: Bool {
-        completedQuestsIds.contains(challenge.id)
+        pickedThemeId == pickedThemeId && completedQuestsIds.contains(challenge.id)
     }
 
     var body: some View {

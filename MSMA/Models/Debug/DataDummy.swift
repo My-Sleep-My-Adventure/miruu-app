@@ -41,7 +41,7 @@ class Data : ObservableObject{
                 image: "warkop",
                 challenges: [
                     Challenge(
-                        id: 1,
+                        themeId: 1,
                         category: "Communication",
                         name: "Menu Favorit",
                         image: "tanya_favorit_kantin",
@@ -50,7 +50,7 @@ class Data : ObservableObject{
                         caution: "Sapa dengan ramah dan jangan ganggu orang yang lagi makan."
                     ),
                     Challenge(
-                        id: 2,
+                        themeId: 1,
                         category: "Problem Solving",
                         name: "Menu Kilat",
                         image: "menu_kilat",
@@ -59,7 +59,7 @@ class Data : ObservableObject{
                         caution: "Jangan lupa bayar dengan jujur ya!"
                     ),
                     Challenge(
-                        id: 3,
+                        themeId: 1,
                         category: "Confidence",
                         name: "Langganan Kantin",
                         image: "promo_sendiri",
@@ -68,7 +68,7 @@ class Data : ObservableObject{
                         caution: "Pastikan kamu meminta dengan sopan dan menjelaskan intensimu dengan baik."
                     ),
                     Challenge(
-                        id: 4,
+                        themeId: 1,
                         category: "Time Management",
                         name: "Makan Cepat",
                         image: "speedy_lunch",
@@ -77,7 +77,7 @@ class Data : ObservableObject{
                         caution: "Tetap makan dengan tenang, jangan terburu-buru sampai tersedak."
                     ),
                     Challenge(
-                        id: 5,
+                        themeId: 1,
                         category: "Creativity",
                         name: "Food Vlogger Cosplay",
                         image: "food_review",
@@ -97,7 +97,7 @@ class Data : ObservableObject{
                 image: "crush",
                 challenges: [
                     Challenge(
-                        id: 1,
+                        themeId: 2,
                         category: "Communication",
                         name: "Tanya Iseng",
                         image: "tanya_iseng",
@@ -106,7 +106,7 @@ class Data : ObservableObject{
                         caution: "Jaga bahasa tetap sopan dan jangan terlalu personal kalau belum akrab."
                     ),
                     Challenge(
-                        id: 2,
+                        themeId: 2,
                         category: "Problem Solving",
                         name: "Kode Rahasia",
                         image: "kode_rahasia",
@@ -115,7 +115,7 @@ class Data : ObservableObject{
                         caution: "Jangan sebut nama asli jika kamu belum siap, cukup pakai inisial atau kode unik."
                     ),
                     Challenge(
-                        id: 3,
+                        themeId: 2,
                         category: "Confidence",
                         name: "Senyum 3 Detik",
                         image: "senyum_3_detik",
@@ -124,7 +124,7 @@ class Data : ObservableObject{
                         caution: "Pastikan situasinya nyaman dan tidak membuat siapapun merasa tidak enak."
                     ),
                     Challenge(
-                        id: 4,
+                        themeId: 2,
                         category: "Time Management",
                         name: "Uji Nyali",
                         image: "chat_ideal",
@@ -133,7 +133,7 @@ class Data : ObservableObject{
                         caution: "Pastikan fotonya bukan yang aneh-aneh ya."
                     ),
                     Challenge(
-                        id: 5,
+                        themeId: 2,
                         category: "Creativity",
                         name: "Kode Playlist",
                         image: "kode_playlist",
@@ -153,7 +153,7 @@ class Data : ObservableObject{
                 image: "kamera",
                 challenges: [
                     Challenge(
-                        id: 1,
+                        themeId: 3,
                         category: "Communication",
                         name: "Teka-Teki Visual",
                         image: "teka_teki_visual",
@@ -163,7 +163,7 @@ class Data : ObservableObject{
                         completed: true
                     ),
                     Challenge(
-                        id: 2,
+                        themeId: 3,
                         category: "Problem Solving",
                         name: "Sulap Jepretan",
                         image: "sulap_jepretan",
@@ -173,7 +173,7 @@ class Data : ObservableObject{
                         completed: true
                     ),
                     Challenge(
-                        id: 3,
+                        themeId: 3,
                         category: "Confidence",
                         name: "Model Dadakan",
                         image: "model_dadakan",
@@ -183,7 +183,7 @@ class Data : ObservableObject{
                         completed: true
                     ),
                     Challenge(
-                        id: 4,
+                        themeId: 3,
                         category: "Time Management",
                         name: "Jepretan Kilat",
                         image: "jepretan_kilat",
@@ -192,7 +192,7 @@ class Data : ObservableObject{
                         caution: "Perhatikan batas waktu dan jangan terlalu perfeksionis — fokus pada spontanitas."
                     ),
                     Challenge(
-                        id: 5,
+                        themeId: 3,
                         category: "Creativity",
                         name: "Apa itu Edit?",
                         image: "poster_misteri",
@@ -218,7 +218,7 @@ class Data : ObservableObject{
                 image: "mentor",
                 challenges: [
                     Challenge(
-                        id: 1,
+                        themeId: 4,
                         category: "Communication",
                         name: "Terima Kasih Mentor!",
                         image: "terima_kasih_mentor",
@@ -227,7 +227,7 @@ class Data : ObservableObject{
                         caution: "Gunakan kata-kata jujur dan sopan, tidak harus panjang."
                     ),
                     Challenge(
-                        id: 2,
+                        themeId: 4,
                         category: "Problem Solving",
                         name: "Malu Bertanya Sesat di ADA",
                         image: "tanya_jalan",
@@ -236,7 +236,7 @@ class Data : ObservableObject{
                         caution: "Sampaikan dengan ringkas dan jelas supaya mudah dimengerti."
                     ),
                     Challenge(
-                        id: 3,
+                        themeId: 4,
                         category: "Confidence",
                         name: "Basa Basic",
                         image: "berani_bertanya",
@@ -245,7 +245,7 @@ class Data : ObservableObject{
                         caution: "Pastikan pertanyaanmu sopan dan mentor sedang tidak sibuk."
                     ),
                     Challenge(
-                        id: 4,
+                        themeId: 4,
                         category: "Time Management",
                         name: "Cafe Favorit Mentor",
                         image: "waktu_mentor",
@@ -254,7 +254,7 @@ class Data : ObservableObject{
                         caution: "Tepat waktu dan hormati jadwal mentor."
                     ),
                     Challenge(
-                        id: 5,
+                        themeId: 4,
                         category: "Creativity",
                         name: "Supermentor",
                         image: "ilustrasi_inspirasi",
