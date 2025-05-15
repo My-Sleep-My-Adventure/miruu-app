@@ -10,15 +10,11 @@ import TipKit
 
 struct BeginningTip: Tip {
     var title: Text {
-        Text("Mulai petualanganmu dari sebuah tema!")
+        Text(Strings.startAdventureTipTitle)
     }
     
     var message: Text? {
-        Text("""
-        Objek: Amati benda sekitar
-        Tempat: Jelajahi lokasi
-        Orang: Ajak interaksi
-        """)
+        Text(Strings.startAdventureTipBody)
     }
 }
 

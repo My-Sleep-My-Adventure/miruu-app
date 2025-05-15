@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import SwiftData
+import TipKit
 
 struct QuestView: View {
     @EnvironmentObject var navModel: NavigationModel
@@ -50,6 +51,9 @@ struct QuestView: View {
     var isCompletedQuestEmpty: Bool {
         completedQuestIds.count < 5
     }
+    
+    let questTip = QuestTip()
+    let completeThemeBtnTip = CompleteThemeBtnTip()
 
     var body: some View {
         NavigationStack {
@@ -101,6 +105,7 @@ struct QuestView: View {
                                     .environmentObject(levelController)
                                 }
                             }
+                            .popoverTip(questTip)
                             .padding(.horizontal)
                             
                             Spacer()
@@ -112,14 +117,16 @@ struct QuestView: View {
                                 }
                                 isThemeStoryViewPresented.toggle()
                             } label: {
-                                Text("Selesaikan Tema")
+                                Text(Strings.completeThemeBtnMsg)
                                     .foregroundStyle(Color("milk"))
                                     .frame(maxWidth: 323, maxHeight: 50)
                                     .padding(.vertical, 20)
                                     .background(isCompletedQuestEmpty ? Color.gray.opacity(0.6) : Color("E0610B"))
+                                    .font(.body)
                                     .fontWeight(.bold)
                             }
                             .disabled(isCompletedQuestEmpty)
+                            .popoverTip(completeThemeBtnTip)
                             .cornerRadius(20)
                             .shadow(radius: 4, y: 4)
                             .sheet(isPresented: $isThemeStoryViewPresented) {
@@ -151,7 +158,6 @@ struct QuestView: View {
                                 .presentationDragIndicator(.visible)
                                 .presentationDetents([.medium])
                             }
-
                             .padding(.top, 20)
                             .padding(.bottom, 80)
                         }

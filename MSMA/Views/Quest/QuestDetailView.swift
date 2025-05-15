@@ -58,7 +58,7 @@ struct QuestDetailView: View {
                             
                             if isCompleted {
                                 VStack(alignment: .leading) {
-                                    Text("Kamu sudah menyelesaikan challenge ini!")
+                                    Text(Strings.questCompletedMsg)
                                         .font(.subheadline)
                                         .multilineTextAlignment(.center)
                                         .fontWeight(.semibold)
@@ -73,28 +73,30 @@ struct QuestDetailView: View {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(challenge.name)
                                     .font(.title2)
-                                    .bold()
+                                    .fontWeight(.bold)
                             }
                             
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("Deskripsi misi:")
-                                    .fontWeight(.semibold)
+                                    .font(.headline)
                                 Text(challenge.description)
+                                    .font(.body)
                             }
                             
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("Perhatian: ")
-                                    .fontWeight(.semibold)
+                                    .font(.headline)
                                 Text(challenge.caution)
                             }
                             
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("Hadiah:")
-                                    .fontWeight(.semibold)
+                                    .font(.headline)
                                     .padding(.bottom, 4)
                                 HStack {
                                     Image(systemName: "trophy.fill")
                                     Text("\(challenge.xp) XP")
+                                        .font(.body)
                                         .fontWeight(.semibold)
                                 }
                                 .padding(.all, 4)
@@ -118,11 +120,12 @@ struct QuestDetailView: View {
                             isKeyLearningSheetPresented.toggle()
                         }) {
                             Text("Tuntaskan Misi")
+                                .font(.body)
+                                .fontWeight(.bold)
                                 .foregroundColor(.white)
                                 .frame(maxWidth: 323, maxHeight: 50)
                                 .padding(.vertical, 5)
-                                .bold()
-                                .background(Color("AccentColor"))
+                                .background(.orangePrimary)
                         }
                         .cornerRadius(20)
                         .shadow(radius: 4)

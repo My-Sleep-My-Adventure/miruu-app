@@ -38,7 +38,7 @@ struct LevelProgress: View {
 //                    .position(x: 60, y: 70)
                 
                 if levelController.currentLevel >= levelController.maxLevel {
-                    Text("Max Level!")
+                    Text(Strings.maxLevelMsg)
                         .font(.headline)
                         .bold()
                         .foregroundStyle(.white)

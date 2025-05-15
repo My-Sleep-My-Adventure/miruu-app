@@ -28,7 +28,7 @@ struct AchievePopUpView: View {
             
             VStack(spacing: 20) {
                 VStack{
-                    Text("Pencapaian Pertamamu!!")
+                    Text(Strings.firstAchievementTitle)
                         .font(.system(size: 20, weight: .bold, design: .rounded))
                         .multilineTextAlignment(.center)
                         .foregroundStyle(Color("E0610B"))

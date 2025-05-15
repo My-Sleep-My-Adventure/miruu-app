@@ -79,18 +79,20 @@ struct EditableRectangularImageDocumentation: View {
                 VStack(spacing: 16) {
                     // Title and Instructions
                     VStack(alignment: .center, spacing: 8) {
-                        Text("Catatan Petualangan")
-                            .font(.title)
-                            .fontWeight(.semibold)
+                        Text(Strings.questStoryHeadingMsg)
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .padding(.top, 20)
                         
-                        Text("Apa yang paling berkesan dari tantangan ini?")
-                            .font(.caption)
-                            .fontWeight(.semibold)
+                        Text(Strings.questStoryPrompt)
+                            .font(.body)
+                            .padding(.bottom, 10)
                         
-                        Text("Ceritakan hal baru yang kamu sadari, keterampilan yang berkembang, atau pengalaman yang membuka perspektifmu.")
-                            .font(.caption)
+                        Text(Strings.questStoryBodyMsg)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
-                            .padding(.horizontal)
+                            .padding(.horizontal, 4)
                     }
                     .padding(.bottom, 10)
 
@@ -124,32 +126,38 @@ struct EditableRectangularImageDocumentation: View {
                         }
                         Button("Batal", role: .cancel) {}
                     }
-
-                    // Text Editor
-                    TextEditor(text: $keyLearningStory)
-                        .padding(4)
-                        .frame(width: 320, height: 100)
-                        .background(
-                            RoundedRectangle(
-                                cornerRadius: 10
+                    
+                    VStack(alignment: .leading) {
+                        Text("Tulis ceritamu di bawah ini")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                        // Text Editor
+                        TextEditor(text: $keyLearningStory)
+                            .padding(4)
+                            .frame(width: 320, height: 100)
+                            .background(
+                                RoundedRectangle(
+                                    cornerRadius: 10
+                                )
+                                .stroke(
+                                    Color.gray.opacity(0.2),
+                                    lineWidth: 1.5
+                                )
                             )
-                            .stroke(
-                                Color.gray.opacity(0.2),
-                                lineWidth: 1.5
-                            )
-                        )
-                        .autocorrectionDisabled(true)
-                        .fullScreenCover(isPresented: $showImagePicker) {
-                            CameraAndPhotoPicker(sourceType: imageSourceType) { image in
-                                viewModel.setImage(image)
+                            .autocorrectionDisabled(true)
+                            .fullScreenCover(isPresented: $showImagePicker) {
+                                CameraAndPhotoPicker(sourceType: imageSourceType) { image in
+                                    viewModel.setImage(image)
+                                }
                             }
-                        }
-
-//                        .sheet(isPresented: $showImagePicker) {
-//                            CameraAndPhotoPicker(sourceType: imageSourceType) { image in
-//                                viewModel.setImage(image)
-//                            }
-//                        }
+                        
+                        //                        .sheet(isPresented: $showImagePicker) {
+                        //                            CameraAndPhotoPicker(sourceType: imageSourceType) { image in
+                        //                                viewModel.setImage(image)
+                        //                            }
+                        //                        }
+                    }
+                    .padding(.top, 10)
 
                     // Save Button
                     Button {
@@ -162,8 +170,9 @@ struct EditableRectangularImageDocumentation: View {
                         }
                     } label: {
                         Text("Simpan")
-                            .foregroundColor(Color("milk"))
+                            .font(.body)
                             .fontWeight(.bold)
+                            .foregroundColor(Color("milk"))
                             .frame(maxWidth: 320, maxHeight: 50)
                             .padding(.vertical, 20)
                             .background(Color("E0610B"))
@@ -205,5 +214,6 @@ struct EditableRectangularImageDocumentation: View {
         }
     }
 }
+
 
 

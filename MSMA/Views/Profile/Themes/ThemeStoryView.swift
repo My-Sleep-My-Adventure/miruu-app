@@ -32,7 +32,7 @@ struct ThemeStoryView: View {
     
     var body: some View {
         VStack(alignment: .center) {
-            Text("Bagaimana perasaan kamu setelah menyelesaikan seluruh misi, Penjelajah?")
+            Text(Strings.themeStorySheetMsg)
                 .multilineTextAlignment(.center)
             .frame(maxWidth: 300)
             .padding(.top, 20)
@@ -79,7 +79,7 @@ struct ThemeStoryView: View {
                 dismiss()
                 onCompletion()
             } label: {
-                Text("Simpan Jejakmu!")
+                Text(Strings.themeStoryBtnMsg)
                     .foregroundColor(Color("milk"))
                     .fontWeight(.bold)
                     .frame(maxWidth: 320, maxHeight: 50)

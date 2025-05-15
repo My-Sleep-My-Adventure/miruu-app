@@ -51,7 +51,7 @@ struct AchievementDetail: View {
                 }
             }
             ToolbarItem(placement: .principal) {
-                Text("Pencapaian")
+                Text(Strings.achievementNavTitle)
                     .foregroundColor(.black) // Change the title color here
                     .font(.headline)
             }

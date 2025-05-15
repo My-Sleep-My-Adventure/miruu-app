@@ -24,7 +24,7 @@ struct SavedStoriesView: View {
                                 .clipped()
                                 .cornerRadius(12)
                         } else {
-                            Text("Gagal memuat gambar")
+                            Text(Strings.loadImageFailed)
                                 .foregroundColor(.red)
                         }
 

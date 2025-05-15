@@ -38,7 +38,7 @@ struct CompletionView: View {
                         .frame(width: 200, height: 200)
 //                    Text(theme.name)
                     
-                    Text("Kamu Berhasil Menyelesaikan Tema!!!")
+                    Text(Strings.themeCompletionTitle)
                         .font(.system(size: 20, design: .rounded))
                         .font(.caption)
                         .multilineTextAlignment(.center)
@@ -47,7 +47,7 @@ struct CompletionView: View {
                         .shadow(color: .white.opacity(0.9), radius: 4)
                         .shadow(color: .white.opacity(0.9), radius: 4)
                 } else {
-                    Text("No Theme Selected")
+                    Text(Strings.themeSelectionError)
                 }
 //                Image(selectedTheme!.image)
 //                    .resizable()

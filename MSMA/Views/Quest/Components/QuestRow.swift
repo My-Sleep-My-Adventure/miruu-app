@@ -53,12 +53,11 @@ struct QuestRow: View {
                     VStack(alignment: .leading) {
                         Text(challenge.name)
                             .foregroundStyle(isCompleted ? .success : .black)
-                            .font(.system(size: 18))
-                            .bold()
+                            .font(.headline)
                         
                         Text(challenge.description)
                             .foregroundStyle(isCompleted ? .success : .gray)
-                            .font(.system(size: 16))
+                            .font(.body)
                             .lineLimit(1)
                             .truncationMode(.tail)
                     }

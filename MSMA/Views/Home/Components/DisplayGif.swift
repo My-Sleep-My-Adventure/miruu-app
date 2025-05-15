@@ -23,7 +23,7 @@ struct DisplayGif: View {
                     .scaledToFit()
                     .frame(width: size, height: size)
             } else {
-                Text("The Dragon is Hiding")
+                Text(Strings.dragonHidingErrMsg)
                     .foregroundStyle(.white)
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 16).fill(.black))

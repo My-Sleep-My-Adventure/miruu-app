@@ -10,10 +10,10 @@ import TipKit
 
 struct TakeThemeTip: Tip {
     var title: Text {
-        Text("Ambil Tema")
+        Text(Strings.takeThemeTipTitle)
     }
     
     var message: Text? {
-        Text("Ketuk di sini untuk mengambil tema yang kamu mau. Kamu hanya dapat mengambil tema sekali dalam 24 jam.")
+        Text(Strings.takeThemeTipBody)
     }
 }

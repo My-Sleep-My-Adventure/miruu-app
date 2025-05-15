@@ -43,7 +43,7 @@ struct ShuffleThemeView: View {
             VStack{
                 VStack{
                     Spacer()
-                    Text("Miruu")
+                    Text(Strings.appName)
                         .font(.system(size: 65, weight: .bold, design: .rounded))
                         .foregroundStyle(Color("E0610B"))
                         .shadow(color: .white.opacity(0.9), radius: 4)
@@ -98,7 +98,7 @@ struct ShuffleThemeView: View {
                                     shuffleCount -= 1
                                 }
                             } label: {
-                                Text("Dapatkan Tema")
+                                Text(Strings.generateThemeBtnTitle)
                                     .foregroundStyle(Color("milk"))
                                     .padding(.vertical, 60)
                                     .frame(maxWidth: 323, maxHeight: 60)

@@ -22,6 +22,8 @@ struct PopUpView: View {
     @EnvironmentObject var navModel: NavigationModel
 
     @State private var animateAngle = -300.0
+    
+    let takeThemeTip = TakeThemeTip()
 
     var body: some View {
         ZStack {
@@ -35,12 +37,12 @@ struct PopUpView: View {
                 }
             
             VStack(spacing: 20) {
-                Image(generated?.image ?? "Unable to load data")
+                Image(generated?.image ?? Strings.loadDataErrorMsg)
                     .resizable()
                     .frame(maxWidth: 200, maxHeight: 200)
                     .scaledToFill()
                 
-                Text(generated?.name ?? "Unable to load data")
+                Text(generated?.name ?? Strings.loadDataErrorMsg)
                     .font(.headline)
                     .bold()
                 
@@ -54,12 +56,13 @@ struct PopUpView: View {
                         }
                     }
                 } label: {
-                    Text("Ambil Tema")
+                    Text(Strings.takeThemeBtnMsg)
                         .foregroundStyle(Color("milk"))
                         .padding(.vertical, 20)
                         .frame(maxWidth: 200)
-                        .background(Color( "AccentColor"))
+                        .background(.orangePrimary)
                         .fontWeight(.bold)
+                        .popoverTip(takeThemeTip)
                 }
                 .disabled(generated == nil)
                 .cornerRadius(6)

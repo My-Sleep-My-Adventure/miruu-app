@@ -44,7 +44,7 @@ struct ThemeDetail: View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 20) {
                 VStack(spacing: 8) {
-                    Text("Jurnal Petualangan")
+                    Text(Strings.adventureJournalMsg)
                         .font(.title2)
                         .bold()
 
@@ -65,7 +65,7 @@ struct ThemeDetail: View {
                 .padding()
 
                 VStack(alignment: .leading, spacing: 16) {
-                    Text("Cerita Dalam Setiap Misi")
+                    Text(Strings.themeDetailHeadingMsg)
                         .font(.headline)
                         .padding(.bottom, 5)
 
@@ -93,7 +93,7 @@ struct ThemeDetail: View {
                                 .cornerRadius(16)
                                 .shadow(radius: 2)
                             } else {
-                                Text("Belum ada cerita untuk quest ini")
+                                Text(Strings.storyEmptyQuestMsg)
                                     .font(.subheadline)
                                     .foregroundColor(.gray)
                                     .italic()

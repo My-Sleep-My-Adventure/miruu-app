@@ -14,7 +14,7 @@ struct AchievementView: View {
     var body: some View {
         VStack(){
             HStack(){
-                Text("Daftar Pencapaian")
+                Text(Strings.listOfAchievementsTitle)
                     .font(.system( size: 16, weight: .bold, design: .rounded))
                     .font(.title3)
                 Spacer()
@@ -53,28 +53,23 @@ struct AchievementView: View {
                                 
                             } else {
                                 VStack {
-                                    
                                     Image("lockachieve")
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
                                         .frame(width: 85, height: 85)
               
-                                    
-                                    Text("Locked")
+                                    Text(Strings.achievementLockMsg)
                                         .font(.caption)
                                         .bold()
                                         .foregroundColor(.black)
-                                    
                                 }
                                 .padding(.bottom, 8)
                             }
                         }
                         .padding(.bottom, 8)
-                        
                     }
                 }
             }
-            
             .padding()
         }
         .frame(alignment: .top)

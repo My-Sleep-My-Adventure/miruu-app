@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TipKit
 
 struct ProfileView: View {
     @EnvironmentObject var levelController: LevelProgressController
@@ -13,6 +14,17 @@ struct ProfileView: View {
     @EnvironmentObject var data: Data
     
     @State private var isActive: Bool = true
+    
+    let profileTip = TipGroup {
+        AchievementTip()
+        ThemeTip()
+        CharacterTip()
+    }
+    
+//    let achievementTip = AchievementTip()
+//    let themeTip = ThemeTip()
+//    let characterTip = CharacterTip()
+    
     var body: some View {
         NavigationStack {
             VStack{
@@ -25,6 +37,7 @@ struct ProfileView: View {
                                 VStack{
                                     LevelProgress()
                                         .environmentObject(levelController)
+                                        .popoverTip(CharacterTip())
                                     
                                     Section{
                                         Picker("Status", selection: $isActive) {
@@ -67,21 +80,18 @@ struct ProfileView: View {
                             AchievementView()
                                 .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .top)
                                 .environmentObject(data)
+                                .popoverTip(AchievementTip())
                         } else {
                             ThemeView()
                                 .frame(maxWidth: .infinity,maxHeight: .infinity)
+                                .popoverTip(ThemeTip())
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .top)
                     
                 }
-
-                
-                
             }
             .frame(maxWidth: .infinity,maxHeight: .infinity)
-
-            
             .navigationBarBackButtonHidden(true)
         }
     }

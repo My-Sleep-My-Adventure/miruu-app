@@ -10,11 +10,11 @@ import TipKit
 
 struct ShuffleThemeTip: Tip {
     var title: Text {
-        Text("Acak tema")
+        Text(Strings.shuffleThemeTipTitle)
     }
     
     var message: Text? {
-        Text("Ketuk di sini untuk mendapatkan tema. Kamu punya 3 kesempatan untuk mengacak tema.")
+        Text(Strings.shuffleThemeTipBody)
     }
 }
 

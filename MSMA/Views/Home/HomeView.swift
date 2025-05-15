@@ -59,7 +59,7 @@ struct HomeView: View {
                 .environmentObject(levelController)
                 .environmentObject(data)
         }
-        .tint(Color.accent)
+        .tint(.orangePrimary)
         // Add an app-wide timer check to ensure theme resets even when in other tabs
         .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { _ in
             questController.checkAndResetThemeIfNeeded()
