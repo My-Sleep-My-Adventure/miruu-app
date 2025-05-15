@@ -116,7 +116,7 @@ struct QuestDetailView: View {
                     // Button fixed above grass
                     if !isCompleted {
                         Button(action: {
-                            print(challenge,questId)
+                            print(challenge, questId)
                             isKeyLearningSheetPresented.toggle()
                         }) {
                             Text("Tuntaskan Misi")

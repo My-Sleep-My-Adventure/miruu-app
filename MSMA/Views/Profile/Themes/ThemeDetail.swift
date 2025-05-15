@@ -12,15 +12,22 @@ import SwiftData
 struct ThemeDetail: View {
     @Environment(\.presentationMode) var presentationMode
     
+    // Modified query with predicate to filter stories by theme
     @Query var allStories: [Story]
     
     let data: ThemeData
     
-    // Initialize with a query to get all stories
+    // Initialize with a query filtered by questIds related to this theme
     init(data: ThemeData) {
         self.data = data
-        // Sort stories by questId to group them logically
-        _allStories = Query(sort: [SortDescriptor(\Story.questId)])
+        
+        // Create an array of quest IDs from this specific theme
+        let questIds = data.challenges.map { $0.id }
+        
+        // Filter stories where the questId is in our list of theme-specific questIds
+        _allStories = Query(filter: #Predicate<Story> { story in
+            questIds.contains(story.questId)
+        }, sort: [SortDescriptor(\Story.questId)])
     }
     
     // Function to load image from file path
@@ -70,38 +77,27 @@ struct ThemeDetail: View {
                         .padding(.bottom, 5)
 
                     if !allStories.isEmpty {
-                        ForEach(allStories, id: \.self) { currentQuestId in
-                            if let story = allStories.first(where: { $0.questId == currentQuestId.questId }) {
-                                HStack(alignment: .top, spacing: 12) {
-                                    if !story.imagePath.isEmpty {
-                                        loadImage(from: story.imagePath)
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: 120, height: 170)
-                                            .clipped()
-                                            .cornerRadius(12)
-                                    }
-
-                                    Text(story.storyText)
-                                        .font(.body)
-                                        .multilineTextAlignment(.leading)
-                                        .fixedSize(horizontal: false, vertical: true)
+                        ForEach(allStories, id: \.self) { story in
+                            HStack(alignment: .top, spacing: 12) {
+                                if !story.imagePath.isEmpty {
+                                    loadImage(from: story.imagePath)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 120, height: 170)
+                                        .clipped()
+                                        .cornerRadius(12)
                                 }
-                                .padding()
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(Color.white)
-                                .cornerRadius(16)
-                                .shadow(radius: 2)
-                            } else {
-                                Text(Strings.storyEmptyQuestMsg)
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                                    .italic()
-                                    .padding()
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .background(Color.white.opacity(0.7))
-                                    .cornerRadius(10)
+
+                                Text(story.storyText)
+                                    .font(.body)
+                                    .multilineTextAlignment(.leading)
+                                    .fixedSize(horizontal: false, vertical: true)
                             }
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color.white)
+                            .cornerRadius(16)
+                            .shadow(radius: 2)
                         }
                     } else {
                         Text("Belum ada cerita ...")

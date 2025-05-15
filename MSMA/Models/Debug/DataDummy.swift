@@ -265,7 +265,33 @@ class Data : ObservableObject{
                 ]
             )
         ]
+     
         
+    }
+    
+    var unlockedCountAchievement: Int {
+        return listDataAchievement.filter { $0.status == true }.count
+    }
+    
+    var unlockedCountTheme: Int {
+        listDataTheme.filter { $0.status != .locked }.count
+    }
+    
+    func generateData() -> ThemeData {
+        let generatedData = listDataTheme.filter { $0.status == .incomplete || $0.status == .locked}.randomElement() ?? ThemeData(id: 0, name: "Unable to load", category: .tempat, description: "Failed to generate data on DataDummy", xp: 0, status: .complete, image: "", challenges: [])
+        return generatedData
+    }
+    
+    func completeTheme(_ pickedTheme: Int) {
+        listDataTheme[pickedTheme].status = .complete
+    }
+    
+    func completeChallenge(_ pickedTheme: Int) {
+        self.listDataAchievement[pickedTheme].status = true
+    }
+}
+
+
 //                listDataTheme  = [
 //                    ThemeData(
 //                        id: 1,
@@ -470,7 +496,7 @@ class Data : ObservableObject{
 //                                xp: 100,
 //                                description: "Temukan cara paling murah menikmati warung makan favoritmu dengan uang pas Rp7.000.",
 //                                caution: "Pastikan uang yang kamu bawa cukup, dan jangan merasa tertekan untuk membeli lebih dari yang direncanakan."
-//        
+//
 //                            ),
 //                            Challenge(
 //                                id: 3,
@@ -489,7 +515,7 @@ class Data : ObservableObject{
 //                                xp: 100,
 //                                description: "Tantang diri untuk ngobrol, pesan, makan, dan keluar warung makan dalam 25 menit.",
 //                                caution: "Pastikan kamu tidak terburu-buru sehingga mengganggu kenyamanan pelanggan lain atau pelayanan."
-//        
+//
 //                            ),
 //                            Challenge(
 //                                id: 5,
@@ -841,29 +867,5 @@ class Data : ObservableObject{
 //                            )
 //                        ]
 //                    )
-//        
+//
 //                ]
-        
-    }
-    
-    var unlockedCountAchievement: Int {
-        return listDataAchievement.filter { $0.status == true }.count
-    }
-    
-    var unlockedCountTheme: Int {
-        listDataTheme.filter { $0.status != .locked }.count
-    }
-    
-    func generateData() -> ThemeData {
-        let generatedData = listDataTheme.filter { $0.status == .incomplete || $0.status == .locked}.randomElement() ?? ThemeData(id: 0, name: "Unable to load", category: .tempat, description: "Failed to generate data on DataDummy", xp: 0, status: .complete, image: "", challenges: [])
-        return generatedData
-    }
-    
-    func completeTheme(_ pickedTheme: Int) {
-        listDataTheme[pickedTheme].status = .complete
-    }
-    
-    func completeChallenge(_ pickedTheme: Int) {
-        self.listDataAchievement[pickedTheme].status = true
-    }
-}

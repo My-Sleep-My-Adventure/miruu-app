@@ -24,6 +24,8 @@ struct QuestView: View {
         return data.listDataTheme.first { $0.id == id }
     }
     
+    @AppStorage("hasShownAchievementPopup") private var hasShownAchievementPopup = false
+    
     // Env object container for levelController passing
     @EnvironmentObject var levelController: LevelProgressController
     
@@ -47,9 +49,20 @@ struct QuestView: View {
         stories.map { $0.questId }
     }
     
+    // Condition checking to check current theme quest id
+    var completedQuestIdsForCurrentTheme: [UUID] {
+        guard let currentTheme = selectedTheme else { return [] }
+        
+        let currentThemeQuestIds = currentTheme.challenges.map { $0.id }
+        
+        return stories
+            .filter { currentThemeQuestIds.contains($0.questId) }
+            .map { $0.questId }
+    }
+    
     // Condition checking to disabled the "Selesaikan Tema" button
     var isCompletedQuestEmpty: Bool {
-        completedQuestIds.count < 5
+        completedQuestIdsForCurrentTheme.count < 5
     }
     
     let questTip = QuestTip()
@@ -99,7 +112,6 @@ struct QuestView: View {
                                     QuestRow(
                                         challenge: challenge,
                                         index: index,pickedThemeId: pickedThemeId!,
-                                        
                                         completedQuestsIds: completedQuestIds
                                     )
                                     .environmentObject(levelController)
@@ -134,16 +146,17 @@ struct QuestView: View {
                                     onCompletion: {
                                         showCompletionPopup = true
                                         themePicked = true
-                                        
-                                        // Let SwiftUI show CompletionView first
+
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                            // Wait to hide CompletionView and show AchievePopUpView
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                                                 showCompletionPopup = false
-                                                showAchievementPopup = true
-                                                animatePopup = true
-                                                
-                                                // Finally, go to Profile after showing achievement
+
+                                                if !hasShownAchievementPopup {
+                                                    showAchievementPopup = true
+                                                    animatePopup = true
+                                                    hasShownAchievementPopup = true
+                                                }
+
                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                                                     showAchievementPopup = false
                                                     animatePopup = false
@@ -152,7 +165,6 @@ struct QuestView: View {
                                                 }
                                             }
                                         }
-                                         
                                     }
                                 )
                                 .presentationDragIndicator(.visible)
