@@ -101,6 +101,7 @@ struct QuestView: View {
                                         Spacer()
                                         
                                         DisplayGif(gifName: levelController.currentDragonForm, size: 200)
+                                            .id(levelController.currentDragonForm)
                                             .frame(maxWidth: 160, maxHeight: 160)
                                     }
                                     .padding()

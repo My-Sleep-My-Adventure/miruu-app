@@ -26,6 +26,7 @@ struct LevelProgress: View {
                     .animation(.easeInOut(duration: 0.5), value: levelController.currentLevelXPProgress)
                 
                 DisplayGif(gifName: levelController.currentDragonForm, size: 200)
+                    .id(levelController.currentDragonForm)
                     .scaledToFit()
                     .frame(width: 120, height: 120)
                     .offset(y: 10)
